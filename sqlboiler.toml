@@ -1,0 +1,10 @@
+[psql]
+  dbname = "db_statusek"
+  host   = "localhost"
+  port   =  5432
+  user   = "postgres "
+  pass   = "Ab123456"
+  schema = "statuses"
+  sslmode = "disable"
+  # blacklist = ["migrations", "other", "relations"]
+  whitelist = ["events", "instances", "objects", "statuses", "workflows"]
