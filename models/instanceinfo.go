@@ -1,9 +1,9 @@
 package models
 
 import (
-	"encoding/json"
 	"fmt"
 
+	"github.com/aleksaan/statusek/utils"
 	"github.com/jinzhu/gorm"
 )
 
@@ -18,8 +18,7 @@ func (instanceInfo *InstanceInfo) GetInstanceInfo(db *gorm.DB, instanceID int64)
 }
 
 func (instanceInfo *InstanceInfo) ToString() string {
-	s, _ := json.MarshalIndent(&instanceInfo, "", "  ")
-	return string(s)
+	return utils.ToString(&instanceInfo)
 }
 
 func (instanceInfo *InstanceInfo) Print() {

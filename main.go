@@ -18,6 +18,6 @@ func main() {
 	//router.HandleFunc("/", homeLink)
 	//router.HandleFunc("//new", controllers.RestCreateTask)
 	// logic.Model()
-	logic.SetStatus(1, 1)
+	logic.SetStatus(1, 3)
 	//log.Fatal(http.ListenAndServe(":8080", router))
 }

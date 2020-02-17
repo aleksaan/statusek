@@ -33,14 +33,25 @@ func SetStatus(instanceID int64, statusID int) bool {
 	statusInfo.Print()
 
 	//checking previos statuses
-	CheckPreviosStatusesIsSet()
+	chk1 := CheckPreviosStatusesIsSet()
 
 	//checking next statuses
-	CheckNextStatusesIsNotSet()
+	chk2 := CheckNextStatusesIsNotSet()
 
 	//cheking current status is not set yet
-	CheckCurrentStatusIsNotSet()
+	chk3 := CheckCurrentStatusIsNotSet()
 
+	fmt.Printf("\nchk1=%v, chk2=%v, chk3=%v\n", chk1, chk2, chk3)
+
+	if chk1 && chk2 && chk3 {
+		event := &models.Event{StatusID: statusID, InstanceID: instanceID}
+		event.Print()
+		err := tx.Create(&event)
+		if err != nil {
+			fmt.Println(err.Error)
+		}
+		event.Print()
+	}
 	tx.Commit()
 
 	return true

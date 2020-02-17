@@ -1,9 +1,9 @@
 package models
 
 import (
-	"encoding/json"
 	"fmt"
 
+	"github.com/aleksaan/statusek/utils"
 	"github.com/jinzhu/gorm"
 )
 
@@ -33,8 +33,7 @@ func (statusInfo *StatusInfo) GetStatusInfo(db *gorm.DB, statusID int) {
 }
 
 func (statusInfo *StatusInfo) ToString() string {
-	s, _ := json.MarshalIndent(&statusInfo, "", "  ")
-	return string(s)
+	return utils.ToString(&statusInfo)
 }
 
 func (statusInfo *StatusInfo) Print() {

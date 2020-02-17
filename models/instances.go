@@ -8,7 +8,7 @@ import (
 )
 
 type Instance struct {
-	InstanceID         int `gorm:"primary_key;`
+	InstanceID         int `gorm:"primary_key;"`
 	InstanceToken      string
 	ObjectID           int
 	InstanceCreationDt *time.Time
