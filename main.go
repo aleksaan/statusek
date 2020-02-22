@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	//"log"
 	"net/http"
 
-	"github.com/aleksaan/statusek/logic"
+	"github.com/aleksaan/statusek/api"
+	"github.com/gorilla/mux"
 	//"github.com/gorilla/mux"
 )
 
@@ -14,10 +17,11 @@ func homeLink(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	//router := mux.NewRouter().StrictSlash(true)
-	//router.HandleFunc("/", homeLink)
-	//router.HandleFunc("//new", controllers.RestCreateTask)
-	// logic.Model()
-	logic.SetStatus(1, 3)
-	//log.Fatal(http.ListenAndServe(":8080", router))
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/", homeLink)
+	router.HandleFunc("/instance/create", api.ApiCreateInstance)
+	router.HandleFunc("/status/setStatus", api.ApiSetStatus)
+	router.HandleFunc("/instance/checkIsFinished", api.ApiCheckInstanceIsFinished)
+
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

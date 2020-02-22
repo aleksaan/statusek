@@ -3,15 +3,24 @@ package models
 import (
 	"time"
 
+	"github.com/google/uuid"
+	"github.com/jinzhu/gorm"
+
 	u "github.com/aleksaan/scheduler/utils"
 	"github.com/aleksaan/statusek/database"
 )
 
 type Instance struct {
-	InstanceID         int `gorm:"primary_key;"`
+	InstanceID         int64 `gorm:"primary_key;"`
 	InstanceToken      string
 	ObjectID           int
-	InstanceCreationDt *time.Time
+	InstanceCreationDt *time.Time `gorm:"default:CURRENT_TIMESTAMP"`
+}
+
+func (instance *Instance) BeforeCreate(scope *gorm.Scope) error {
+	u := uuid.New().String()
+	scope.SetColumn("InstanceToken", u)
+	return nil
 }
 
 func (instance *Instance) TableName() string {
