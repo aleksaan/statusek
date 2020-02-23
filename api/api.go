@@ -10,14 +10,15 @@ import (
 
 //---------------------------------------------------------------------------
 
-type ApiCreateInstanceParams struct {
+type apiCreateInstanceParams struct {
 	ObjectName string `json:"object_name"`
 }
 
-//ApiCreateInstance - creating instance of specified object type
+// ApiCreateInstance - rest api handler creates instance of specified object
+
 var ApiCreateInstance = func(w http.ResponseWriter, r *http.Request) {
 
-	params := &ApiCreateInstanceParams{}
+	params := &apiCreateInstanceParams{}
 
 	err := json.NewDecoder(r.Body).Decode(params)
 	if err != nil {
@@ -39,15 +40,15 @@ var ApiCreateInstance = func(w http.ResponseWriter, r *http.Request) {
 
 //---------------------------------------------------------------------------
 
-type ApiSetStatusParams struct {
+type apiSetStatusParams struct {
 	InstanceToken string `json:"instance_token"`
 	StatusName    string `json:"status_name"`
 }
 
-//ApiSetStatus - set status for instance
+//ApiSetStatus - rest api handler sets status for the instance
 var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 
-	params := &ApiSetStatusParams{}
+	params := &apiSetStatusParams{}
 
 	err := json.NewDecoder(r.Body).Decode(params)
 	if err != nil {
@@ -80,14 +81,14 @@ var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 
 //---------------------------------------------------------------------------
 
-type ApiCheckInstanceIsFinishedParams struct {
+type apiCheckInstanceIsFinishedParams struct {
 	InstanceToken string `json:"instance_token"`
 }
 
-//ApiCheckInstanceIsFinished - checks instanse is finished (return true) or not (return false)
+//ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
 var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 
-	params := &ApiCheckInstanceIsFinishedParams{}
+	params := &apiCheckInstanceIsFinishedParams{}
 
 	err := json.NewDecoder(r.Body).Decode(params)
 	if err != nil {

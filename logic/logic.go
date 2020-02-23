@@ -20,6 +20,10 @@ func init() {
 	//db.LogMode(true)
 }
 
+// CheckInstanceIsFinished - checks if instance finished or not
+// Finished is if all of mandatory statuses of last level is set or if no one mandatory
+// then at least one of optional statuses is set
+
 func CheckInstanceIsFinished(instanceID int64) bool {
 
 	//getting instance info
@@ -34,7 +38,8 @@ func CheckInstanceIsFinished(instanceID int64) bool {
 	return chk1
 }
 
-//CreateInstance - creates instance and gets its token
+// CreateInstance - creates instance of object and gets its token
+
 func CreateInstance(objectName string) (string, error) {
 	objectID, err := GetObjectIDByName(objectName)
 	if err != nil {
@@ -45,9 +50,11 @@ func CreateInstance(objectName string) (string, error) {
 	return instance.InstanceToken, nil
 }
 
+// GetObjectIDByName - gets objectID by objectName
+
 func GetObjectIDByName(objectName string) (int, error) {
 	var object = &models.Object{}
-	db.Debug().Where("object_name = ?", objectName).First(&object)
+	db.Where("object_name = ?", objectName).First(&object)
 	if object.ObjectID > 0 {
 		fmt.Printf("ObjectID: %d", object.ObjectID)
 		return object.ObjectID, nil
@@ -55,9 +62,11 @@ func GetObjectIDByName(objectName string) (int, error) {
 	return 0, fmt.Errorf("ERROR: Object name '" + objectName + "' has been not found in database")
 }
 
+// GetInstanceIDByToken - gets instanceID by instanceToken
+
 func GetInstanceIDByToken(instanceToken string) (int64, error) {
 	var instance = &models.Instance{}
-	db.Debug().Where("instance_token::text = ?", instanceToken).First(&instance)
+	db.Where("instance_token::text = ?", instanceToken).First(&instance)
 	if instance.InstanceID > 0 {
 		fmt.Printf("InstanceID: %d", instance.InstanceID)
 		return instance.InstanceID, nil
@@ -65,9 +74,11 @@ func GetInstanceIDByToken(instanceToken string) (int64, error) {
 	return 0, fmt.Errorf("ERROR: Instance token '" + instanceToken + "' has been not found in database")
 }
 
+// GetInstanceByToken - gets instance by its token
+
 func GetInstanceByToken(instanceToken string) (*models.Instance, error) {
 	var instance = &models.Instance{}
-	db.Debug().Where("instance_token::text = ?", instanceToken).First(&instance)
+	db.Where("instance_token::text = ?", instanceToken).First(&instance)
 	if instance.InstanceID > 0 {
 		fmt.Printf("InstanceID: %d", instance.InstanceID)
 		return instance, nil
@@ -75,15 +86,19 @@ func GetInstanceByToken(instanceToken string) (*models.Instance, error) {
 	return nil, fmt.Errorf("ERROR: Instance token '" + instanceToken + "' has not been found in database")
 }
 
+// GetStatusIDByName - gets statusID by its name
+
 func GetStatusIDByName(statusName string, objectID int) (int, error) {
 	var status = &models.Status{}
-	db.Debug().Where("status_name::text = ? and object_id = ?", statusName, objectID).First(&status)
+	db.Where("status_name::text = ? and object_id = ?", statusName, objectID).First(&status)
 	if status.StatusID > 0 {
 		fmt.Printf("StatusID: %d", status.StatusID)
 		return status.StatusID, nil
 	}
 	return 0, fmt.Errorf("ERROR: Status name '" + statusName + "' has been not found in database")
 }
+
+// SetStatus - set status of instance
 
 func SetStatus(instanceID int64, statusID int) error {
 
