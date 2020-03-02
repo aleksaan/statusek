@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 
+	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/aleksaan/statusek/utils"
 	"github.com/jinzhu/gorm"
 )
@@ -13,23 +14,30 @@ type StatusInfo struct {
 	NextStatuses []Status
 }
 
-func (statusInfo *StatusInfo) GetStatusInfo(db *gorm.DB, statusID int) {
-	db.Where("status_id = ?", statusID).Find(&statusInfo.Status)
+//GetStatusInfo - get status info by statusName & objectID
+func (statusInfo *StatusInfo) GetStatusInfo(tx *gorm.DB, statusName string, objectID int) rc.ReturnCode {
+
+	rc0 := statusInfo.Status.GetStatus(tx, statusName, objectID)
+	if rc0 != rc.SUCCESS {
+		return rc0
+	}
 
 	var workflows []Workflow
-	db.Where("status_id_next = ?", statusID).Find(&workflows)
+	tx.Where("status_id_next = ?", statusInfo.Status.StatusID).Find(&workflows)
 	var statusesIDPrev []int
 	for _, w := range workflows {
 		statusesIDPrev = append(statusesIDPrev, w.StatusIDPrev)
 	}
-	db.Where("status_id in (?)", statusesIDPrev).Find(&statusInfo.PrevStatuses)
+	tx.Where("status_id in (?)", statusesIDPrev).Find(&statusInfo.PrevStatuses)
 
-	db.Where("status_id_prev = ?", statusID).Find(&workflows)
+	tx.Where("status_id_prev = ?", statusInfo.Status.StatusID).Find(&workflows)
 	var statusesIDNext []int
 	for _, w := range workflows {
 		statusesIDNext = append(statusesIDNext, w.StatusIDNext)
 	}
-	db.Where("status_id in (?)", statusesIDNext).Find(&statusInfo.NextStatuses)
+	tx.Where("status_id in (?)", statusesIDNext).Find(&statusInfo.NextStatuses)
+
+	return rc.SUCCESS
 }
 
 func (statusInfo *StatusInfo) ToString() string {

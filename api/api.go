@@ -5,13 +5,15 @@ import (
 	"net/http"
 
 	"github.com/aleksaan/statusek/logic"
+	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/aleksaan/statusek/utils"
 )
 
 //---------------------------------------------------------------------------
 
 type apiCreateInstanceParams struct {
-	ObjectName string `json:"object_name"`
+	ObjectName      string `json:"object_name"`
+	InstanceTimeout int    `json:"instance_timeout"`
 }
 
 // ApiCreateInstance - rest api handler creates instance of specified object
@@ -26,13 +28,13 @@ var ApiCreateInstance = func(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token, err := logic.CreateInstance(params.ObjectName)
+	token, rc0 := logic.CreateInstance(params.ObjectName, params.InstanceTimeout)
 
 	var resp map[string]interface{}
-	if err != nil {
-		resp = utils.Message(false, err.Error())
+	if rc0 != rc.SUCCESS {
+		resp = utils.Message(false, rc.ReturnCodes[rc0])
 	} else {
-		resp = utils.Message(true, "success")
+		resp = utils.Message(true, rc.ReturnCodes[rc0])
 	}
 	resp["instance_token"] = token
 	utils.Respond(w, resp)
@@ -56,26 +58,14 @@ var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	instance, err1 := logic.GetInstanceByToken(params.InstanceToken)
-	if err1 != nil {
-		utils.Respond(w, utils.Message(false, err1.Error()))
-		return
-	}
-
-	statusID, err2 := logic.GetStatusIDByName(params.StatusName, instance.ObjectID)
-	if err2 != nil {
-		utils.Respond(w, utils.Message(false, err2.Error()))
-		return
-	}
-
-	err3 := logic.SetStatus(instance.InstanceID, statusID)
-	if err3 != nil {
-		utils.Respond(w, utils.Message(false, err3.Error()))
+	rc3 := logic.SetStatus(params.InstanceToken, params.StatusName)
+	if rc3 != rc.SUCCESS {
+		utils.Respond(w, utils.Message(false, rc.ReturnCodes[rc3]))
 		return
 	}
 
 	var resp map[string]interface{}
-	resp = utils.Message(true, "success")
+	resp = utils.Message(true, rc.ReturnCodes[rc3])
 	utils.Respond(w, resp)
 }
 
@@ -85,7 +75,9 @@ type apiCheckInstanceIsFinishedParams struct {
 	InstanceToken string `json:"instance_token"`
 }
 
-//ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
+// ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
+// Finished is if all of mandatory statuses of last level is set or in case no one mandatory
+// then at least one of optional statuses is set
 var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 
 	params := &apiCheckInstanceIsFinishedParams{}
@@ -96,16 +88,13 @@ var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	instanceID, err1 := logic.GetInstanceIDByToken(params.InstanceToken)
-	if err1 != nil {
-		utils.Respond(w, utils.Message(false, err1.Error()))
+	chk, rc0 := logic.CheckInstanceIsFinished(params.InstanceToken)
+	if chk == false {
+		utils.Respond(w, utils.Message(false, rc.ReturnCodes[rc0]))
 		return
 	}
 
-	chk := logic.CheckInstanceIsFinished(instanceID)
-
 	var resp map[string]interface{}
-	resp = utils.Message(true, "success")
-	resp["is_instance_finished"] = chk
+	resp = utils.Message(true, rc.ReturnCodes[rc0])
 	utils.Respond(w, resp)
 }

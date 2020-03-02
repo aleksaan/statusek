@@ -70,9 +70,16 @@ values
 ;
 
 
+
+
 select * from statuses.statuses where object_id=2;
+select * from statuses.instances where instance_token ='4354ba9c-c112-4e45-8791-dbeff78480a1' where instance_id=5;
+select * from statuses.workflows w where status_id_next = 3
+select * from statuses.v_last_statuses w
+select * from statuses.events e where instance_id=6
+select * from  statuses.v_last_statuses WHERE object_id = 2
 
-
+SELECT * FROM "statuses"."statuses"  WHERE (status_name::text = 'RUN' and object_id = 2) LIMIT 1 
 -------------------------------------------------------------------
 --Workflow 
 -------------------------------------------------------------------
@@ -231,8 +238,10 @@ create table statuses.instances
 (
 instance_id bigserial primary key,
 instance_token text not null,
+instance_timeout int not null,
 object_id int references statuses.objects (object_id) not null,
-instance_creation_dt timestamp default pg_catalog.clock_timestamp() 
+instance_creation_dt timestamp with time zone default pg_catalog.clock_timestamp() ,
+check(instance_timeout > 0)
 );
 
 delete from statuses.instances; 
@@ -252,7 +261,7 @@ event_id bigserial primary key,
 instance_id bigint references statuses.instances (instance_id) not null,
 status_id int references statuses.statuses (status_id) not null,
 status_asterisk_text text,
-event_creation_dt timestamp default pg_catalog.clock_timestamp()
+event_creation_dt timestamp with time zone default pg_catalog.clock_timestamp()
 );
 
 delete from statuses.events;

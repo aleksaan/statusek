@@ -1,5 +1,10 @@
 package models
 
+import (
+	rc "github.com/aleksaan/statusek/returncodes"
+	"github.com/jinzhu/gorm"
+)
+
 type Object struct {
 	ObjectID   int `gorm:"primary_key;"`
 	ObjectName string
@@ -8,6 +13,14 @@ type Object struct {
 func (object *Object) TableName() string {
 	// custom table name, this is default
 	return "statuses.objects"
+}
+
+func (object *Object) GetObject(db *gorm.DB, objectName string) rc.ReturnCode {
+	db.Where("object_name = ?", objectName).First(&object)
+	if object.ObjectID > 0 {
+		return rc.SUCCESS
+	}
+	return rc.OBJECT_NAME_IS_NOT_FOUND
 }
 
 // func (object *Object) Create() map[string]interface{} {

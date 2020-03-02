@@ -24,4 +24,5 @@ func main() {
 	router.HandleFunc("/instance/checkIsFinished", api.ApiCheckInstanceIsFinished)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
+
 }

@@ -1,8 +1,8 @@
 package models
 
 import (
-	u "github.com/aleksaan/scheduler/utils"
-	"github.com/aleksaan/statusek/database"
+	rc "github.com/aleksaan/statusek/returncodes"
+	"github.com/jinzhu/gorm"
 )
 
 type Status struct {
@@ -18,15 +18,25 @@ func (status *Status) TableName() string {
 	return "statuses.statuses"
 }
 
-func (status *Status) Create() map[string]interface{} {
+func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID int) rc.ReturnCode {
+	tx.Where("status_name = ? and object_id = ?", statusName, objectID).First(&status)
 
-	if err := database.DB.Create(status).Error; err != nil {
-		errmsg := err.Error()
-		resp := u.Message(false, errmsg)
-		return resp
+	if status.StatusID > 0 {
+		//fmt.Printf("StatusID: %d", status.StatusID)
+		return rc.SUCCESS
 	}
-
-	resp := u.Message(true, "success")
-	resp["status"] = status
-	return resp
+	return rc.STATUS_NAME_IS_NOT_FOUND_FOR_OBJECT
 }
+
+// func (status *Status) Create() map[string]interface{} {
+
+// 	if err := database.DB.Create(status).Error; err != nil {
+// 		errmsg := err.Error()
+// 		resp := u.Message(false, errmsg)
+// 		return resp
+// 	}
+
+// 	resp := u.Message(true, "success")
+// 	resp["status"] = status
+// 	return resp
+// }
