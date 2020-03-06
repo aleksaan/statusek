@@ -21,6 +21,7 @@ const (
 	SET_STATUS_VALIDATION_IS_FAIL
 	SET_STATUS_DB_ERROR
 	INSTANCE_IS_IN_TIMEOUT
+	STATUS_ID_IS_NOT_FOUND
 )
 
 var ReturnCodes map[ReturnCode]string = make(map[ReturnCode]string)
@@ -44,4 +45,5 @@ func init() {
 	ReturnCodes[SET_STATUS_VALIDATION_IS_FAIL] = "ERROR: Status validation is failed"
 	ReturnCodes[SET_STATUS_DB_ERROR] = "ERROR: Set status database error"
 	ReturnCodes[INSTANCE_IS_IN_TIMEOUT] = "Instance has been timed out"
+	ReturnCodes[STATUS_ID_IS_NOT_FOUND] = "StatusId is not found"
 }

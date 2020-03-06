@@ -31,8 +31,9 @@ func initConnectionString() {
 	password := os.Getenv("db_pass")
 	dbName := os.Getenv("db_name")
 	dbHost := os.Getenv("db_host")
+	dbSslmode := os.Getenv("db_sslmode")
 
-	connectionstring = fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, username, dbName, password) //Создать строку подключения
+	connectionstring = fmt.Sprintf("host=%s user=%s dbname=%s sslmode=%s password=%s", dbHost, username, dbName, dbSslmode, password) //Создать строку подключения
 }
 
 func ConnectGorm() {

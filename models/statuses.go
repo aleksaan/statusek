@@ -28,6 +28,16 @@ func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID int) rc
 	return rc.STATUS_NAME_IS_NOT_FOUND_FOR_OBJECT
 }
 
+func (status *Status) GetStatusById(tx *gorm.DB, statusId int) rc.ReturnCode {
+	tx.Where("status_id = ?", statusId).First(&status)
+
+	if status.StatusID > 0 {
+		//fmt.Printf("StatusID: %d", status.StatusID)
+		return rc.SUCCESS
+	}
+	return rc.STATUS_ID_IS_NOT_FOUND
+}
+
 // func (status *Status) Create() map[string]interface{} {
 
 // 	if err := database.DB.Create(status).Error; err != nil {

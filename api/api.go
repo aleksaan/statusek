@@ -98,3 +98,32 @@ var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 	resp = utils.Message(true, rc.ReturnCodes[rc0])
 	utils.Respond(w, resp)
 }
+
+//---------------------------------------------------------------------------
+
+type apiGetStatusesParams struct {
+	InstanceToken string `json:"instance_token"`
+}
+
+// ApiGetEvents - gets events of instance by it token
+var ApiGetEvents = func(w http.ResponseWriter, r *http.Request) {
+
+	params := &apiGetStatusesParams{}
+
+	err := json.NewDecoder(r.Body).Decode(params)
+	if err != nil {
+		utils.Respond(w, utils.Message(false, err.Error()))
+		return
+	}
+
+	events, rc0 := logic.GetEvents(params.InstanceToken)
+	if rc0 != rc.SUCCESS {
+		utils.Respond(w, utils.Message(false, rc.ReturnCodes[rc0]))
+		return
+	}
+
+	var resp map[string]interface{}
+	resp = utils.Message(true, rc.ReturnCodes[rc0])
+	resp["events"] = events
+	utils.Respond(w, resp)
+}

@@ -40,6 +40,32 @@ func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
 	return checkInstanceIsFinished(instanceInfo)
 }
 
+func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
+	var events []models.EventExtended
+
+	var instanceInfo = &models.InstanceInfo{}
+
+	//getting instance info
+	rc5 := instanceInfo.GetInstanceInfo(db, instanceToken)
+	if rc5 != rc.SUCCESS {
+		return events, rc5
+	}
+
+	var status = &models.Status{}
+
+	for _, e := range instanceInfo.Events {
+		rc0 := status.GetStatusById(db, e.StatusID)
+		if rc0 != rc.SUCCESS {
+			return nil, rc0
+		}
+		event := &models.EventExtended{EventCreationDt: e.EventCreationDt}
+		event.Status.GetStatusById(db, e.StatusID)
+		events = append(events, *event)
+	}
+
+	return events, rc.SUCCESS
+}
+
 // SetStatus - set status of instance
 
 func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
