@@ -146,7 +146,7 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	}
 
 	//finish instance if stop-status got
-	if statusInfo.Status.StatusType == "MANDATORY" {
+	if statusInfo.Status.StatusType == "STOP-STATUS" {
 		instanceInfo.Instance.FinishInstance(tx, "STOP_STATUS_IS_SET")
 	}
 
