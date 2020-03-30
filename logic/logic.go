@@ -14,8 +14,6 @@ func init() {
 	db = database.DB
 }
 
-//------------------------ADVANCED FUNCTIONS----------------------------------
-
 // CreateInstance - creates instance of object and gets its token
 
 func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCode) {
@@ -29,15 +27,16 @@ func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCo
 	return instance.InstanceToken, rc.SUCCESS
 }
 
-func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
-	//getting instance info
-	var instanceInfo = &models.InstanceInfo{}
-	rc5 := instanceInfo.GetInstanceInfo(db, instanceToken)
-	if rc5 != rc.SUCCESS {
-		return false, rc5
+func finishInstanceIfTimeout(instanceInfo *models.InstanceInfo) {
+	if instanceInfo.Instance.InstanceIsFinished == true {
+		return
 	}
-
-	return checkInstanceIsFinished(instanceInfo)
+	tx := db.Begin()
+	defer tx.Commit()
+	chk4, _ := checkInstanceIsNotTimeout(instanceInfo)
+	if !chk4 {
+		instanceInfo.Instance.FinishInstance(tx, "TIMEOUT")
+	}
 }
 
 func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
@@ -46,10 +45,11 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 	var instanceInfo = &models.InstanceInfo{}
 
 	//getting instance info
-	rc5 := instanceInfo.GetInstanceInfo(db, instanceToken)
+	rc5 := instanceInfo.GetInstanceInfo(db, instanceToken, false)
 	if rc5 != rc.SUCCESS {
 		return events, rc5
 	}
+	finishInstanceIfTimeout(instanceInfo)
 
 	var status = &models.Status{}
 
@@ -66,8 +66,24 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 	return events, rc.SUCCESS
 }
 
-// SetStatus - set status of instance
+// CheckInstanceIsFinished - check for finishing
+func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
+	var instanceInfo = &models.InstanceInfo{}
+	tx := db.Begin()
 
+	//getting instance info (FOR UPDATE MODE)
+	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
+	if rc5 != rc.SUCCESS {
+		tx.Rollback()
+		return false, rc5
+	}
+
+	finishInstanceIfTimeout(instanceInfo)
+	tx.Commit()
+	return checkInstanceIsFinished(instanceInfo)
+}
+
+// SetStatus - set status of instance
 func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 
 	tx := db.Begin()
@@ -75,10 +91,15 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	var instanceInfo = &models.InstanceInfo{}
 	var statusInfo = &models.StatusInfo{}
 
-	//getting instance info
-	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken)
+	//getting instance info (FOR UPDATE MODE)
+	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
 	if rc5 != rc.SUCCESS {
 		return rc5
+	}
+
+	finishInstanceIfTimeout(instanceInfo)
+	if chk7, rc7 := checkInstanceIsFinished(instanceInfo); chk7 == true {
+		return rc7
 	}
 
 	//getting status info
@@ -86,14 +107,6 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	if rc6 != rc.SUCCESS {
 		tx.Rollback()
 		return rc6
-	}
-	//statusInfo.Print()
-
-	//checking instance is timed out
-	chk4, rc4 := checkInstanceIsNotTimeout(instanceInfo)
-	if !chk4 {
-		tx.Rollback()
-		return rc4
 	}
 
 	//checking status is according to instance
@@ -125,10 +138,21 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	}
 
 	event := &models.Event{StatusID: statusInfo.Status.StatusID, InstanceID: instanceInfo.Instance.InstanceID}
+	instanceInfo.Events = append(instanceInfo.Events, *event)
 	err := tx.Create(&event).Error
 	if err != nil {
 		tx.Rollback()
 		return rc.SET_STATUS_DB_ERROR
+	}
+
+	//finish instance if stop-status got
+	if statusInfo.Status.StatusType == "MANDATORY" {
+		instanceInfo.Instance.FinishInstance(tx, "STOP_STATUS_IS_SET")
+	}
+
+	//finish instance if all mandatory statuses is set
+	if r, _ := checkAllMandatoryStatusesAreSet(instanceInfo); r == true {
+		instanceInfo.Instance.FinishInstance(tx, "ALL_MANDATORY_STATUSES_ARE_SET")
 	}
 
 	tx.Commit()

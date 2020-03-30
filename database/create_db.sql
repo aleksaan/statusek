@@ -298,3 +298,86 @@ select * from statuses.events;
 --
 --select * from statuses.v_events;
 
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+--version 1.2
+--25/03/2020
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+select * from statuses.statuses s 
+--alter table statuses.statuses drop column status_is_stopstatus;
+alter table statuses.statuses add column status_is_stopstatus bool default false;
+
+--alter table statuses.statuses add constraint con1 check ((status_is_stopstatus = true and status_is_mandatory=true) or status_is_stopstatus is false);
+
+
+--test for stop-statuses
+insert into statuses.objects (object_name)
+values 	
+	('EXAMPLE_3')
+	returning *;
+	
+--7
+
+insert into statuses.statuses (object_id, status_name, status_desc, status_is_mandatory, status_is_stopstatus)
+values 
+(7, 'CALLED', 'Service called', true, false),
+(7, 'WRONG PARAMS',  'Wrong parameters', true, true),
+(7, 'RUNNED',  'Task runned', true, false),
+(7, 'FAILED',  'Task failed', true, true),
+(7, 'START SAVING',  'Saving started', true, false),
+(7, 'RESULTS SAVED',  'Results saved', true, false),
+insert into statuses.statuses (object_id, status_name, status_desc, status_is_mandatory, status_is_stopstatus)
+values 
+(7, 'OPTIONAL_1',  'Optional 1 set', false, false),
+(7, 'OPTIONAL_2',  'Optional 2 set', false, false)
+returning *;
+
+select * from statuses.statuses s where s.object_id =7
+
+insert into statuses.workflows (status_id_prev, status_id_next)
+values
+(17, 18),
+(17, 19),
+(19, 20),
+(19, 21),
+(19, 22);
+;
+
+
+insert into statuses.workflows (status_id_prev, status_id_next)
+values
+(22, 23),
+(22, 24);
+
+
+--select * from statuses.instances i
+alter table statuses.instances add column instance_is_finished bool default false;
+alter table statuses.instances add column instance_is_finished_description text;
+--
+--
+--select * from statuses.instances where instance_token='66f51f5c-6c40-4c09-bc9e-45ff89f0ef9b'
+--select * from statuses.events where instance_id=5
+--select * from statuses.statuses s where s.object_id =2
+
+--alter table statuses.statuses drop column status_type
+alter table statuses.statuses add column status_type text default 'MANDATORY' not null;
+alter table statuses.statuses add constraint cst1 check(status_type in ('MANDATORY', 'OPTIONAL','STOP-STATUS'));
+
+update  statuses.statuses 
+set status_type='OPTIONAL' 
+where status_is_mandatory =false and status_is_stopstatus=false;
+
+update  statuses.statuses 
+set status_type='STOP-STATUS' 
+where status_is_stopstatus=true;
+
+drop view if exists statuses.v_last_statuses;
+
+alter table statuses.statuses drop column status_is_mandatory;
+alter table statuses.statuses drop column status_is_stopstatus;
+
+-- SELECT relation::regclass, * FROM pg_locks WHERE NOT GRANTED;
+--select * from pg_stat_activity
+--select pg_terminate_backend(10780)

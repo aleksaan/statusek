@@ -14,30 +14,40 @@ func checkStatusIsBelongsToInstance(instanceInfo *models.InstanceInfo, statusInf
 	return false, rc.STATUS_IS_NOT_ACCORDING_TO_INSTANCE
 }
 
+func checkAllMandatoryStatusesAreSet(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
+
+	var countMandatoryOverall = 0
+	var countMandatoryIsSet = 0
+	for _, s := range instanceInfo.Statuses {
+		if s.StatusType == "MANDATORY" {
+			countMandatoryOverall++
+			for _, e := range instanceInfo.Events {
+				if s.StatusID == e.StatusID {
+					countMandatoryIsSet++
+				}
+			}
+
+		}
+	}
+
+	if countMandatoryOverall == countMandatoryIsSet {
+		return true, rc.ALL_MANDATORY_ARE_SET
+	}
+
+	return false, rc.NOT_ALL_MANDATORY_ARE_SET
+}
+
 // CheckInstanceIsFinished - checks if instance finished or not
 // Finished is if all of mandatory statuses of last level is set or if no one mandatory
 // then at least one of optional statuses is set
 
 func checkInstanceIsFinished(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
 
-	chk, rc0 := checkInstanceIsNotTimeout(instanceInfo)
-	if chk == false {
-		return true, rc0
-	}
-
-	var s = &models.StatusInfo{}
-	//getting last statuses
-	db.Raw("SELECT * FROM statuses.v_last_statuses WHERE object_id = ?", instanceInfo.Instance.ObjectID).Scan(&s.PrevStatuses)
-
-	//checking previos statuses
-	chkP, _ := checkPreviosStatusesIsSet(instanceInfo, s)
-
-	if chkP == true {
+	if instanceInfo.Instance.InstanceIsFinished == true {
 		return true, rc.INSTANCE_IS_FINISHED
 	}
 
 	return false, rc.INSTANCE_IS_NOT_FINISHED
-
 }
 
 func checkInstanceIsNotTimeout(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
@@ -58,7 +68,7 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 	var countPrevOptional int
 	var countPrevOptionalIsSet int
 	for _, s := range statusInfo.PrevStatuses {
-		if s.StatusIsMandatory {
+		if s.StatusType == "MANDATORY" {
 			countPrevMandatory++
 			for _, e := range instanceInfo.Events {
 				if e.StatusID == s.StatusID {
@@ -92,7 +102,7 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 
 func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
 
-	if statusInfo.Status.StatusIsMandatory {
+	if statusInfo.Status.StatusType == "MANDATORY" {
 		return true, rc.NEXT_STATUSES_IS_NOT_SET
 	}
 

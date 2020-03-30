@@ -6,11 +6,11 @@ import (
 )
 
 type Status struct {
-	ObjectID          int
-	StatusID          int `gorm:"primary_key;`
-	StatusName        string
-	StatusIsMandatory bool
-	StatusDesc        string
+	ObjectID   int
+	StatusID   int `gorm:"primary_key;`
+	StatusName string
+	StatusDesc string
+	StatusType string
 }
 
 func (status *Status) TableName() string {
