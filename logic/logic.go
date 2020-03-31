@@ -138,16 +138,16 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	}
 
 	event := &models.Event{StatusID: statusInfo.Status.StatusID, InstanceID: instanceInfo.Instance.InstanceID}
-	instanceInfo.Events = append(instanceInfo.Events, *event)
 	err := tx.Create(&event).Error
 	if err != nil {
 		tx.Rollback()
 		return rc.SET_STATUS_DB_ERROR
 	}
+	instanceInfo.Events = append(instanceInfo.Events, *event)
 
 	//finish instance if stop-status got
 	if statusInfo.Status.StatusType == "STOP-STATUS" {
-		instanceInfo.Instance.FinishInstance(tx, "STOP_STATUS_IS_SET")
+		instanceInfo.Instance.FinishInstance(tx, "STOP_STATUS_IS_SET_2")
 	}
 
 	//finish instance if all mandatory statuses is set
