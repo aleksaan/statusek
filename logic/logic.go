@@ -87,6 +87,7 @@ func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
 func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 
 	tx := db.Begin()
+	defer tx.Commit()
 
 	var instanceInfo = &models.InstanceInfo{}
 	var statusInfo = &models.StatusInfo{}
@@ -105,49 +106,43 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	//getting status info
 	rc6 := statusInfo.GetStatusInfo(tx, statusName, instanceInfo.Instance.ObjectID)
 	if rc6 != rc.SUCCESS {
-		tx.Rollback()
 		return rc6
 	}
 
 	//checking status is according to instance
 	chk0, rc0 := checkStatusIsBelongsToInstance(instanceInfo, statusInfo)
 	if !chk0 {
-		tx.Rollback()
 		return rc0
 	}
 
 	//checking previos statuses
 	chk1, rc1 := checkPreviosStatusesIsSet(instanceInfo, statusInfo)
 	if !chk1 {
-		tx.Rollback()
 		return rc1
 	}
 
 	//checking next statuses
 	chk2, rc2 := checkNextStatusesIsNotSet(instanceInfo, statusInfo)
 	if !chk2 {
-		tx.Rollback()
 		return rc2
 	}
 
 	//cheking current status is not set yet
 	chk3, rc3 := checkCurrentStatusIsNotSet(instanceInfo, statusInfo)
 	if !chk3 {
-		tx.Rollback()
 		return rc3
 	}
 
 	event := &models.Event{StatusID: statusInfo.Status.StatusID, InstanceID: instanceInfo.Instance.InstanceID}
 	err := tx.Create(&event).Error
 	if err != nil {
-		tx.Rollback()
 		return rc.SET_STATUS_DB_ERROR
 	}
 	instanceInfo.Events = append(instanceInfo.Events, *event)
 
 	//finish instance if stop-status got
 	if statusInfo.Status.StatusType == "STOP-STATUS" {
-		instanceInfo.Instance.FinishInstance(tx, "STOP_STATUS_IS_SET_2")
+		instanceInfo.Instance.FinishInstance(tx, "STOP_STATUS_IS_SET")
 	}
 
 	//finish instance if all mandatory statuses is set
@@ -155,6 +150,5 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 		instanceInfo.Instance.FinishInstance(tx, "ALL_MANDATORY_STATUSES_ARE_SET")
 	}
 
-	tx.Commit()
 	return rc.SUCCESS
 }
