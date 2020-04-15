@@ -27,12 +27,10 @@ func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCo
 	return instance.InstanceToken, rc.SUCCESS
 }
 
-func finishInstanceIfTimeout(instanceInfo *models.InstanceInfo) {
+func finishInstanceIfTimeout(tx *gorm.DB, instanceInfo *models.InstanceInfo) {
 	if instanceInfo.Instance.InstanceIsFinished == true {
 		return
 	}
-	tx := db.Begin()
-	defer tx.Commit()
 	chk4, _ := checkInstanceIsNotTimeout(instanceInfo)
 	if !chk4 {
 		instanceInfo.Instance.FinishInstance(tx, "TIMEOUT")
@@ -43,13 +41,15 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 	var events []models.EventExtended
 
 	var instanceInfo = &models.InstanceInfo{}
+	tx := db.Begin()
+	defer tx.Commit()
 
-	//getting instance info
-	rc5 := instanceInfo.GetInstanceInfo(db, instanceToken, false)
+	//getting instance info (FOR UPDATE MODE)
+	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, false)
 	if rc5 != rc.SUCCESS {
 		return events, rc5
 	}
-	finishInstanceIfTimeout(instanceInfo)
+	finishInstanceIfTimeout(tx, instanceInfo)
 
 	var status = &models.Status{}
 
@@ -70,16 +70,15 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
 	var instanceInfo = &models.InstanceInfo{}
 	tx := db.Begin()
+	defer tx.Commit()
 
 	//getting instance info (FOR UPDATE MODE)
 	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
 	if rc5 != rc.SUCCESS {
-		tx.Rollback()
 		return false, rc5
 	}
 
-	finishInstanceIfTimeout(instanceInfo)
-	tx.Commit()
+	finishInstanceIfTimeout(tx, instanceInfo)
 	return checkInstanceIsFinished(instanceInfo)
 }
 
@@ -98,7 +97,7 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 		return rc5
 	}
 
-	finishInstanceIfTimeout(instanceInfo)
+	finishInstanceIfTimeout(tx, instanceInfo)
 	if chk7, rc7 := checkInstanceIsFinished(instanceInfo); chk7 == true {
 		return rc7
 	}
