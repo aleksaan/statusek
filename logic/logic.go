@@ -66,6 +66,35 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 	return events, rc.SUCCESS
 }
 
+// CheckStatusIsSet - check for finishing
+func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnCode) {
+	var instanceInfo = &models.InstanceInfo{}
+	tx := db.Begin()
+	defer tx.Commit()
+
+	//getting instance info (FOR UPDATE MODE)
+	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
+	if rc5 != rc.SUCCESS {
+		return false, rc5
+	}
+	finishInstanceIfTimeout(tx, instanceInfo)
+
+	var status = &models.Status{}
+
+	//looking for statusName
+	for _, e := range instanceInfo.Events {
+		rc0 := status.GetStatusById(db, e.StatusID)
+		if rc0 != rc.SUCCESS {
+			return false, rc0
+		}
+		if status.StatusName == statusName {
+			return true, rc.STATUS_IS_SET
+		}
+	}
+
+	return false, rc.STATUS_IS_NOT_SET
+}
+
 // CheckInstanceIsFinished - check for finishing
 func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
 	var instanceInfo = &models.InstanceInfo{}

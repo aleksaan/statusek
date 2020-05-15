@@ -127,3 +127,32 @@ var ApiGetEvents = func(w http.ResponseWriter, r *http.Request) {
 	resp["events"] = events
 	utils.Respond(w, resp)
 }
+
+//---------------------------------------------------------------------------
+
+type apiCheckStatusIsSetParams struct {
+	InstanceToken string `json:"instance_token"`
+	StatusName    string `json:"status_name"`
+}
+
+// ApiCheckStatusIsSet - gets events of instance by it token
+var ApiCheckStatusIsSet = func(w http.ResponseWriter, r *http.Request) {
+
+	params := &apiCheckStatusIsSetParams{}
+
+	err := json.NewDecoder(r.Body).Decode(params)
+	if err != nil {
+		utils.Respond(w, utils.Message(false, err.Error()))
+		return
+	}
+
+	res, rc0 := logic.CheckStatusIsSet(params.InstanceToken, params.StatusName)
+	if !res {
+		utils.Respond(w, utils.Message(false, rc.ReturnCodes[rc0]))
+		return
+	}
+
+	var resp map[string]interface{}
+	resp = utils.Message(true, rc.ReturnCodes[rc0])
+	utils.Respond(w, resp)
+}

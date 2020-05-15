@@ -32,6 +32,7 @@ func main() {
 	router.HandleFunc("/status/setStatus", api.ApiSetStatus)
 	router.HandleFunc("/instance/checkIsFinished", api.ApiCheckInstanceIsFinished)
 	router.HandleFunc("/event/getEvents", api.ApiGetEvents)
+	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 
 	if os.Getenv("ASPNETCORE_PORT") != "" {
 		servicePort = os.Getenv("ASPNETCORE_PORT")

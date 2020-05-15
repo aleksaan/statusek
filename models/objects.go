@@ -16,7 +16,7 @@ func (object *Object) TableName() string {
 }
 
 func (object *Object) GetObject(db *gorm.DB, objectName string) rc.ReturnCode {
-	db.Where("object_name = ?", objectName).First(&object)
+	db.Debug().Where("object_name = ?", objectName).First(&object)
 	if object.ObjectID > 0 {
 		return rc.SUCCESS
 	}

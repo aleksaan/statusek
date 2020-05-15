@@ -24,6 +24,8 @@ const (
 	STATUS_ID_IS_NOT_FOUND
 	ALL_MANDATORY_ARE_SET
 	NOT_ALL_MANDATORY_ARE_SET
+	STATUS_IS_SET
+	STATUS_IS_NOT_SET
 )
 
 var ReturnCodes map[ReturnCode]string = make(map[ReturnCode]string)
@@ -50,4 +52,6 @@ func init() {
 	ReturnCodes[STATUS_ID_IS_NOT_FOUND] = "StatusId is not found"
 	ReturnCodes[ALL_MANDATORY_ARE_SET] = "All mandatory statuses are set"
 	ReturnCodes[NOT_ALL_MANDATORY_ARE_SET] = "Not all mandatory statuses are set"
+	ReturnCodes[STATUS_IS_SET] = "Status is set"
+	ReturnCodes[STATUS_IS_NOT_SET] = "Status is not set"
 }
