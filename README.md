@@ -44,18 +44,7 @@ So, interaction is changing to:
 ***
 Statuses represents states some process, action or object.
 
-Statuses related to abstract Objects.
-
-The system has several pre-configured objects:<br>
-- '1-POINT TASK'<br>
-- '2-POINT LINE TASK'<br>
-- '3-POINT LINE TASK'<br>
-- '3-POINT TRIANGLE TASK'<br>
-- '3-POINT BACK TRIANGLE TASK'<br>
-- '4-POINT ROMB TASK'<br>
-
-For example, object '2-POINT LINE TASK' contains two statuses: <br>
-< t>RUN and FINISHED.
+![Alt text](images/SMSModelsExample.png?raw=true "Examples of statuses models")
 
 ## Statuses workflow models
 ***
