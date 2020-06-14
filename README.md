@@ -150,7 +150,7 @@ or status: false and message: Instance is not finished
 ---
 
 We call:
-http://hostname:8080/instance/checkIsFinished
+http://hostname:8080/event/getEvents
 
 with raw json in the body:
 ```json
