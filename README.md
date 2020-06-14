@@ -29,9 +29,11 @@ Conclusions:
 Statusek realizes all of these points.
 
 Statusek has three restAPI methods for organize interaction between services:
-1. **instance/create** - create instance of some object and get its token
+1. **instance/create** - create instance (process) of some object (model) and get its token
 2. **status/setStatus** - set status of instance (by instance token & status name)
-3. **instance/checkIsFinished** - checks instance is finished or not
+3. **status/checkStatusIsSet** - check certain status is set
+4. **instance/checkIsFinished** - checks instance is finished or not
+5. **event/getEvents** - gets all setted statuses
 
 So, interaction is changing to:
 1. Service1 calls *instance/create* and gets instanceToken
