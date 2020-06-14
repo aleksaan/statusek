@@ -1,6 +1,10 @@
 # Statusek
 Universal tool for reading &amp; saving statuses of task, documents &amp; other
 
+## General
+
+![Alt text](images/SMSGeneral.png?raw=true "General points")
+
 ## Main concept
 ***
 It's a service has given functionality to manage statuses across different services or systems
