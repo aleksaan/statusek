@@ -26,6 +26,8 @@ const (
 	NOT_ALL_MANDATORY_ARE_SET
 	STATUS_IS_SET
 	STATUS_IS_NOT_SET
+	AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS
+	NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS
 )
 
 var ReturnCodes map[ReturnCode]string = make(map[ReturnCode]string)
@@ -54,4 +56,6 @@ func init() {
 	ReturnCodes[NOT_ALL_MANDATORY_ARE_SET] = "Not all mandatory statuses are set"
 	ReturnCodes[STATUS_IS_SET] = "Status is set"
 	ReturnCodes[STATUS_IS_NOT_SET] = "Status is not set"
+	ReturnCodes[AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS] = "At least one of previos statuses is set for a stop-status"
+	ReturnCodes[NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS] = "No one previos statuses are set for a stop-status"
 }

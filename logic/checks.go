@@ -87,6 +87,14 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 		}
 	}
 
+	if statusInfo.Status.StatusType == "STOP-STATUS" {
+		if countPrevMandatoryIsSet+countPrevOptionalIsSet > 0 {
+			return true, rc.AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS
+		} else {
+			return false, rc.NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS
+		}
+	}
+
 	if countPrevMandatory > countPrevMandatoryIsSet {
 		return false, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET
 		//"Не все обязательные статусы предыдущего уровня установлены"
