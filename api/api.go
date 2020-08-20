@@ -2,11 +2,14 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/aleksaan/statusek/logic"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/aleksaan/statusek/utils"
+	"github.com/joho/godotenv"
 )
 
 //---------------------------------------------------------------------------
@@ -75,12 +78,12 @@ type apiCheckInstanceIsFinishedParams struct {
 	InstanceToken string `json:"instance_token"`
 }
 
-// ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
-// Finished is if all of mandatory statuses of last level is set or in case no one mandatory
-// then at least one of optional statuses is set
+//ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
 var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 
 	params := &apiCheckInstanceIsFinishedParams{}
+
+	var resp map[string]interface{}
 
 	err := json.NewDecoder(r.Body).Decode(params)
 	if err != nil {
@@ -88,14 +91,47 @@ var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	chk, rc0 := logic.CheckInstanceIsFinished(params.InstanceToken)
+	chk, rc0, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
 	if chk == false {
-		utils.Respond(w, utils.Message(false, rc.ReturnCodes[rc0]))
+		resp = utils.Message(false, rc.ReturnCodes[rc0])
+		utils.Respond(w, resp)
 		return
 	}
 
+	if instanceInfo.Instance.InstanceIsFinished == false {
+		resp = utils.Message(false, rc.ReturnCodes[rc.INSTANCE_IS_NOT_FINISHED])
+		utils.Respond(w, resp)
+		return
+	}
+
+	resp = utils.Message(true, rc.ReturnCodes[rc.INSTANCE_IS_FINISHED])
+	utils.Respond(w, resp)
+}
+
+//---------------------------------------------------------------------------
+type apiGetInstanceInfoParams struct {
+	InstanceToken string `json:"instance_token"`
+}
+
+// ApiGetInstanceInfo - rest api handler return info about process
+var ApiGetInstanceInfo = func(w http.ResponseWriter, r *http.Request) {
+
+	params := &apiGetInstanceInfoParams{}
+
 	var resp map[string]interface{}
-	resp = utils.Message(true, rc.ReturnCodes[rc0])
+
+	err := json.NewDecoder(r.Body).Decode(params)
+	if err != nil {
+		utils.Respond(w, utils.Message(false, err.Error()))
+		return
+	}
+
+	res, rc0, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
+	resp = utils.Message(res, rc.ReturnCodes[rc0])
+	if rc0 == rc.SUCCESS {
+		resp["instance"] = &instanceInfo.Instance
+	}
+
 	utils.Respond(w, resp)
 }
 
@@ -154,5 +190,24 @@ var ApiCheckStatusIsSet = func(w http.ResponseWriter, r *http.Request) {
 
 	var resp map[string]interface{}
 	resp = utils.Message(true, rc.ReturnCodes[rc0])
+	utils.Respond(w, resp)
+}
+
+//---------------------------------------------------------------------------
+
+// ApiAbout - gets info about program
+var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
+
+	e := godotenv.Load() //Загрузить файл .env
+	if e != nil {
+		fmt.Print(e)
+	}
+	version := os.Getenv("version")
+	githublink := os.Getenv("githublink")
+
+	var resp map[string]interface{}
+	resp = utils.Message(true, "Success")
+	resp["version"] = version
+	resp["home page"] = githublink
 	utils.Respond(w, resp)
 }

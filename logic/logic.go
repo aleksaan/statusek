@@ -95,20 +95,17 @@ func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnC
 	return false, rc.STATUS_IS_NOT_SET
 }
 
-// CheckInstanceIsFinished - check for finishing
-func CheckInstanceIsFinished(instanceToken string) (bool, rc.ReturnCode) {
+// GetInstanceInfo - check for finishing
+func GetInstanceInfo(instanceToken string) (bool, rc.ReturnCode, *models.InstanceInfo) {
 	var instanceInfo = &models.InstanceInfo{}
 	tx := db.Begin()
 	defer tx.Commit()
-
-	//getting instance info (FOR UPDATE MODE)
-	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
-	if rc5 != rc.SUCCESS {
-		return false, rc5
+	rc0 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
+	if rc0 != rc.SUCCESS {
+		return false, rc0, instanceInfo
 	}
-
 	finishInstanceIfTimeout(tx, instanceInfo)
-	return checkInstanceIsFinished(instanceInfo)
+	return true, rc0, instanceInfo
 }
 
 // SetStatus - set status of instance
