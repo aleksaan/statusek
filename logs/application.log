@@ -1,0 +1,1 @@
+time="2020-09-16T16:49:55+03:00" level=error msg="dial tcp [::1]:5433: connectex: No connection could be made because the target machine actively refused it. type=config.error" func=github.com/aleksaan/statusek/logging.Error file="C:/_goenv/src/github.com/aleksaan/statusek/logging/logging.go:44"

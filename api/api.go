@@ -211,3 +211,32 @@ var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 	resp["home page"] = githublink
 	utils.Respond(w, resp)
 }
+
+//---------------------------------------------------------------------------
+
+type apiCheckIsStatusReadyToSetParams struct {
+	InstanceToken string `json:"instance_token"`
+	StatusName    string `json:"status_name"`
+}
+
+//ApiSetStatus - rest api handler sets status for the instance
+var ApiCheckStatusIsReadyToSet = func(w http.ResponseWriter, r *http.Request) {
+
+	params := &apiSetStatusParams{}
+
+	err := json.NewDecoder(r.Body).Decode(params)
+	if err != nil {
+		utils.Respond(w, utils.Message(false, err.Error()))
+		return
+	}
+
+	rc3 := logic.SetStatus(params.InstanceToken, params.StatusName)
+	if rc3 != rc.SUCCESS {
+		utils.Respond(w, utils.Message(false, rc.ReturnCodes[rc3]))
+		return
+	}
+
+	var resp map[string]interface{}
+	resp = utils.Message(true, rc.ReturnCodes[rc3])
+	utils.Respond(w, resp)
+}

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	//"log"
@@ -21,6 +20,7 @@ func homeLink(w http.ResponseWriter, r *http.Request) {
 var Version string
 
 func main() {
+
 	e := godotenv.Load() //Загрузить файл .env
 	if e != nil {
 		fmt.Print(e)
@@ -37,12 +37,13 @@ func main() {
 	router.HandleFunc("/instance/getInfo", api.ApiGetInstanceInfo)
 	router.HandleFunc("/event/getEvents", api.ApiGetEvents)
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
+	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)
 	router.HandleFunc("/about/", api.ApiAbout)
 
 	if os.Getenv("ASPNETCORE_PORT") != "" {
 		servicePort = os.Getenv("ASPNETCORE_PORT")
 	}
 
-	log.Fatal(http.ListenAndServe(":"+servicePort, router))
+	http.ListenAndServe(":"+servicePort, router)
 
 }
