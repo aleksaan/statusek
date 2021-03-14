@@ -4,21 +4,22 @@ import (
 	"fmt"
 	"time"
 
-	u "github.com/aleksaan/scheduler/utils"
 	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/utils"
+	u "github.com/aleksaan/statusek/utils"
+	"github.com/jinzhu/gorm"
 )
 
 type Event struct {
-	EventID         int64 `gorm:"primary_key;"`
-	InstanceID      int64
-	StatusID        int
+	gorm.Model
+	InstanceID      uint
+	StatusID        uint
 	EventCreationDt *time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 }
 
 func (event *Event) TableName() string {
 	// custom table name, this is default
-	return "statuses.events"
+	return "statusek.events"
 }
 
 func (event *Event) Create() map[string]interface{} {

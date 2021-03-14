@@ -6,32 +6,35 @@ import (
 )
 
 type Status struct {
-	ObjectID   int
-	StatusID   int `gorm:"primary_key;`
+	gorm.Model
+	ObjectID   uint
+	Object     Object
 	StatusName string
 	StatusDesc string
 	StatusType string
+	Workflow   []Workflow `gorm:"ForeignKey:WorkflowID"`
+	Event      []Event    `gorm:"ForeignKey:EventID"`
 }
 
 func (status *Status) TableName() string {
 	// custom table name, this is default
-	return "statuses.statuses"
+	return "statusek.statuses"
 }
 
-func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID int) rc.ReturnCode {
+func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID uint) rc.ReturnCode {
 	tx.Where("status_name = ? and object_id = ?", statusName, objectID).First(&status)
 
-	if status.StatusID > 0 {
+	if status.ID > 0 {
 		//fmt.Printf("StatusID: %d", status.StatusID)
 		return rc.SUCCESS
 	}
 	return rc.STATUS_NAME_IS_NOT_FOUND_FOR_OBJECT
 }
 
-func (status *Status) GetStatusById(tx *gorm.DB, statusId int) rc.ReturnCode {
+func (status *Status) GetStatusById(tx *gorm.DB, statusId uint) rc.ReturnCode {
 	tx.Where("status_id = ?", statusId).First(&status)
 
-	if status.StatusID > 0 {
+	if status.ID > 0 {
 		//fmt.Printf("StatusID: %d", status.StatusID)
 		return rc.SUCCESS
 	}

@@ -1,21 +1,22 @@
 package models
 
 import (
-	u "github.com/aleksaan/scheduler/utils"
 	"github.com/aleksaan/statusek/database"
+	u "github.com/aleksaan/statusek/utils"
+	"github.com/jinzhu/gorm"
 )
 
 //Workflow -
 type Workflow struct {
-	WorkflowID   int `gorm:"primary_key;`
-	StatusIDPrev int
-	StatusIDNext int
+	gorm.Model
+	StatusIDPrev uint
+	StatusIDNext uint
 }
 
 //TableName -
 func (workflow *Workflow) TableName() string {
 	// custom table name, this is default
-	return "statuses.workflows"
+	return "statusek.workflows"
 }
 
 //Create -

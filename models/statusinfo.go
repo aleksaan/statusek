@@ -15,7 +15,7 @@ type StatusInfo struct {
 }
 
 //GetStatusInfo - get status info by statusName & objectID
-func (statusInfo *StatusInfo) GetStatusInfo(tx *gorm.DB, statusName string, objectID int) rc.ReturnCode {
+func (statusInfo *StatusInfo) GetStatusInfo(tx *gorm.DB, statusName string, objectID uint) rc.ReturnCode {
 
 	rc0 := statusInfo.Status.GetStatus(tx, statusName, objectID)
 	if rc0 != rc.SUCCESS {
@@ -23,17 +23,17 @@ func (statusInfo *StatusInfo) GetStatusInfo(tx *gorm.DB, statusName string, obje
 	}
 
 	var workflows []Workflow
-	tx.Where("status_id_next = ?", statusInfo.Status.StatusID).Find(&workflows)
+	tx.Where("status_id_next = ?", statusInfo.Status.ID).Find(&workflows)
 	var statusesIDPrev []int
 	for _, w := range workflows {
-		statusesIDPrev = append(statusesIDPrev, w.StatusIDPrev)
+		statusesIDPrev = append(statusesIDPrev, int(w.StatusIDPrev))
 	}
 	tx.Where("status_id in (?)", statusesIDPrev).Find(&statusInfo.PrevStatuses)
 
-	tx.Where("status_id_prev = ?", statusInfo.Status.StatusID).Find(&workflows)
+	tx.Where("status_id_prev = ?", statusInfo.Status.ID).Find(&workflows)
 	var statusesIDNext []int
 	for _, w := range workflows {
-		statusesIDNext = append(statusesIDNext, w.StatusIDNext)
+		statusesIDNext = append(statusesIDNext, int(w.StatusIDNext))
 	}
 	tx.Where("status_id in (?)", statusesIDNext).Find(&statusInfo.NextStatuses)
 

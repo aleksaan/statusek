@@ -28,7 +28,7 @@ func (instanceInfo *InstanceInfo) GetInstanceInfo(db *gorm.DB, instanceToken str
 }
 
 func (instanceInfo *InstanceInfo) RefreshEvents(db *gorm.DB) rc.ReturnCode {
-	db.Where("instance_id = ?", instanceInfo.Instance.InstanceID).Find(&instanceInfo.Events)
+	db.Where("instance_id = ?", instanceInfo.Instance.ID).Find(&instanceInfo.Events)
 	return rc.SUCCESS
 }
 

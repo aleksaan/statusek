@@ -8,7 +8,7 @@ import (
 )
 
 func checkStatusIsBelongsToInstance(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
-	if instanceInfo.Instance.ObjectID == statusInfo.Status.ObjectID {
+	if instanceInfo.Instance.ObjectID == statusInfo.Status.Object.ID {
 		return true, rc.STATUS_IS_ACCORDING_TO_INSTANCE
 	}
 	return false, rc.STATUS_IS_NOT_ACCORDING_TO_INSTANCE
@@ -22,7 +22,7 @@ func checkAllMandatoryStatusesAreSet(instanceInfo *models.InstanceInfo) (bool, r
 		if s.StatusType == "MANDATORY" {
 			countMandatoryOverall++
 			for _, e := range instanceInfo.Events {
-				if s.StatusID == e.StatusID {
+				if s.ID == e.StatusID {
 					countMandatoryIsSet++
 				}
 			}
@@ -52,7 +52,7 @@ func checkInstanceIsFinished(instanceInfo *models.InstanceInfo) (bool, rc.Return
 
 func checkInstanceIsNotTimeout(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
 	t1 := time.Now()
-	t2 := *instanceInfo.Instance.InstanceCreationDt
+	t2 := *&instanceInfo.Instance.CreatedAt
 	//fmt.Printf("\n\nTime 1: %s\nTime 2: %s\n\n", t1.Format(time.RFC3339), t2.Format(time.RFC3339))
 	diff := t1.Sub(t2).Seconds()
 	if diff < float64(instanceInfo.Instance.InstanceTimeout) {
@@ -71,7 +71,7 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 		if s.StatusType == "MANDATORY" {
 			countPrevMandatory++
 			for _, e := range instanceInfo.Events {
-				if e.StatusID == s.StatusID {
+				if e.StatusID == s.ID {
 					countPrevMandatoryIsSet++
 					break
 				}
@@ -79,7 +79,7 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 		} else {
 			countPrevOptional++
 			for _, e := range instanceInfo.Events {
-				if e.StatusID == s.StatusID {
+				if e.StatusID == s.ID {
 					countPrevOptionalIsSet++
 					break
 				}
@@ -116,7 +116,7 @@ func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 
 	for _, s := range statusInfo.NextStatuses {
 		for _, e := range instanceInfo.Events {
-			if e.StatusID == s.StatusID {
+			if e.StatusID == s.ID {
 				return false, rc.AT_LEAST_ONE_NEXT_STATUS_IS_SET
 			}
 		}
@@ -128,7 +128,7 @@ func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 func checkCurrentStatusIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
 
 	for _, e := range instanceInfo.Events {
-		if e.StatusID == statusInfo.Status.StatusID {
+		if e.StatusID == statusInfo.Status.ID {
 			return false, rc.CURRENT_STATUS_IS_SET
 		}
 	}

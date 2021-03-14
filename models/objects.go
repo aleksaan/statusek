@@ -6,18 +6,20 @@ import (
 )
 
 type Object struct {
-	ObjectID   int `gorm:"primary_key;"`
+	gorm.Model
 	ObjectName string
+	Instance   []Instance `gorm:"ForeignKey:InstanceID"`
+	Status     []Status   `gorm:"ForeignKey:StatusID"`
 }
 
 func (object *Object) TableName() string {
 	// custom table name, this is default
-	return "statuses.objects"
+	return "statusek.objects"
 }
 
 func (object *Object) GetObject(db *gorm.DB, objectName string) rc.ReturnCode {
 	db.Debug().Where("object_name = ?", objectName).First(&object)
-	if object.ObjectID > 0 {
+	if object.ID > 0 {
 		return rc.SUCCESS
 	}
 	return rc.OBJECT_NAME_IS_NOT_FOUND

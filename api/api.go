@@ -198,7 +198,7 @@ var ApiCheckStatusIsSet = func(w http.ResponseWriter, r *http.Request) {
 // ApiAbout - gets info about program
 var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 
-	e := godotenv.Load() //Загрузить файл .env
+	e := godotenv.Load
 	if e != nil {
 		fmt.Print(e)
 	}
@@ -219,7 +219,7 @@ type apiCheckIsStatusReadyToSetParams struct {
 	StatusName    string `json:"status_name"`
 }
 
-//ApiSetStatus - rest api handler sets status for the instance
+//ApiCheckStatusIsReadyToSet - rest api handler sets status for the instance
 var ApiCheckStatusIsReadyToSet = func(w http.ResponseWriter, r *http.Request) {
 
 	params := &apiSetStatusParams{}

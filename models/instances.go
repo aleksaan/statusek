@@ -1,19 +1,16 @@
 package models
 
 import (
-	"time"
-
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/google/uuid"
 	"github.com/jinzhu/gorm"
 )
 
 type Instance struct {
-	InstanceID                    int64 `gorm:"primary_key;"`
+	gorm.Model
 	InstanceToken                 string
 	InstanceTimeout               int
-	ObjectID                      int
-	InstanceCreationDt            *time.Time `gorm:"default:CURRENT_TIMESTAMP"`
+	ObjectID                      uint
 	InstanceIsFinished            bool
 	InstanceIsFinishedDescription string
 }
@@ -26,7 +23,7 @@ func (instance *Instance) BeforeCreate(scope *gorm.Scope) error {
 
 func (instance *Instance) TableName() string {
 	// custom table name, this is default
-	return "statuses.instances"
+	return "statusek.instances"
 }
 
 // func (instance *Instance) Create() map[string]interface{} {
@@ -48,7 +45,7 @@ func (instance *Instance) GetInstance(db *gorm.DB, instanceToken string, isForUp
 		option = "FOR UPDATE"
 	}
 	db.Set("gorm:query_option", option).Where("instance_token = ?", instanceToken).First(&instance)
-	if instance.InstanceID > 0 {
+	if instance.ID > 0 {
 		//fmt.Printf("InstanceID: %d", instance.InstanceID)
 		return rc.SUCCESS
 	}

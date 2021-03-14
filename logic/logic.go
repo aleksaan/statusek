@@ -22,7 +22,7 @@ func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCo
 	if rc0 != rc.SUCCESS {
 		return "", rc0
 	}
-	var instance = &models.Instance{ObjectID: object.ObjectID, InstanceTimeout: instanceTimeout}
+	var instance = &models.Instance{ObjectID: *&object.ID, InstanceTimeout: instanceTimeout}
 	db.Create(&instance)
 	return instance.InstanceToken, rc.SUCCESS
 }
@@ -158,7 +158,7 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 		return rc3
 	}
 
-	event := &models.Event{StatusID: statusInfo.Status.StatusID, InstanceID: instanceInfo.Instance.InstanceID}
+	event := &models.Event{StatusID: statusInfo.Status.ID, InstanceID: instanceInfo.Instance.ID}
 	err := tx.Create(&event).Error
 	if err != nil {
 		return rc.SET_STATUS_DB_ERROR
