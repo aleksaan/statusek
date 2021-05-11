@@ -11,7 +11,7 @@ type Status struct {
 	Object     Object
 	StatusName string
 	StatusDesc string
-	StatusType string
+	StatusType string     `gorm:"not null"`
 	Workflow   []Workflow `gorm:"ForeignKey:WorkflowID"`
 	Event      []Event    `gorm:"ForeignKey:EventID"`
 }
@@ -32,7 +32,7 @@ func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID uint) r
 }
 
 func (status *Status) GetStatusById(tx *gorm.DB, statusId uint) rc.ReturnCode {
-	tx.Where("status_id = ?", statusId).First(&status)
+	tx.Where("id = ?", statusId).First(&status)
 
 	if status.ID > 0 {
 		//fmt.Printf("StatusID: %d", status.StatusID)

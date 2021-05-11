@@ -23,7 +23,12 @@ func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCo
 		return "", rc0
 	}
 	var instance = &models.Instance{ObjectID: *&object.ID, InstanceTimeout: instanceTimeout}
-	db.Create(&instance)
+	err := db.Create(&instance).Error
+	if err != nil {
+		database.WriteDBError(err)
+		return "", rc.DATABASE_ERROR
+	}
+
 	return instance.InstanceToken, rc.SUCCESS
 }
 
@@ -66,7 +71,7 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 	return events, rc.SUCCESS
 }
 
-// CheckStatusIsSet - check for finishing
+// CheckStatusIsSet - check certain status is set
 func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnCode) {
 	var instanceInfo = &models.InstanceInfo{}
 	tx := db.Begin()
@@ -80,19 +85,10 @@ func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnC
 	finishInstanceIfTimeout(tx, instanceInfo)
 
 	var status = &models.Status{}
+	status.GetStatus(tx, statusName, instanceInfo.Instance.ObjectID)
 
 	//looking for statusName
-	for _, e := range instanceInfo.Events {
-		rc0 := status.GetStatusById(db, e.StatusID)
-		if rc0 != rc.SUCCESS {
-			return false, rc0
-		}
-		if status.StatusName == statusName {
-			return true, rc.STATUS_IS_SET
-		}
-	}
-
-	return false, rc.STATUS_IS_NOT_SET
+	return checkCurrentStatusIsNotSet(instanceInfo, status)
 }
 
 // GetInstanceInfo - check for finishing
@@ -153,7 +149,7 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	}
 
 	//cheking current status is not set yet
-	chk3, rc3 := checkCurrentStatusIsNotSet(instanceInfo, statusInfo)
+	chk3, rc3 := checkCurrentStatusIsNotSet(instanceInfo, &statusInfo.Status)
 	if !chk3 {
 		return rc3
 	}
@@ -161,7 +157,7 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	event := &models.Event{StatusID: statusInfo.Status.ID, InstanceID: instanceInfo.Instance.ID}
 	err := tx.Create(&event).Error
 	if err != nil {
-		return rc.SET_STATUS_DB_ERROR
+		return rc.DATABASE_ERROR
 	}
 	instanceInfo.Events = append(instanceInfo.Events, *event)
 

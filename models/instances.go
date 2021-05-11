@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/google/uuid"
 	"github.com/jinzhu/gorm"
@@ -44,17 +46,26 @@ func (instance *Instance) GetInstance(db *gorm.DB, instanceToken string, isForUp
 	if isForUpdate {
 		option = "FOR UPDATE"
 	}
-	db.Set("gorm:query_option", option).Where("instance_token = ?", instanceToken).First(&instance)
-	if instance.ID > 0 {
-		//fmt.Printf("InstanceID: %d", instance.InstanceID)
-		return rc.SUCCESS
+	err := db.Set("gorm:query_option", option).Where("instance_token = ?", instanceToken).First(&instance).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return rc.INSTANCE_TOKEN_IS_NOT_FOUND
 	}
-	return rc.INSTANCE_TOKEN_IS_NOT_FOUND
+
+	if err != nil {
+		return rc.DATABASE_ERROR
+	}
+
+	return rc.SUCCESS
+
 }
 
 func (instance *Instance) FinishInstance(db *gorm.DB, instanceIsFinishedDescription string) rc.ReturnCode {
 	instance.InstanceIsFinished = true
 	instance.InstanceIsFinishedDescription = instanceIsFinishedDescription
-	db.Save(&instance)
+	err := db.Save(&instance)
+	if err != nil {
+		return rc.DATABASE_ERROR
+	}
 	return rc.SUCCESS
 }

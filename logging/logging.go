@@ -5,15 +5,17 @@ import (
 	logging "log"
 	"os"
 
-	"github.com/Sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
+
+var logFileName = "logs/application.log"
 
 var (
 	log *logrus.Logger
 )
 
 func init() {
-	f, err := os.OpenFile("logs/application.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, err := os.OpenFile(logFileName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
 		logging.Fatalf("error opening file: %v", err)

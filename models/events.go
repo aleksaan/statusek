@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/utils"
-	u "github.com/aleksaan/statusek/utils"
 	"github.com/jinzhu/gorm"
 )
 
@@ -22,18 +20,18 @@ func (event *Event) TableName() string {
 	return "statusek.events"
 }
 
-func (event *Event) Create() map[string]interface{} {
+// func (event *Event) Create() map[string]interface{} {
 
-	if err := database.DB.Create(event).Error; err != nil {
-		errmsg := err.Error()
-		resp := u.Message(false, errmsg)
-		return resp
-	}
+// 	if err := database.DB.Create(event).Error; err != nil {
+// 		errmsg := err.Error()
+// 		resp := u.Message(false, errmsg)
+// 		return resp
+// 	}
 
-	resp := u.Message(true, "success")
-	resp["event"] = event
-	return resp
-}
+// 	resp := u.Message(true, "success")
+// 	resp["event"] = event
+// 	return resp
+// }
 
 func (event *Event) ToString() string {
 	return utils.ToString(&event)

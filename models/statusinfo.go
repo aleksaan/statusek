@@ -28,14 +28,14 @@ func (statusInfo *StatusInfo) GetStatusInfo(tx *gorm.DB, statusName string, obje
 	for _, w := range workflows {
 		statusesIDPrev = append(statusesIDPrev, int(w.StatusIDPrev))
 	}
-	tx.Where("status_id in (?)", statusesIDPrev).Find(&statusInfo.PrevStatuses)
+	tx.Where("id in (?)", statusesIDPrev).Find(&statusInfo.PrevStatuses)
 
 	tx.Where("status_id_prev = ?", statusInfo.Status.ID).Find(&workflows)
 	var statusesIDNext []int
 	for _, w := range workflows {
 		statusesIDNext = append(statusesIDNext, int(w.StatusIDNext))
 	}
-	tx.Where("status_id in (?)", statusesIDNext).Find(&statusInfo.NextStatuses)
+	tx.Where("id in (?)", statusesIDNext).Find(&statusInfo.NextStatuses)
 
 	return rc.SUCCESS
 }

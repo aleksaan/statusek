@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/jinzhu/gorm"
 )
@@ -18,11 +20,17 @@ func (object *Object) TableName() string {
 }
 
 func (object *Object) GetObject(db *gorm.DB, objectName string) rc.ReturnCode {
-	db.Debug().Where("object_name = ?", objectName).First(&object)
-	if object.ID > 0 {
-		return rc.SUCCESS
+	err := db.Where("object_name = ?", objectName).First(&object).Error
+
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		return rc.OBJECT_NAME_IS_NOT_FOUND
 	}
-	return rc.OBJECT_NAME_IS_NOT_FOUND
+
+	if err != nil {
+		return rc.DATABASE_ERROR
+	}
+
+	return rc.SUCCESS
 }
 
 // func (object *Object) Create() map[string]interface{} {

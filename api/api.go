@@ -198,7 +198,7 @@ var ApiCheckStatusIsSet = func(w http.ResponseWriter, r *http.Request) {
 // ApiAbout - gets info about program
 var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 
-	e := godotenv.Load
+	e := godotenv.Load()
 	if e != nil {
 		fmt.Print(e)
 	}

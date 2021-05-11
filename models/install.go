@@ -26,7 +26,7 @@ func UpdateDB(currentVersion string) {
 	if !checkTable || (checkTable && !checkVersion) {
 
 		//creating DB objects
-		db.LogMode(true)
+		//db.LogMode(true)
 		db.DropTable(&Event{}, &Workflow{}, &Instance{}, &Status{}, &Object{}, &Version{})
 		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
 		db.Model(&Instance{}).AddForeignKey("object_id", "objects(id)", "CASCADE", "CASCADE")
@@ -45,4 +45,33 @@ func UpdateDB(currentVersion string) {
 
 	}
 
+	CreatingDefaultModels(true)
+
+}
+
+func CreatingDefaultModels(isUpdateAnyWhere bool) {
+
+	//2-POINT LINE TASK
+
+	//check existing of 2-point line task
+	var objold = &Object{}
+	result := db.Where("Object_name = ?", "2-POINT LINE TASK").First(&objold)
+
+	if isUpdateAnyWhere || (!isUpdateAnyWhere && result.RowsAffected == 0) {
+
+		if isUpdateAnyWhere {
+			//deleting old object
+			db.Delete(&objold)
+		}
+
+		//creating new object
+		obj := Object{ObjectName: "2-POINT LINE TASK"}
+		db.Create(&obj)
+		st_start := Status{StatusName: "STARTED", ObjectID: obj.ID, StatusType: "MANDATORY"}
+		db.Create(&st_start)
+		st_finish := Status{StatusName: "FINISHED", ObjectID: obj.ID, StatusType: "MANDATORY"}
+		db.Create(&st_finish)
+		wkf := Workflow{StatusIDPrev: st_start.ID, StatusIDNext: st_finish.ID}
+		db.Create(&wkf)
+	}
 }

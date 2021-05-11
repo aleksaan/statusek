@@ -8,7 +8,7 @@ import (
 )
 
 func checkStatusIsBelongsToInstance(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
-	if instanceInfo.Instance.ObjectID == statusInfo.Status.Object.ID {
+	if instanceInfo.Instance.ObjectID == statusInfo.Status.ObjectID {
 		return true, rc.STATUS_IS_ACCORDING_TO_INSTANCE
 	}
 	return false, rc.STATUS_IS_NOT_ACCORDING_TO_INSTANCE
@@ -125,13 +125,13 @@ func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 	return true, rc.NEXT_STATUSES_IS_NOT_SET
 }
 
-func checkCurrentStatusIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
+func checkCurrentStatusIsNotSet(instanceInfo *models.InstanceInfo, status *models.Status) (bool, rc.ReturnCode) {
 
 	for _, e := range instanceInfo.Events {
-		if e.StatusID == statusInfo.Status.ID {
-			return false, rc.CURRENT_STATUS_IS_SET
+		if e.StatusID == status.ID {
+			return false, rc.STATUS_IS_SET
 		}
 	}
 
-	return true, rc.CURRENT_STATUS_IS_NOT_SET
+	return true, rc.STATUS_IS_NOT_SET
 }

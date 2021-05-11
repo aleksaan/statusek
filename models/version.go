@@ -13,5 +13,5 @@ type Version struct {
 //TableName -
 func (version *Version) TableName() string {
 	// custom table name, this is default
-	return "version"
+	return "statusek.version"
 }

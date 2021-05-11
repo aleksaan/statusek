@@ -14,8 +14,6 @@ const (
 	INSTANCE_IS_FINISHED
 	NEXT_STATUSES_IS_NOT_SET
 	AT_LEAST_ONE_NEXT_STATUS_IS_SET
-	CURRENT_STATUS_IS_SET
-	CURRENT_STATUS_IS_NOT_SET
 	STATUS_IS_ACCORDING_TO_INSTANCE
 	STATUS_IS_NOT_ACCORDING_TO_INSTANCE
 	SET_STATUS_VALIDATION_IS_FAIL
@@ -28,6 +26,7 @@ const (
 	STATUS_IS_NOT_SET
 	AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS
 	NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS
+	DATABASE_ERROR
 )
 
 var ReturnCodes map[ReturnCode]string = make(map[ReturnCode]string)
@@ -44,8 +43,6 @@ func init() {
 	ReturnCodes[INSTANCE_IS_FINISHED] = "Instance is finished"
 	ReturnCodes[NEXT_STATUSES_IS_NOT_SET] = "Next statuses is not set"
 	ReturnCodes[AT_LEAST_ONE_NEXT_STATUS_IS_SET] = "At least one next status is set"
-	ReturnCodes[CURRENT_STATUS_IS_SET] = "Status hasn't set because is already set"
-	ReturnCodes[CURRENT_STATUS_IS_NOT_SET] = "Status is not set yet"
 	ReturnCodes[STATUS_IS_ACCORDING_TO_INSTANCE] = "Status is according to instance"
 	ReturnCodes[STATUS_IS_NOT_ACCORDING_TO_INSTANCE] = "ERROR: Status is not according to instance"
 	ReturnCodes[SET_STATUS_VALIDATION_IS_FAIL] = "ERROR: Status validation is failed"
@@ -58,4 +55,5 @@ func init() {
 	ReturnCodes[STATUS_IS_NOT_SET] = "Status is not set"
 	ReturnCodes[AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS] = "At least one of previos statuses is set for a stop-status"
 	ReturnCodes[NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS] = "No one previos statuses are set for a stop-status"
+	ReturnCodes[DATABASE_ERROR] = "Database error"
 }
