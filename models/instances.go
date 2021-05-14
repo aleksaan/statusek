@@ -3,6 +3,7 @@ package models
 import (
 	"errors"
 
+	"github.com/aleksaan/statusek/database"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/google/uuid"
 	"github.com/jinzhu/gorm"
@@ -25,7 +26,7 @@ func (instance *Instance) BeforeCreate(scope *gorm.Scope) error {
 
 func (instance *Instance) TableName() string {
 	// custom table name, this is default
-	return "statusek.instances"
+	return database.ConnectionSettings.DbSchema + ".instances"
 }
 
 // func (instance *Instance) Create() map[string]interface{} {

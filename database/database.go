@@ -20,6 +20,7 @@ type ConnectionSettingsType struct {
 	DbHost    string
 	DbPort    string
 	DbSslMode string
+	DbSchema  string
 }
 
 var ConnectionSettings = &ConnectionSettingsType{}
@@ -44,6 +45,7 @@ func initDbConnectionSettings() {
 	ConnectionSettings.DbHost = os.Getenv("db_host")
 	ConnectionSettings.DbPort = os.Getenv("db_port")
 	ConnectionSettings.DbSslMode = os.Getenv("db_sslmode")
+	ConnectionSettings.DbSchema = os.Getenv("db_schema")
 
 }
 

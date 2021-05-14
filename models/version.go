@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/aleksaan/statusek/database"
 	"github.com/jinzhu/gorm"
 )
 
@@ -13,5 +14,5 @@ type Version struct {
 //TableName -
 func (version *Version) TableName() string {
 	// custom table name, this is default
-	return "statusek.version"
+	return database.ConnectionSettings.DbSchema + ".version"
 }

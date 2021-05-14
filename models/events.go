@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/utils"
 	"github.com/jinzhu/gorm"
 )
@@ -17,7 +18,7 @@ type Event struct {
 
 func (event *Event) TableName() string {
 	// custom table name, this is default
-	return "statusek.events"
+	return database.ConnectionSettings.DbSchema + ".events"
 }
 
 // func (event *Event) Create() map[string]interface{} {

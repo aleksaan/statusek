@@ -26,7 +26,7 @@ func UpdateDB(currentVersion string) {
 	if !checkTable || (checkTable && !checkVersion) {
 
 		//creating DB objects
-		//db.LogMode(true)
+		db.LogMode(true)
 		db.DropTable(&Event{}, &Workflow{}, &Instance{}, &Status{}, &Object{}, &Version{})
 		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
 		db.Model(&Instance{}).AddForeignKey("object_id", "objects(id)", "CASCADE", "CASCADE")

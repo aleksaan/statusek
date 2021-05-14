@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/aleksaan/statusek/database"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/jinzhu/gorm"
 )
@@ -18,7 +19,7 @@ type Status struct {
 
 func (status *Status) TableName() string {
 	// custom table name, this is default
-	return "statusek.statuses"
+	return database.ConnectionSettings.DbSchema + ".statuses"
 }
 
 func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID uint) rc.ReturnCode {

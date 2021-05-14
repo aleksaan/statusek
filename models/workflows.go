@@ -16,7 +16,7 @@ type Workflow struct {
 //TableName -
 func (workflow *Workflow) TableName() string {
 	// custom table name, this is default
-	return "statusek.workflows"
+	return database.ConnectionSettings.DbSchema + ".workflows"
 }
 
 //Create -
