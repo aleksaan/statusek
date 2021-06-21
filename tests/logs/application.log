@@ -1,0 +1,200 @@
+[INFO]: 2021-06-15 15:10:48 - Starting logging[INFO]: 2021-06-15 15:11:40 - Starting logging[INFO]: 2021-06-15 15:13:41 - Starting logging[INFO]: 2021-06-15 15:15:18 - Starting logging[INFO]: 2021-06-15 15:15:30 - Starting logging[INFO]: 2021-06-15 15:16:42 - Starting logging[INFO]: 2021-06-15 15:16:43 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******[INFO]: 2021-06-15 15:16:43 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******[ERROR]: 2021-06-15 15:16:43 - invalid_password[INFO]: 2021-06-15 15:16:43 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******[INFO]: 2021-06-15 15:16:43 - Installed application version '' differs from current version '999'[INFO]: 2021-06-15 15:16:43 - DB updating is canceled because parameter db_update_if_older_version=false[INFO]: 2021-06-15 15:26:33 - Starting logging
+[INFO]: 2021-06-15 15:26:33 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 15:26:33 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-15 15:26:33 - invalid_password
+[INFO]: 2021-06-15 15:26:33 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 15:26:33 - Installed application version '' differs from current version '999'
+[INFO]: 2021-06-15 15:26:33 - DB updating is canceled because parameter db_update_if_older_version=false
+[INFO]: 2021-06-15 19:46:05 - Starting logging
+[INFO]: 2021-06-15 19:46:05 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 19:46:05 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 19:46:05 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 19:46:05 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-15 19:46:05 - DB updating is canceled because parameter db_update_if_older_version=false
+[INFO]: 2021-06-16 18:26:08 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:26:08 - Start logging
+[INFO]: 2021-06-16 18:26:08 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:26:08 - DB connection established
+[INFO]: 2021-06-16 18:26:08 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 18:26:08 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 18:26:08 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:26:08 - DB connection established
+[INFO]: 2021-06-16 18:26:08 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-16 18:26:08 - DB updating is canceled because parameter db_update_if_older_version=false
+[ERROR]: 2021-06-16 18:26:08 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:26:08 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:26:08 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:31:23 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:31:23 - Start logging
+[INFO]: 2021-06-16 18:31:23 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:31:23 - DB connection established
+[INFO]: 2021-06-16 18:31:23 - Current DB version is up to date
+[INFO]: 2021-06-16 18:31:23 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 18:31:23 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 18:31:23 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:31:23 - DB connection established
+[INFO]: 2021-06-16 18:31:23 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-16 18:31:23 - DB updating is canceled because parameter db_update_if_older_version=false
+[ERROR]: 2021-06-16 18:31:23 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:31:23 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:31:23 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:31:40 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:31:40 - Start logging
+[INFO]: 2021-06-16 18:31:40 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:31:40 - DB connection established
+[INFO]: 2021-06-16 18:31:40 - Current DB version is up to date
+[INFO]: 2021-06-16 18:31:40 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 18:31:40 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 18:31:40 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:31:41 - DB connection established
+[INFO]: 2021-06-16 18:31:41 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-16 18:31:41 - DB updating is canceled because parameter db_update_if_older_version=false
+[ERROR]: 2021-06-16 18:31:41 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:31:41 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:31:41 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:32:04 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:32:04 - Start logging
+[INFO]: 2021-06-16 18:32:04 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:32:04 - DB connection established
+[INFO]: 2021-06-16 18:32:04 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:32:04 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:32:04 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[ERROR]: 2021-06-16 18:32:04 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:35:22 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:35:22 - Start logging
+[INFO]: 2021-06-16 18:35:22 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:35:22 - DB connection established
+[INFO]: 2021-06-16 18:35:22 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:36:30 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:40:51 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:40:51 - Start logging
+[INFO]: 2021-06-16 18:40:51 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:40:51 - DB connection established
+[INFO]: 2021-06-16 18:40:51 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:40:59 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:41:06 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:41:06 - Start logging
+[INFO]: 2021-06-16 18:41:06 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:41:06 - DB connection established
+[INFO]: 2021-06-16 18:41:06 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:43:33 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:44:03 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:44:03 - Start logging
+[INFO]: 2021-06-16 18:44:03 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:44:03 - DB connection established
+[INFO]: 2021-06-16 18:44:03 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:49:35 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:59:14 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:59:14 - Start logging
+[INFO]: 2021-06-16 18:59:14 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:59:14 - DB connection established
+[INFO]: 2021-06-16 18:59:14 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:59:18 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 18:59:26 - --------------------------------------------------------
+[INFO]: 2021-06-16 18:59:26 - Start logging
+[INFO]: 2021-06-16 18:59:26 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 18:59:26 - DB connection established
+[INFO]: 2021-06-16 18:59:26 - Current DB version is up to date
+[ERROR]: 2021-06-16 18:59:47 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 19:00:35 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:00:35 - Start logging
+[INFO]: 2021-06-16 19:00:35 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:00:35 - DB connection established
+[INFO]: 2021-06-16 19:00:35 - Current DB version is up to date
+[ERROR]: 2021-06-16 19:03:37 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 19:06:25 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:06:25 - Start logging
+[INFO]: 2021-06-16 19:06:25 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:06:25 - DB connection established
+[INFO]: 2021-06-16 19:06:25 - Current DB version is up to date
+[ERROR]: 2021-06-16 19:06:26 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 19:11:29 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:11:29 - Start logging
+[INFO]: 2021-06-16 19:11:29 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:11:29 - DB connection established
+[INFO]: 2021-06-16 19:11:29 - Current DB version is up to date
+[ERROR]: 2021-06-16 19:12:01 - ОШИБКА: текущая транзакция прервана, команды до конца блока транзакции игнорируются (SQLSTATE 25P02)
+[INFO]: 2021-06-16 19:17:33 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:17:33 - Start logging
+[INFO]: 2021-06-16 19:17:33 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:17:33 - DB connection established
+[INFO]: 2021-06-16 19:17:33 - Current DB version is up to date
+[INFO]: 2021-06-16 19:20:12 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:20:12 - Start logging
+[INFO]: 2021-06-16 19:20:12 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:20:12 - DB connection established
+[INFO]: 2021-06-16 19:20:12 - Current DB version is up to date
+[INFO]: 2021-06-16 19:25:27 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:25:27 - Start logging
+[INFO]: 2021-06-16 19:25:27 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:25:27 - DB connection established
+[INFO]: 2021-06-16 19:25:27 - Current DB version is up to date
+[INFO]: 2021-06-16 19:30:14 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:30:14 - Start logging
+[INFO]: 2021-06-16 19:30:14 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:30:14 - DB connection established
+[INFO]: 2021-06-16 19:30:14 - Current DB version is up to date
+[INFO]: 2021-06-16 19:34:17 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:34:17 - Start logging
+[INFO]: 2021-06-16 19:34:17 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:34:17 - DB connection established
+[INFO]: 2021-06-16 19:34:17 - Current DB version is up to date
+[INFO]: 2021-06-16 19:34:42 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:34:42 - Start logging
+[INFO]: 2021-06-16 19:34:42 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:34:42 - DB connection established
+[INFO]: 2021-06-16 19:34:42 - Current DB version is up to date
+[INFO]: 2021-06-16 19:34:56 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:34:56 - Start logging
+[INFO]: 2021-06-16 19:34:56 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:34:56 - DB connection established
+[INFO]: 2021-06-16 19:34:56 - Current DB version is up to date
+[INFO]: 2021-06-16 19:34:56 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 19:34:56 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 19:34:56 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:34:56 - DB connection established
+[INFO]: 2021-06-16 19:34:56 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-16 19:34:56 - DB updating is canceled because parameter db_update_if_older_version=false
+[INFO]: 2021-06-16 19:35:20 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:35:20 - Start logging
+[INFO]: 2021-06-16 19:35:20 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:35:20 - DB connection established
+[INFO]: 2021-06-16 19:35:20 - Current DB version is up to date
+[INFO]: 2021-06-16 19:35:20 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 19:35:20 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 19:35:20 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:35:20 - DB connection established
+[INFO]: 2021-06-16 19:35:20 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-16 19:35:20 - DB updating is canceled because parameter db_update_if_older_version=false
+[INFO]: 2021-06-16 19:37:09 - --------------------------------------------------------
+[INFO]: 2021-06-16 19:37:09 - Start logging
+[INFO]: 2021-06-16 19:37:09 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:37:09 - DB connection established
+[INFO]: 2021-06-16 19:37:09 - Current DB version is up to date
+[INFO]: 2021-06-16 19:37:09 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 19:37:09 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 19:37:09 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 19:37:09 - DB connection established
+[INFO]: 2021-06-16 19:37:09 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-16 19:37:09 - DB updating is canceled because parameter db_update_if_older_version=false
+[INFO]: 2021-06-19 13:23:06 - --------------------------------------------------------
+[INFO]: 2021-06-19 13:23:06 - Start logging
+[INFO]: 2021-06-19 13:23:06 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-19 13:23:06 - DB connection established
+[INFO]: 2021-06-19 13:23:06 - Current DB version is up to date
+[INFO]: 2021-06-19 13:23:06 - Connection string: host=localhost user=a port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-19 13:23:06 - failed to connect to `host=localhost user=a database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-19 13:23:06 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-19 13:23:06 - DB connection established
+[INFO]: 2021-06-19 13:23:06 - Installed application version 'v2021.06.15_a' differs from current version '999'
+[INFO]: 2021-06-19 13:23:06 - DB updating is canceled because parameter db_update_if_older_version=false
+[INFO]: 2021-06-20 18:09:38 - --------------------------------------------------------
+[INFO]: 2021-06-20 18:09:38 - Start logging
+[INFO]: 2021-06-20 18:09:38 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-20 18:09:38 - DB connection established
+[INFO]: 2021-06-20 18:09:38 - Current DB version is up to date
+[INFO]: 2021-06-20 18:20:17 - --------------------------------------------------------
+[INFO]: 2021-06-20 18:20:17 - Start logging
+[INFO]: 2021-06-20 18:20:17 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-20 18:20:17 - DB connection established
+[INFO]: 2021-06-20 18:20:17 - Current DB version is up to date

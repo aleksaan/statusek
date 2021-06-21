@@ -3,21 +3,19 @@ package models
 import (
 	"errors"
 
-	"github.com/aleksaan/statusek/database"
+	"github.com/aleksaan/statusek/config"
 	rc "github.com/aleksaan/statusek/returncodes"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type Object struct {
 	gorm.Model
 	ObjectName string
-	Instance   []Instance `gorm:"ForeignKey:InstanceID"`
-	Status     []Status   `gorm:"ForeignKey:StatusID"`
 }
 
 func (object *Object) TableName() string {
 	// custom table name, this is default
-	return database.ConnectionSettings.DbSchema + ".objects"
+	return config.Config.DBConfig.DbSchema + ".objects"
 }
 
 func (object *Object) GetObject(db *gorm.DB, objectName string) rc.ReturnCode {
@@ -33,16 +31,3 @@ func (object *Object) GetObject(db *gorm.DB, objectName string) rc.ReturnCode {
 
 	return rc.SUCCESS
 }
-
-// func (object *Object) Create() map[string]interface{} {
-
-// 	if err := database.DB.Create(object).Error; err != nil {
-// 		errmsg := err.Error()
-// 		resp := u.Message(false, errmsg)
-// 		return resp
-// 	}
-
-// 	resp := u.Message(true, "success")
-// 	resp["object"] = object
-// 	return resp
-// }

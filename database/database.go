@@ -1,71 +1,45 @@
 package database
 
 import (
-	"github.com/lib/pq"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 
+	"github.com/aleksaan/statusek/config"
+	"github.com/aleksaan/statusek/logging"
 	rc "github.com/aleksaan/statusek/returncodes"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"gorm.io/driver/postgres"
 
 	"fmt"
-	"os"
-
-	"github.com/joho/godotenv"
 )
-
-type ConnectionSettingsType struct {
-	UserName  string
-	password  string
-	DbName    string
-	DbHost    string
-	DbPort    string
-	DbSslMode string
-	DbSchema  string
-}
-
-var ConnectionSettings = &ConnectionSettingsType{}
 
 //DB - база данных GORM
 var DB *gorm.DB
+var connectionString string
 
 func init() {
-	initDbConnectionSettings()
 	InitDBConnection()
 }
 
-func initDbConnectionSettings() {
-	e := godotenv.Load() //Загрузить файл .env
-	if e != nil {
-		fmt.Print(e)
-	}
-
-	ConnectionSettings.UserName = os.Getenv("db_user")
-	ConnectionSettings.password = os.Getenv("db_pass")
-	ConnectionSettings.DbName = os.Getenv("db_name")
-	ConnectionSettings.DbHost = os.Getenv("db_host")
-	ConnectionSettings.DbPort = os.Getenv("db_port")
-	ConnectionSettings.DbSslMode = os.Getenv("db_sslmode")
-	ConnectionSettings.DbSchema = os.Getenv("db_schema")
-
-}
-
-func doConnectionString() string {
-	return fmt.Sprintf("host=%s user=%s port=%s dbname=%s sslmode=%s password=%s", ConnectionSettings.DbHost, ConnectionSettings.UserName, ConnectionSettings.DbPort, ConnectionSettings.DbName, ConnectionSettings.DbSslMode, ConnectionSettings.password)
+func createConnectionString() {
+	var c = config.Config
+	logging.Info("Connection string: host=%s user=%s port=%s dbname=%s sslmode=%s password=%s", c.DBConfig.DbHost, c.DBConfig.DbUser, c.DBConfig.DbPort, c.DBConfig.DbName, c.DBConfig.DbSslMode, "******")
+	connectionString = fmt.Sprintf("host=%s user=%s port=%s dbname=%s sslmode=%s password=%s", c.DBConfig.DbHost, c.DBConfig.DbUser, c.DBConfig.DbPort, c.DBConfig.DbName, c.DBConfig.DbSslMode, c.DBConfig.DbPass)
 }
 
 func InitDBConnection() rc.ReturnCode {
-	conn, err := gorm.Open("postgres", doConnectionString())
+	createConnectionString()
+
+	conn, err := gorm.Open(postgres.Open(connectionString), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Silent),
+		//SkipDefaultTransaction: true,
+	})
 
 	if err != nil {
-		WriteDBError(err)
+		logging.Error("%s", err.Error())
 		return rc.DATABASE_ERROR
 	}
 
 	DB = conn
+	logging.Info("DB connection established")
 	return rc.SUCCESS
-}
-
-func WriteDBError(err error) {
-	pqErr := err.(*pq.Error)
-	fmt.Printf("%s", pqErr.Code.Name())
 }

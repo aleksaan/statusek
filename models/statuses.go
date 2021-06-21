@@ -1,9 +1,9 @@
 package models
 
 import (
-	"github.com/aleksaan/statusek/database"
+	"github.com/aleksaan/statusek/config"
 	rc "github.com/aleksaan/statusek/returncodes"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type Status struct {
@@ -12,14 +12,12 @@ type Status struct {
 	Object     Object
 	StatusName string
 	StatusDesc string
-	StatusType string     `gorm:"not null"`
-	Workflow   []Workflow `gorm:"ForeignKey:WorkflowID"`
-	Event      []Event    `gorm:"ForeignKey:EventID"`
+	StatusType string `gorm:"not null"`
 }
 
 func (status *Status) TableName() string {
 	// custom table name, this is default
-	return database.ConnectionSettings.DbSchema + ".statuses"
+	return config.Config.DBConfig.DbSchema + ".statuses"
 }
 
 func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID uint) rc.ReturnCode {
@@ -41,16 +39,3 @@ func (status *Status) GetStatusById(tx *gorm.DB, statusId uint) rc.ReturnCode {
 	}
 	return rc.STATUS_ID_IS_NOT_FOUND
 }
-
-// func (status *Status) Create() map[string]interface{} {
-
-// 	if err := database.DB.Create(status).Error; err != nil {
-// 		errmsg := err.Error()
-// 		resp := u.Message(false, errmsg)
-// 		return resp
-// 	}
-
-// 	resp := u.Message(true, "success")
-// 	resp["status"] = status
-// 	return resp
-// }

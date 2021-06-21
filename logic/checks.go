@@ -5,6 +5,7 @@ import (
 
 	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
+	"gorm.io/gorm"
 )
 
 func checkStatusIsBelongsToInstance(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
@@ -43,7 +44,7 @@ func checkAllMandatoryStatusesAreSet(instanceInfo *models.InstanceInfo) (bool, r
 
 func checkInstanceIsFinished(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
 
-	if instanceInfo.Instance.InstanceIsFinished == true {
+	if instanceInfo.Instance.InstanceIsFinished {
 		return true, rc.INSTANCE_IS_FINISHED
 	}
 
@@ -52,7 +53,7 @@ func checkInstanceIsFinished(instanceInfo *models.InstanceInfo) (bool, rc.Return
 
 func checkInstanceIsNotTimeout(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
 	t1 := time.Now()
-	t2 := *&instanceInfo.Instance.CreatedAt
+	t2 := instanceInfo.Instance.CreatedAt
 	//fmt.Printf("\n\nTime 1: %s\nTime 2: %s\n\n", t1.Format(time.RFC3339), t2.Format(time.RFC3339))
 	diff := t1.Sub(t2).Seconds()
 	if diff < float64(instanceInfo.Instance.InstanceTimeout) {
@@ -96,16 +97,16 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 	}
 
 	if countPrevMandatory > countPrevMandatoryIsSet {
-		return false, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET
+		return false, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET
 		//"Не все обязательные статусы предыдущего уровня установлены"
 	}
 
 	if (countPrevMandatory == 0) && (countPrevOptional > 0) && (countPrevOptionalIsSet == 0) {
-		return false, rc.NO_ONE_PREVIOS_OPTIONAL_STATUSES_IS_SET
+		return false, rc.NO_ONE_PREVIOS_OPTIONAL_STATUSES_ARE_SET
 		//"Не установлен ни один опциональный статус предыдущего уровня"
 	}
 
-	return true, rc.ALL_PREVIOS_STATUSES_IS_SET
+	return true, rc.ALL_PREVIOS_STATUSES_ARE_SET
 }
 
 func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
@@ -125,13 +126,58 @@ func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 	return true, rc.NEXT_STATUSES_IS_NOT_SET
 }
 
-func checkCurrentStatusIsNotSet(instanceInfo *models.InstanceInfo, status *models.Status) (bool, rc.ReturnCode) {
+func checkCurrentStatusIsSet(instanceInfo *models.InstanceInfo, status *models.Status) (bool, rc.ReturnCode) {
 
 	for _, e := range instanceInfo.Events {
 		if e.StatusID == status.ID {
-			return false, rc.STATUS_IS_SET
+			return true, rc.STATUS_IS_SET
 		}
 	}
 
-	return true, rc.STATUS_IS_NOT_SET
+	return false, rc.STATUS_IS_NOT_SET
+}
+
+func checkStatusIsReadyToSet(tx *gorm.DB, instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo, instanceToken string, statusName string) rc.ReturnCode {
+	//getting instance info (FOR UPDATE MODE)
+	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
+	if rc5 != rc.SUCCESS {
+		return rc5
+	}
+
+	finishInstanceIfTimeout(tx, instanceInfo)
+	if chk7, rc7 := checkInstanceIsFinished(instanceInfo); chk7 {
+		return rc7
+	}
+
+	//getting status info
+	rc6 := statusInfo.GetStatusInfo(tx, statusName, instanceInfo.Instance.ObjectID)
+	if rc6 != rc.SUCCESS {
+		return rc6
+	}
+
+	//checking status is according to instance
+	chk0, rc0 := checkStatusIsBelongsToInstance(instanceInfo, statusInfo)
+	if !chk0 {
+		return rc0
+	}
+
+	//checking previos statuses
+	chk1, rc1 := checkPreviosStatusesIsSet(instanceInfo, statusInfo)
+	if !chk1 {
+		return rc1
+	}
+
+	//checking next statuses
+	chk2, rc2 := checkNextStatusesIsNotSet(instanceInfo, statusInfo)
+	if !chk2 {
+		return rc2
+	}
+
+	//cheking current status is not set yet
+	chk3, rc3 := checkCurrentStatusIsSet(instanceInfo, &statusInfo.Status)
+	if chk3 {
+		return rc3
+	}
+
+	return rc.SUCCESS
 }

@@ -5,7 +5,7 @@ import (
 
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/aleksaan/statusek/utils"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type InstanceInfo struct {

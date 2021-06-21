@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
+	easy "github.com/t-tomalak/logrus-easy-formatter"
 )
 
 var logFileName = "logs/application.log"
@@ -21,14 +22,21 @@ func init() {
 		logging.Fatalf("error opening file: %v", err)
 	}
 
-	log = logrus.New()
-
-	//log.Formatter = &logrus.JSONFormatter{}
+	log = &logrus.Logger{
+		Out:   os.Stderr,
+		Level: logrus.DebugLevel,
+		Formatter: &easy.Formatter{
+			TimestampFormat: "2006-01-02 15:04:05",
+			LogFormat:       "[%lvl%]: %time% - %msg%\n",
+		},
+	}
 
 	log.SetReportCaller(true)
 
 	mw := io.MultiWriter(os.Stdout, f)
 	log.SetOutput(mw)
+	log.Info("--------------------------------------------------------")
+	log.Info("Start logging")
 }
 
 // Info ...

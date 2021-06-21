@@ -44,7 +44,7 @@ func TestComplexLogic(t *testing.T) {
 
 	//Set FINISHED status before STARTED and wait NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET
 	rc1 = logic.SetStatus(token, "FINISHED")
-	assert.Equal(t, rc1, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET, "Set FINISHED before STARTED & didn't get NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET")
+	assert.Equal(t, rc1, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET, "Set FINISHED before STARTED & didn't get NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET")
 
 	_, rc1 = logic.CheckStatusIsSet(token, "STARTED")
 	assert.Equal(t, rc1, rc.STATUS_IS_NOT_SET, "Check status STARTED is set & didn't get STATUS_IS_NOT_SET")

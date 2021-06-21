@@ -7,33 +7,19 @@ import (
 	"net/http"
 
 	"github.com/aleksaan/statusek/api"
-	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/logging"
-	"github.com/aleksaan/statusek/models"
 	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
-	"github.com/joho/godotenv"
 )
 
 func homeLink(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome home!")
 }
 
-var CurrentVersion = "2.0.2"
-var db *gorm.DB
-
 func init() {
-	db = database.DB
+
 }
 
 func main() {
-
-	e := godotenv.Load() //Загрузить файл .env
-	if e != nil {
-		fmt.Print(e)
-	}
-
-	models.UpdateDB(CurrentVersion)
 
 	logging.Info("Starting service...")
 

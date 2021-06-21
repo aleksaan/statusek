@@ -3,10 +3,10 @@ package models
 import (
 	"errors"
 
-	"github.com/aleksaan/statusek/database"
+	"github.com/aleksaan/statusek/config"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/google/uuid"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type Instance struct {
@@ -14,33 +14,20 @@ type Instance struct {
 	InstanceToken                 string
 	InstanceTimeout               int
 	ObjectID                      uint
+	Object                        Object
 	InstanceIsFinished            bool
 	InstanceIsFinishedDescription string
 }
 
-func (instance *Instance) BeforeCreate(scope *gorm.Scope) error {
-	u := uuid.New().String()
-	scope.SetColumn("InstanceToken", u)
-	return nil
+func (instance *Instance) BeforeCreate(tx *gorm.DB) (err error) {
+	instance.InstanceToken = uuid.New().String()
+	return
 }
 
 func (instance *Instance) TableName() string {
 	// custom table name, this is default
-	return database.ConnectionSettings.DbSchema + ".instances"
+	return config.Config.DBConfig.DbSchema + ".instances"
 }
-
-// func (instance *Instance) Create() map[string]interface{} {
-
-// 	if err := database.DB.Create(instance).Error; err != nil {
-// 		errmsg := err.Error()
-// 		resp := u.Message(false, errmsg)
-// 		return resp
-// //	}
-
-// 	resp := u.Message(true, "success")
-// 	resp["instance"] = instance
-// 	return resp
-// }
 
 func (instance *Instance) GetInstance(db *gorm.DB, instanceToken string, isForUpdate bool) rc.ReturnCode {
 	option := ""

@@ -5,7 +5,7 @@ import (
 
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/aleksaan/statusek/utils"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type StatusInfo struct {
@@ -23,17 +23,17 @@ func (statusInfo *StatusInfo) GetStatusInfo(tx *gorm.DB, statusName string, obje
 	}
 
 	var workflows []Workflow
-	tx.Where("status_id_next = ?", statusInfo.Status.ID).Find(&workflows)
+	tx.Where("status_next_id = ?", statusInfo.Status.ID).Find(&workflows)
 	var statusesIDPrev []int
 	for _, w := range workflows {
-		statusesIDPrev = append(statusesIDPrev, int(w.StatusIDPrev))
+		statusesIDPrev = append(statusesIDPrev, int(w.StatusPrevID))
 	}
 	tx.Where("id in (?)", statusesIDPrev).Find(&statusInfo.PrevStatuses)
 
-	tx.Where("status_id_prev = ?", statusInfo.Status.ID).Find(&workflows)
+	tx.Where("status_prev_id = ?", statusInfo.Status.ID).Find(&workflows)
 	var statusesIDNext []int
 	for _, w := range workflows {
-		statusesIDNext = append(statusesIDNext, int(w.StatusIDNext))
+		statusesIDNext = append(statusesIDNext, int(w.StatusNextID))
 	}
 	tx.Where("id in (?)", statusesIDNext).Find(&statusInfo.NextStatuses)
 

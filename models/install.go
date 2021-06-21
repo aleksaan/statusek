@@ -1,77 +1,97 @@
 package models
 
 import (
+	"errors"
+
+	"github.com/aleksaan/statusek/config"
 	"github.com/aleksaan/statusek/database"
-	"github.com/jinzhu/gorm"
+	"github.com/aleksaan/statusek/logging"
+	rc "github.com/aleksaan/statusek/returncodes"
+	"gorm.io/gorm"
 )
 
-var db *gorm.DB
+var db = database.DB
+var CurrentVersion = "v2021.06.15_a"
 
 func init() {
-	db = database.DB
+	UpdateDB(CurrentVersion)
 }
 
-func UpdateDB(currentVersion string) {
+func UpdateDB(currentVersion string) rc.ReturnCode {
 	//check existing of the version table
-	var checkTable = db.HasTable(&Version{})
-	var checkVersion bool
+	var version = &Version{}
+	checkTable := db.Migrator().HasTable(&Version{})
 
 	//check version
+	var checkVersion bool
 	if checkTable {
-		var version = &Version{}
 		db.First(&version)
 		checkVersion = version.VersionNumber == currentVersion
 	}
 
-	if !checkTable || (checkTable && !checkVersion) {
+	var isVersionsAreDifferent = !checkTable || (checkTable && !checkVersion)
 
-		//creating DB objects
-		db.LogMode(true)
-		db.DropTable(&Event{}, &Workflow{}, &Instance{}, &Status{}, &Object{}, &Version{})
-		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
-		db.Model(&Instance{}).AddForeignKey("object_id", "objects(id)", "CASCADE", "CASCADE")
-		db.Model(&Status{}).AddForeignKey("object_id", "objects(id)", "CASCADE", "CASCADE")
-		db.Model(&Workflow{}).AddForeignKey("status_id_prev", "statuses(id)", "CASCADE", "CASCADE")
-		db.Model(&Workflow{}).AddForeignKey("status_id_next", "statuses(id)", "CASCADE", "CASCADE")
-		db.Model(&Event{}).AddForeignKey("instance_id", "instances(id)", "CASCADE", "CASCADE")
-		db.Model(&Event{}).AddForeignKey("status_id", "statuses(id)", "CASCADE", "CASCADE")
+	if isVersionsAreDifferent {
+		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, currentVersion)
 
-		//writing new version
-		version := Version{VersionNumber: currentVersion}
-		result := db.Create(&version)
-		if result.Error != nil {
-			//error handler
+		if !config.Config.DBConfig.DbUpdateIfOtherVersion {
+			logging.Info("DB updating is canceled because parameter db_update_if_older_version=false")
+			return rc.DB_IS_NOT_UPDATED
 		}
-
 	}
 
-	CreatingDefaultModels(true)
+	if isVersionsAreDifferent && config.Config.DBConfig.DbUpdateIfOtherVersion {
+
+		//creating DB objects
+		logging.Info("Starting DB updating...")
+
+		logging.Info("Dropping tables")
+		db.Migrator().DropTable(&Event{}, &Workflow{}, &Instance{}, &Status{}, &Object{}, &Version{})
+
+		logging.Info("Creating tables")
+		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
+
+		//writing new version
+		logging.Info("Writing new version number '%s'", currentVersion)
+		version := Version{VersionNumber: currentVersion}
+
+		logging.Info("Creating default statuses models")
+		CreateWrapper(db, &version)
+		CreatingDefaultModels(true)
+
+		logging.Info("Starting DB updating...Done")
+	} else {
+		logging.Info("Current DB version is up to date")
+	}
+
+	return rc.SUCCESS
 
 }
 
 func CreatingDefaultModels(isUpdateAnyWhere bool) {
-
+	logging.Info("Creating 2-POINT LINE TASK model...")
 	//2-POINT LINE TASK
 
 	//check existing of 2-point line task
 	var objold = &Object{}
-	result := db.Where("Object_name = ?", "2-POINT LINE TASK").First(&objold)
+	err := db.Where("Object_name = ?", "2-POINT LINE TASK").First(&objold).Error
 
-	if isUpdateAnyWhere || (!isUpdateAnyWhere && result.RowsAffected == 0) {
+	if isUpdateAnyWhere || (!isUpdateAnyWhere && errors.Is(err, gorm.ErrRecordNotFound)) {
 
-		if isUpdateAnyWhere {
+		if isUpdateAnyWhere && err == nil {
 			//deleting old object
 			db.Delete(&objold)
 		}
 
 		//creating new object
 		obj := Object{ObjectName: "2-POINT LINE TASK"}
-		db.Create(&obj)
+		CreateWrapper(db, &obj)
 		st_start := Status{StatusName: "STARTED", ObjectID: obj.ID, StatusType: "MANDATORY"}
-		db.Create(&st_start)
+		CreateWrapper(db, &st_start)
 		st_finish := Status{StatusName: "FINISHED", ObjectID: obj.ID, StatusType: "MANDATORY"}
-		db.Create(&st_finish)
-		wkf := Workflow{StatusIDPrev: st_start.ID, StatusIDNext: st_finish.ID}
-		db.Create(&wkf)
+		CreateWrapper(db, &st_finish)
+		wkf := Workflow{StatusPrevID: st_start.ID, StatusNextID: st_finish.ID}
+		CreateWrapper(db, &wkf)
 	}
+	logging.Info("Creating 2-POINT LINE TASK model...Done")
 }

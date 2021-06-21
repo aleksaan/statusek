@@ -4,36 +4,29 @@ import (
 	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
-var db *gorm.DB
-
-func init() {
-
-	db = database.DB
-}
+var db = database.DB
 
 // CreateInstance - creates instance of object and gets its token
-
 func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCode) {
 	object := &models.Object{}
 	rc0 := object.GetObject(db, objectName)
 	if rc0 != rc.SUCCESS {
 		return "", rc0
 	}
-	var instance = &models.Instance{ObjectID: *&object.ID, InstanceTimeout: instanceTimeout}
-	err := db.Create(&instance).Error
-	if err != nil {
-		database.WriteDBError(err)
-		return "", rc.DATABASE_ERROR
+	var instance = &models.Instance{ObjectID: object.ID, InstanceTimeout: instanceTimeout}
+	rc1 := models.CreateWrapper(db, instance)
+	if rc1 != rc.SUCCESS {
+		return "", rc1
 	}
 
 	return instance.InstanceToken, rc.SUCCESS
 }
 
 func finishInstanceIfTimeout(tx *gorm.DB, instanceInfo *models.InstanceInfo) {
-	if instanceInfo.Instance.InstanceIsFinished == true {
+	if instanceInfo.Instance.InstanceIsFinished {
 		return
 	}
 	chk4, _ := checkInstanceIsNotTimeout(instanceInfo)
@@ -88,7 +81,7 @@ func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnC
 	status.GetStatus(tx, statusName, instanceInfo.Instance.ObjectID)
 
 	//looking for statusName
-	return checkCurrentStatusIsNotSet(instanceInfo, status)
+	return checkCurrentStatusIsSet(instanceInfo, status)
 }
 
 // GetInstanceInfo - check for finishing
@@ -108,57 +101,30 @@ func GetInstanceInfo(instanceToken string) (bool, rc.ReturnCode, *models.Instanc
 func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 
 	tx := db.Begin()
+
+	//tx := db.Session(&gorm.Session{SkipDefaultTransaction: true})
 	defer tx.Commit()
 
 	var instanceInfo = &models.InstanceInfo{}
 	var statusInfo = &models.StatusInfo{}
 
-	//getting instance info (FOR UPDATE MODE)
-	rc5 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
-	if rc5 != rc.SUCCESS {
-		return rc5
-	}
-
-	finishInstanceIfTimeout(tx, instanceInfo)
-	if chk7, rc7 := checkInstanceIsFinished(instanceInfo); chk7 == true {
-		return rc7
-	}
-
-	//getting status info
-	rc6 := statusInfo.GetStatusInfo(tx, statusName, instanceInfo.Instance.ObjectID)
-	if rc6 != rc.SUCCESS {
-		return rc6
-	}
-
-	//checking status is according to instance
-	chk0, rc0 := checkStatusIsBelongsToInstance(instanceInfo, statusInfo)
-	if !chk0 {
+	rc0 := checkStatusIsReadyToSet(tx, instanceInfo, statusInfo, instanceToken, statusName)
+	if rc0 != rc.SUCCESS {
 		return rc0
 	}
 
-	//checking previos statuses
-	chk1, rc1 := checkPreviosStatusesIsSet(instanceInfo, statusInfo)
-	if !chk1 {
-		return rc1
-	}
-
-	//checking next statuses
-	chk2, rc2 := checkNextStatusesIsNotSet(instanceInfo, statusInfo)
-	if !chk2 {
-		return rc2
-	}
-
-	//cheking current status is not set yet
-	chk3, rc3 := checkCurrentStatusIsNotSet(instanceInfo, &statusInfo.Status)
-	if !chk3 {
-		return rc3
-	}
-
 	event := &models.Event{StatusID: statusInfo.Status.ID, InstanceID: instanceInfo.Instance.ID}
-	err := tx.Create(&event).Error
-	if err != nil {
-		return rc.DATABASE_ERROR
+	// res := tx.Create(&event)
+	// if res.Error != nil {
+	// 	logging.Error(res.Error.Error())
+	// 	return rc.DATABASE_ERROR
+	// }
+
+	rc8 := models.CreateWrapper(tx, event)
+	if rc8 != rc.SUCCESS {
+		return rc8
 	}
+
 	instanceInfo.Events = append(instanceInfo.Events, *event)
 
 	//finish instance if stop-status got
@@ -167,9 +133,20 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	}
 
 	//finish instance if all mandatory statuses is set
-	if r, _ := checkAllMandatoryStatusesAreSet(instanceInfo); r == true {
+	if r, _ := checkAllMandatoryStatusesAreSet(instanceInfo); r {
 		instanceInfo.Instance.FinishInstance(tx, "ALL_MANDATORY_STATUSES_ARE_SET")
 	}
 
 	return rc.SUCCESS
+}
+
+func CheckStatusIsReadyToSet(instanceToken string, statusName string) rc.ReturnCode {
+
+	tx := db.Begin()
+	defer tx.Commit()
+
+	var instanceInfo = &models.InstanceInfo{}
+	var statusInfo = &models.StatusInfo{}
+
+	return checkStatusIsReadyToSet(tx, instanceInfo, statusInfo, instanceToken, statusName)
 }

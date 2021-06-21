@@ -1,14 +1,593 @@
-time="2021-03-24T17:49:05+03:00" level=error msg="pq: \xef\xee\xeb\xfc\xe7\xee\xe2\xe0\xf2\xe5\xeb\xfc \"statusek\" \xed\xe5 \xef\xf0\xee\xf8\xb8\xeb \xef\xf0\xee\xe2\xe5\xf0\xea\xf3 \xef\xee\xe4\xeb\xe8\xed\xed\xee\xf1\xf2\xe8 (\xef\xee \xef\xe0\xf0\xee\xeb\xfe) type=config.error" func=github.com/aleksaan/statusek/logging.Error file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:46"
-time="2021-03-24T17:49:05+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-03-24T17:51:25+03:00" level=error msg=invalid_password func=github.com/aleksaan/statusek/logging.Error file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:46"
-time="2021-03-24T17:51:25+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-03-28T15:04:10+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-04-05T18:15:57+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-04-05T18:17:28+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-04-05T18:19:18+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-04-05T23:02:56+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-05-08T19:28:34+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-05-10T19:16:08+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-05-11T20:40:20+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-05-11T20:45:41+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
-time="2021-05-12T01:28:34+03:00" level=info msg="Starting service..." func=github.com/aleksaan/statusek/logging.Info file="C:/_goworkspace/src/github.com/aleksaan/statusek/logging/logging.go:36"
+[INFO]: 2021-06-15 15:00:23 - Starting logging[INFO]: 2021-06-15 15:14:36 - Starting logging[INFO]: 2021-06-15 15:50:13 - Starting logging
+[INFO]: 2021-06-15 15:50:13 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 15:50:13 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 15:50:13 - Starting DB updating...
+[INFO]: 2021-06-15 15:50:13 - Dropping tables
+[INFO]: 2021-06-15 15:50:13 - Creating tables
+[INFO]: 2021-06-15 15:50:13 - Creating foreign keys
+[INFO]: 2021-06-15 15:50:13 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 15:50:13 - Starting DB updating...Done
+[INFO]: 2021-06-15 15:50:13 - Starting service...
+[INFO]: 2021-06-15 19:51:55 - Starting logging
+[INFO]: 2021-06-15 19:51:55 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 19:51:56 - Starting service...
+[INFO]: 2021-06-15 19:52:22 - Starting logging
+[INFO]: 2021-06-15 19:52:22 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 19:54:13 - Starting logging
+[INFO]: 2021-06-15 19:54:13 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 19:54:13 - Installed application version 'v2021.06.15_0' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 19:54:13 - Starting DB updating...
+[INFO]: 2021-06-15 19:54:13 - Dropping tables
+[INFO]: 2021-06-15 19:54:13 - Creating tables
+[INFO]: 2021-06-15 19:54:14 - Creating foreign keys
+[INFO]: 2021-06-15 19:54:14 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 19:54:14 - Creating default statuses models
+[INFO]: 2021-06-15 19:54:14 - Starting DB updating...Done
+[INFO]: 2021-06-15 19:54:14 - Starting service...
+[INFO]: 2021-06-15 20:48:42 - Starting logging
+[INFO]: 2021-06-15 20:48:42 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 20:48:42 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 20:48:42 - Starting DB updating...
+[INFO]: 2021-06-15 20:48:42 - Dropping tables
+[INFO]: 2021-06-15 20:48:42 - Creating tables
+[INFO]: 2021-06-15 20:48:42 - Creating foreign keys
+[INFO]: 2021-06-15 20:48:42 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 20:48:42 - Creating default statuses models
+[INFO]: 2021-06-15 20:48:42 - Starting DB updating...Done
+[INFO]: 2021-06-15 20:48:42 - Starting service...
+[INFO]: 2021-06-15 21:05:03 - Starting logging
+[INFO]: 2021-06-15 21:05:03 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:05:03 - Starting service...
+[INFO]: 2021-06-15 21:05:39 - Starting logging
+[INFO]: 2021-06-15 21:05:39 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:05:39 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:05:39 - Starting DB updating...
+[INFO]: 2021-06-15 21:05:39 - Dropping tables
+[INFO]: 2021-06-15 21:05:39 - Creating tables
+[INFO]: 2021-06-15 21:05:39 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:05:39 - Creating default statuses models
+[INFO]: 2021-06-15 21:05:39 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:05:39 - Starting service...
+[INFO]: 2021-06-15 21:16:53 - Starting logging
+[INFO]: 2021-06-15 21:16:53 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:16:53 - Starting service...
+[INFO]: 2021-06-15 21:17:28 - Starting logging
+[INFO]: 2021-06-15 21:17:28 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:17:28 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:17:28 - Starting DB updating...
+[INFO]: 2021-06-15 21:17:28 - Dropping tables
+[INFO]: 2021-06-15 21:17:28 - Creating tables
+[INFO]: 2021-06-15 21:17:28 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:17:28 - Creating default statuses models
+[INFO]: 2021-06-15 21:17:28 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:17:28 - Starting service...
+[INFO]: 2021-06-15 21:21:28 - Starting logging
+[INFO]: 2021-06-15 21:21:28 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:21:29 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:21:29 - Starting DB updating...
+[INFO]: 2021-06-15 21:21:29 - Dropping tables
+[INFO]: 2021-06-15 21:21:29 - Creating tables
+[INFO]: 2021-06-15 21:21:29 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:21:29 - Creating default statuses models
+[INFO]: 2021-06-15 21:21:29 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:21:29 - Starting service...
+[INFO]: 2021-06-15 21:22:16 - Starting logging
+[INFO]: 2021-06-15 21:22:16 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:22:16 - Starting service...
+[INFO]: 2021-06-15 21:22:42 - Starting logging
+[INFO]: 2021-06-15 21:22:42 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:22:42 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:22:42 - Starting DB updating...
+[INFO]: 2021-06-15 21:22:42 - Dropping tables
+[INFO]: 2021-06-15 21:22:42 - Creating tables
+[INFO]: 2021-06-15 21:22:42 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:22:42 - Creating default statuses models
+[INFO]: 2021-06-15 21:22:43 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:22:43 - Starting service...
+[INFO]: 2021-06-15 21:23:33 - Starting logging
+[INFO]: 2021-06-15 21:23:33 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:23:33 - Starting service...
+[INFO]: 2021-06-15 21:24:06 - Starting logging
+[INFO]: 2021-06-15 21:24:06 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:24:07 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:24:07 - Starting DB updating...
+[INFO]: 2021-06-15 21:24:07 - Dropping tables
+[INFO]: 2021-06-15 21:24:07 - Creating tables
+[INFO]: 2021-06-15 21:24:07 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:24:07 - Creating default statuses models
+[INFO]: 2021-06-15 21:24:07 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:24:07 - Starting service...
+[INFO]: 2021-06-15 21:25:38 - Starting logging
+[INFO]: 2021-06-15 21:25:38 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:25:38 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:25:38 - Starting DB updating...
+[INFO]: 2021-06-15 21:25:38 - Dropping tables
+[INFO]: 2021-06-15 21:25:38 - Creating tables
+[INFO]: 2021-06-15 21:25:38 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:25:38 - Creating default statuses models
+[INFO]: 2021-06-15 21:25:39 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:25:39 - Starting service...
+[INFO]: 2021-06-15 21:28:11 - Starting logging
+[INFO]: 2021-06-15 21:28:11 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:28:11 - Starting service...
+[INFO]: 2021-06-15 21:28:49 - Starting logging
+[INFO]: 2021-06-15 21:28:50 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:28:50 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:28:50 - Starting DB updating...
+[INFO]: 2021-06-15 21:28:50 - Dropping tables
+[INFO]: 2021-06-15 21:28:50 - Creating tables
+[INFO]: 2021-06-15 21:28:50 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:28:50 - Creating default statuses models
+[INFO]: 2021-06-15 21:28:50 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:28:50 - Starting service...
+[INFO]: 2021-06-15 21:33:53 - Starting logging
+[INFO]: 2021-06-15 21:33:53 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:33:53 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:33:53 - Starting DB updating...
+[INFO]: 2021-06-15 21:33:53 - Dropping tables
+[INFO]: 2021-06-15 21:33:54 - Creating tables
+[INFO]: 2021-06-15 21:33:54 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:33:54 - Creating default statuses models
+[INFO]: 2021-06-15 21:33:54 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:33:54 - Starting service...
+[INFO]: 2021-06-15 21:40:47 - Starting logging
+[INFO]: 2021-06-15 21:40:47 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:40:47 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:40:47 - Starting DB updating...
+[INFO]: 2021-06-15 21:40:47 - Dropping tables
+[INFO]: 2021-06-15 21:40:47 - Creating tables
+[INFO]: 2021-06-15 21:40:47 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:40:47 - Creating default statuses models
+[INFO]: 2021-06-15 21:40:48 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:40:48 - Starting service...
+[INFO]: 2021-06-15 21:41:50 - Starting logging
+[INFO]: 2021-06-15 21:41:50 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:41:50 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:41:50 - Starting DB updating...
+[INFO]: 2021-06-15 21:41:50 - Dropping tables
+[INFO]: 2021-06-15 21:41:50 - Creating tables
+[INFO]: 2021-06-15 21:41:50 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:41:50 - Creating default statuses models
+[INFO]: 2021-06-15 21:41:50 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:41:50 - Starting service...
+[INFO]: 2021-06-15 21:45:07 - Starting logging
+[INFO]: 2021-06-15 21:45:07 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 21:45:07 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:45:07 - Starting DB updating...
+[INFO]: 2021-06-15 21:45:07 - Dropping tables
+[INFO]: 2021-06-15 21:45:07 - Creating tables
+[INFO]: 2021-06-15 21:45:07 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 21:45:07 - Creating default statuses models
+[INFO]: 2021-06-15 21:45:07 - Starting DB updating...Done
+[INFO]: 2021-06-15 21:45:07 - Starting service...
+[INFO]: 2021-06-15 22:07:21 - Starting logging
+[INFO]: 2021-06-15 22:07:21 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:07:22 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:07:22 - Starting DB updating...
+[INFO]: 2021-06-15 22:07:22 - Dropping tables
+[INFO]: 2021-06-15 22:07:22 - Creating tables
+[INFO]: 2021-06-15 22:07:22 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:07:22 - Creating default statuses models
+[INFO]: 2021-06-15 22:07:22 - Starting DB updating...Done
+[INFO]: 2021-06-15 22:07:22 - Starting service...
+[INFO]: 2021-06-15 22:08:36 - Starting logging
+[INFO]: 2021-06-15 22:08:36 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:08:36 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:08:36 - Starting DB updating...
+[INFO]: 2021-06-15 22:08:36 - Dropping tables
+[INFO]: 2021-06-15 22:08:36 - Creating tables
+[INFO]: 2021-06-15 22:08:36 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:08:36 - Creating default statuses models
+[INFO]: 2021-06-15 22:08:36 - Starting DB updating...Done
+[INFO]: 2021-06-15 22:08:36 - Starting service...
+[INFO]: 2021-06-15 22:09:30 - Starting logging
+[INFO]: 2021-06-15 22:09:30 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:09:30 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:09:30 - Starting DB updating...
+[INFO]: 2021-06-15 22:09:30 - Dropping tables
+[INFO]: 2021-06-15 22:09:30 - Creating tables
+[INFO]: 2021-06-15 22:09:30 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:09:30 - Creating default statuses models
+[INFO]: 2021-06-15 22:09:30 - Starting DB updating...Done
+[INFO]: 2021-06-15 22:09:30 - Starting service...
+[INFO]: 2021-06-15 22:09:39 - Starting logging
+[INFO]: 2021-06-15 22:09:39 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:09:39 - Starting service...
+[INFO]: 2021-06-15 22:09:47 - Starting logging
+[INFO]: 2021-06-15 22:09:47 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:09:47 - Starting service...
+[INFO]: 2021-06-15 22:10:04 - Starting logging
+[INFO]: 2021-06-15 22:10:05 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:10:05 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:10:05 - Starting DB updating...
+[INFO]: 2021-06-15 22:10:05 - Dropping tables
+[INFO]: 2021-06-15 22:10:05 - Creating tables
+[INFO]: 2021-06-15 22:10:05 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:10:05 - Creating default statuses models
+[INFO]: 2021-06-15 22:10:47 - Starting logging
+[INFO]: 2021-06-15 22:10:47 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:10:47 - Starting service...
+[INFO]: 2021-06-15 22:11:10 - Starting logging
+[INFO]: 2021-06-15 22:11:10 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:11:10 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:11:10 - Starting DB updating...
+[INFO]: 2021-06-15 22:11:10 - Dropping tables
+[INFO]: 2021-06-15 22:11:10 - Creating tables
+[INFO]: 2021-06-15 22:11:10 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:11:10 - Creating default statuses models
+[INFO]: 2021-06-15 22:11:10 - Starting DB updating...Done
+[INFO]: 2021-06-15 22:11:10 - Starting service...
+[INFO]: 2021-06-15 22:15:34 - Starting logging
+[INFO]: 2021-06-15 22:15:34 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:15:34 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:15:34 - Starting DB updating...
+[INFO]: 2021-06-15 22:15:34 - Dropping tables
+[INFO]: 2021-06-15 22:15:34 - Creating tables
+[INFO]: 2021-06-15 22:15:34 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:15:34 - Creating default statuses models
+[INFO]: 2021-06-15 22:15:34 - Starting DB updating...Done
+[INFO]: 2021-06-15 22:15:34 - Starting service...
+[INFO]: 2021-06-15 22:17:35 - Starting logging
+[INFO]: 2021-06-15 22:17:35 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:17:35 - Starting service...
+[INFO]: 2021-06-15 22:19:10 - Starting logging
+[INFO]: 2021-06-15 22:19:10 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:19:10 - Current DB version is up to date
+[INFO]: 2021-06-15 22:19:10 - Starting service...
+[INFO]: 2021-06-15 22:19:34 - Starting logging
+[INFO]: 2021-06-15 22:19:34 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:19:34 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:19:34 - Starting DB updating...
+[INFO]: 2021-06-15 22:19:34 - Dropping tables
+[INFO]: 2021-06-15 22:19:34 - Creating tables
+[INFO]: 2021-06-15 22:19:34 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2021-06-15 22:19:34 - Creating default statuses models
+[INFO]: 2021-06-15 22:19:34 - Creating 2-POINT LINE TASK model...
+[INFO]: 2021-06-15 22:19:34 - Creating 2-POINT LINE TASK model...Done
+[INFO]: 2021-06-15 22:19:34 - Starting DB updating...Done
+[INFO]: 2021-06-15 22:19:34 - Starting service...
+[INFO]: 2021-06-15 22:20:24 - Starting logging
+[INFO]: 2021-06-15 22:20:24 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:20:24 - Current DB version is up to date
+[INFO]: 2021-06-15 22:20:24 - Starting service...
+[INFO]: 2021-06-15 22:38:29 - --------------------------------------------------------
+[INFO]: 2021-06-15 22:38:29 - Start logging
+[INFO]: 2021-06-15 22:38:29 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-15 22:38:29 - Current DB version is up to date
+[INFO]: 2021-06-15 22:38:29 - Starting service...
+[INFO]: 2021-06-16 15:01:19 - --------------------------------------------------------
+[INFO]: 2021-06-16 15:01:20 - Start logging
+[INFO]: 2021-06-16 15:01:20 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 15:01:20 - failed to connect to `host=localhost user=statusek database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 15:02:24 - --------------------------------------------------------
+[INFO]: 2021-06-16 15:02:24 - Start logging
+[INFO]: 2021-06-16 15:02:24 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 15:02:24 - failed to connect to `host=localhost user=statusek database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 15:04:02 - --------------------------------------------------------
+[INFO]: 2021-06-16 15:04:02 - Start logging
+[INFO]: 2021-06-16 15:04:02 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2021-06-16 15:04:03 - failed to connect to `host=localhost user=statusek database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2021-06-16 15:04:19 - --------------------------------------------------------
+[INFO]: 2021-06-16 15:04:19 - Start logging
+[INFO]: 2021-06-16 15:04:19 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-16 15:04:19 - DB connection established
+[INFO]: 2021-06-16 15:04:19 - Current DB version is up to date
+[INFO]: 2021-06-16 15:04:19 - Starting service...
+[INFO]: 2021-06-20 18:20:52 - --------------------------------------------------------
+[INFO]: 2021-06-20 18:20:52 - Start logging
+[INFO]: 2021-06-20 18:20:52 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-20 18:20:52 - DB connection established
+[INFO]: 2021-06-20 18:20:52 - Current DB version is up to date
+[INFO]: 2021-06-20 18:20:52 - Starting service...
+[INFO]: 2021-06-20 19:08:01 - --------------------------------------------------------
+[INFO]: 2021-06-20 19:08:01 - Start logging
+[INFO]: 2021-06-20 19:08:01 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-20 19:08:01 - DB connection established
+[INFO]: 2021-06-20 19:08:01 - Current DB version is up to date
+[INFO]: 2021-06-20 19:08:01 - Starting service...
+[INFO]: 2021-06-20 19:08:09 - [[::1]:63675] [/instance/create] Started
+[INFO]: 2021-06-20 19:08:09 - [[::1]:63675] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-20 19:08:09 - [[::1]:63675] [/instance/create] Instance creating...
+[INFO]: 2021-06-20 19:08:09 - [[::1]:63675] [/instance/create] Instance creating... Done. Instance '1a428826-c1b6-46f7-8a5f-b6050808cea8' created.
+[INFO]: 2021-06-20 19:08:09 - [[::1]:63675] [/instance/create] Finished
+[INFO]: 2021-06-20 19:15:35 - --------------------------------------------------------
+[INFO]: 2021-06-20 19:15:35 - Start logging
+[INFO]: 2021-06-20 19:15:35 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-20 19:15:35 - DB connection established
+[INFO]: 2021-06-20 19:15:35 - Current DB version is up to date
+[INFO]: 2021-06-20 19:15:35 - Starting service...
+[INFO]: 2021-06-20 19:15:48 - [[::1]:54293] [/instance/create] Started
+[INFO]: 2021-06-20 19:37:52 - [[::1]:54293] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-20 19:37:52 - [[::1]:54293] [/instance/create] Instance creating...
+[INFO]: 2021-06-20 19:37:52 - [[::1]:54293] [/instance/create] Instance creating... Done. Instance '4afe1b3e-398c-4900-bd14-208db0cc1eef' created.
+[INFO]: 2021-06-20 19:37:52 - [[::1]:54293] [/instance/create] Finished
+[INFO]: 2021-06-21 10:46:47 - --------------------------------------------------------
+[INFO]: 2021-06-21 10:46:47 - Start logging
+[INFO]: 2021-06-21 10:46:47 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 10:46:47 - DB connection established
+[INFO]: 2021-06-21 10:46:47 - Current DB version is up to date
+[INFO]: 2021-06-21 10:46:47 - Starting service...
+[INFO]: 2021-06-21 10:47:29 - [[::1]:61200] [/instance/create] Started
+[INFO]: 2021-06-21 10:47:29 - [[::1]:61200] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 10:47:29 - [[::1]:61200] [/instance/create] Instance creating...
+[INFO]: 2021-06-21 10:47:29 - [[::1]:61200] [/instance/create] Instance creating... Done. Instance 'dce331a8-b1cb-4854-9f88-787e2308e134' created.
+[INFO]: 2021-06-21 10:47:29 - [[::1]:61200] [/instance/create] Finished
+[INFO]: 2021-06-21 10:49:42 - [[::1]:61200] [/instance/create] Started
+[INFO]: 2021-06-21 10:49:42 - [[::1]:61200] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 10:49:42 - [[::1]:61200] [/instance/create] Instance creating...
+[INFO]: 2021-06-21 10:49:42 - [[::1]:61200] [/instance/create] Instance creating... Error
+[INFO]: 2021-06-21 10:49:42 - [[::1]:61200] [/instance/create] Finished
+[INFO]: 2021-06-21 10:50:37 - [[::1]:61200] [/instance/create] Started
+[INFO]: 2021-06-21 10:50:37 - [[::1]:61200] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 10:50:37 - [[::1]:61200] [/instance/create] Instance creating...
+[INFO]: 2021-06-21 10:50:37 - [[::1]:61200] [/instance/create] Instance creating... Done. Instance '32e71ffe-f400-42eb-800d-09980c3ee1e8' created.
+[INFO]: 2021-06-21 10:50:37 - [[::1]:61200] [/instance/create] Finished
+[INFO]: 2021-06-21 16:02:02 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:02:02 - Start logging
+[INFO]: 2021-06-21 16:02:02 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:02:02 - DB connection established
+[INFO]: 2021-06-21 16:02:02 - Current DB version is up to date
+[INFO]: 2021-06-21 16:02:02 - Starting service...
+[INFO]: 2021-06-21 16:02:28 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:02:28 - Start logging
+[INFO]: 2021-06-21 16:02:28 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:02:28 - DB connection established
+[INFO]: 2021-06-21 16:02:29 - Current DB version is up to date
+[INFO]: 2021-06-21 16:02:29 - Starting service...
+[INFO]: 2021-06-21 16:03:26 - [[::1]:65031] [/instance/create] Started
+[INFO]: 2021-06-21 16:03:26 - [[::1]:65031] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 16:03:26 - [[::1]:65031] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 16:03:26 - [[::1]:65031] [/instance/create] Instance creating... Done. Instance 'a92a730b-df49-4b6b-a40e-12ce08b55351' created.
+[INFO]: 2021-06-21 16:03:26 - [[::1]:65031] [/instance/create] Finished
+[INFO]: 2021-06-21 16:03:47 - [[::1]:65031] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:03:47 - [[::1]:65031] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:03:47 - [[::1]:65031] [/status/setStatus] Setting status 'FINISHED' for instance 'a92a730b-df49-4b6b-a40e-12ce08b55351'...
+[INFO]: 2021-06-21 16:03:47 - [[::1]:65031] [/status/setStatus] Setting status 'FINISHED' for instance 'a92a730b-df49-4b6b-a40e-12ce08b55351'... Error: 'ERROR: Instance token '%s' is not found'
+[INFO]: 2021-06-21 16:27:54 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:27:54 - Start logging
+[INFO]: 2021-06-21 16:27:54 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:27:54 - DB connection established
+[INFO]: 2021-06-21 16:27:54 - Current DB version is up to date
+[INFO]: 2021-06-21 16:27:54 - Starting service...
+[INFO]: 2021-06-21 16:28:01 - [[::1]:49397] [/instance/create] Started
+[INFO]: 2021-06-21 16:28:01 - [[::1]:49397] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 16:28:01 - [[::1]:49397] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 16:28:01 - [[::1]:49397] [/instance/create] Instance creating... Done. Instance '9ea5a5f3-7add-49db-9d1b-54c64a0075cb' created.
+[INFO]: 2021-06-21 16:28:01 - [[::1]:49397] [/instance/create] Finished
+[INFO]: 2021-06-21 16:28:11 - [[::1]:49397] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:28:11 - [[::1]:49397] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:28:11 - [[::1]:49397] [/status/setStatus] Setting status 'FINISHED' for instance '9ea5a5f3-7add-49db-9d1b-54c64a0075cb'...
+[INFO]: 2021-06-21 16:30:21 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:30:21 - Start logging
+[INFO]: 2021-06-21 16:30:21 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:30:21 - DB connection established
+[INFO]: 2021-06-21 16:30:21 - Current DB version is up to date
+[INFO]: 2021-06-21 16:30:21 - Starting service...
+[INFO]: 2021-06-21 16:35:35 - [[::1]:60470] [/instance/create] Started
+[INFO]: 2021-06-21 16:35:35 - [[::1]:60470] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 16:35:35 - [[::1]:60470] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 16:35:35 - [[::1]:60470] [/instance/create] Instance creating... Done. Instance '6c3e0a59-219a-4ed8-ba13-c61671579260' created.
+[INFO]: 2021-06-21 16:35:35 - [[::1]:60470] [/instance/create] Finished
+[INFO]: 2021-06-21 16:35:54 - [[::1]:60470] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:35:54 - [[::1]:60470] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:35:54 - [[::1]:60470] [/status/setStatus] Setting status 'FINISHED' for instance '6c3e0a59-219a-4ed8-ba13-c61671579260'...
+[INFO]: 2021-06-21 16:40:55 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:40:55 - Start logging
+[INFO]: 2021-06-21 16:40:55 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:40:55 - DB connection established
+[INFO]: 2021-06-21 16:40:55 - Current DB version is up to date
+[INFO]: 2021-06-21 16:40:55 - Starting service...
+[INFO]: 2021-06-21 16:41:03 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:41:03 - Start logging
+[INFO]: 2021-06-21 16:41:03 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:41:03 - DB connection established
+[INFO]: 2021-06-21 16:41:03 - Current DB version is up to date
+[INFO]: 2021-06-21 16:41:03 - Starting service...
+[INFO]: 2021-06-21 16:41:09 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:41:09 - Start logging
+[INFO]: 2021-06-21 16:41:09 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:41:09 - DB connection established
+[INFO]: 2021-06-21 16:41:09 - Current DB version is up to date
+[INFO]: 2021-06-21 16:41:09 - Starting service...
+[INFO]: 2021-06-21 16:42:23 - [[::1]:62859] [/instance/create] Started
+[INFO]: 2021-06-21 16:42:23 - [[::1]:62859] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 16:42:23 - [[::1]:62859] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 16:42:23 - [[::1]:62859] [/instance/create] Instance creating... Done. Instance 'b1968cf4-ad85-4a57-b83e-03f2fc76edc4' created.
+[INFO]: 2021-06-21 16:42:23 - [[::1]:62859] [/instance/create] Finished
+[INFO]: 2021-06-21 16:42:32 - [[::1]:62859] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:42:32 - [[::1]:62859] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:42:32 - [[::1]:62859] [/status/setStatus] Setting status 'FINISHED' for instance 'b1968cf4-ad85-4a57-b83e-03f2fc76edc4'...
+[INFO]: 2021-06-21 16:42:32 - [[::1]:62859] [/status/setStatus] Setting status 'FINISHED' for instance 'b1968cf4-ad85-4a57-b83e-03f2fc76edc4'... Error: 'ERROR: Instance token '%s' is not found'
+[INFO]: 2021-06-21 16:42:48 - [[::1]:62859] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:42:48 - [[::1]:62859] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:42:48 - [[::1]:62859] [/status/setStatus] Setting status 'FINISHED' for instance 'b1968cf4-ad85-4a57-b83e-03f2fc76edc4'...
+[INFO]: 2021-06-21 16:43:09 - [[::1]:62859] [/status/setStatus] Setting status 'FINISHED' for instance 'b1968cf4-ad85-4a57-b83e-03f2fc76edc4'... Error: 'ERROR: Instance token '%s' is not found'
+[INFO]: 2021-06-21 16:43:11 - [[::1]:62859] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:43:11 - [[::1]:62859] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:43:11 - [[::1]:62859] [/status/setStatus] Setting status 'FINISHED' for instance 'b1968cf4-ad85-4a57-b83e-03f2fc76edc4'...
+[INFO]: 2021-06-21 16:44:49 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:44:49 - Start logging
+[INFO]: 2021-06-21 16:44:49 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:44:49 - DB connection established
+[INFO]: 2021-06-21 16:44:49 - Current DB version is up to date
+[INFO]: 2021-06-21 16:44:49 - Starting service...
+[INFO]: 2021-06-21 16:44:53 - [[::1]:63049] [/instance/create] Started
+[INFO]: 2021-06-21 16:44:53 - [[::1]:63049] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 16:44:53 - [[::1]:63049] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 16:44:53 - [[::1]:63049] [/instance/create] Instance creating... Done. Instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e' created.
+[INFO]: 2021-06-21 16:44:53 - [[::1]:63049] [/instance/create] Finished
+[INFO]: 2021-06-21 16:45:07 - [[::1]:63049] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:45:07 - [[::1]:63049] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:45:07 - [[::1]:63049] [/status/setStatus] Setting status 'FINISHED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:48:13 - [[::1]:63049] [/status/setStatus] Setting status 'FINISHED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Error: 'ERROR: Instance token '%s' is not found'
+[INFO]: 2021-06-21 16:52:25 - --------------------------------------------------------
+[INFO]: 2021-06-21 16:52:25 - Start logging
+[INFO]: 2021-06-21 16:52:25 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 16:52:25 - DB connection established
+[INFO]: 2021-06-21 16:52:25 - Current DB version is up to date
+[INFO]: 2021-06-21 16:52:25 - Starting service...
+[INFO]: 2021-06-21 16:52:34 - [[::1]:61100] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:52:34 - [[::1]:61100] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:52:34 - [[::1]:61100] [/status/setStatus] Setting status 'FINISHED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:52:51 - [[::1]:61100] [/status/setStatus] Setting status 'FINISHED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Error: 'Not all previos mandatory statuses are set for status '%s''
+[INFO]: 2021-06-21 16:53:03 - [[::1]:61100] [/status/setStatus] Started
+[INFO]: 2021-06-21 16:53:03 - [[::1]:61100] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 16:53:03 - [[::1]:61100] [/status/setStatus] Setting status 'STARTED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:53:03 - [[::1]:61100] [/status/setStatus] Setting status 'STARTED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Done
+[INFO]: 2021-06-21 16:53:03 - [[::1]:61100] [/status/setStatus] Finished
+[INFO]: 2021-06-21 16:54:10 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 16:54:10 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 16:54:10 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:54:10 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Error: ''
+[INFO]: 2021-06-21 16:54:20 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 16:54:20 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 16:54:20 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'FINISHED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:54:20 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'FINISHED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Done
+[INFO]: 2021-06-21 16:54:20 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Finished
+[INFO]: 2021-06-21 16:54:32 - [[::1]:61100] [/event/getEvents] Started
+[INFO]: 2021-06-21 16:54:32 - [[::1]:61100] [/event/getEvents] Parameters parsing...
+[INFO]: 2021-06-21 16:54:32 - [[::1]:61100] [/event/getEvents] Getting events for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:54:32 - [[::1]:61100] [/event/getEvents] Getting events for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...Done
+[INFO]: 2021-06-21 16:54:32 - [[::1]:61100] [/event/getEvents] Finished
+[INFO]: 2021-06-21 16:54:40 - [[::1]:61100] [/instance/checkIsFinished] Started
+[INFO]: 2021-06-21 16:54:40 - [[::1]:61100] [/instance/checkIsFinished] Parameters parsing...
+[INFO]: 2021-06-21 16:54:40 - [[::1]:61100] [/instance/checkIsFinished] Checking instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e' is finished...
+[INFO]: 2021-06-21 16:54:40 - [[::1]:61100] [/instance/checkIsFinished] Instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e' is not finished
+[INFO]: 2021-06-21 16:54:50 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 16:54:50 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 16:54:50 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status '123' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:54:50 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status '123' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Error: ''
+[INFO]: 2021-06-21 16:55:01 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 16:55:01 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 16:55:01 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:55:01 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Error: ''
+[INFO]: 2021-06-21 16:55:06 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 16:55:06 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 16:55:06 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'FINISHED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:55:06 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Check status 'FINISHED' is ready to set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Done
+[INFO]: 2021-06-21 16:55:06 - [[::1]:61100] [/status/checkStatusIsReadyToSet] Finished
+[INFO]: 2021-06-21 16:55:32 - [[::1]:61100] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 16:55:32 - [[::1]:61100] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 16:55:32 - [[::1]:61100] [/status/checkStatusIsSet] Check status 'STARTED' is set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:55:32 - [[::1]:61100] [/status/checkStatusIsSet] Check status 'STARTED' is set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...%!(EXTRA string=Status '%s' is set)
+[INFO]: 2021-06-21 16:55:32 - [[::1]:61100] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 16:55:59 - [[::1]:61100] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 16:55:59 - [[::1]:61100] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 16:55:59 - [[::1]:61100] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 16:55:59 - [[::1]:61100] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...%!(EXTRA string=Status '%s' is not set)
+[INFO]: 2021-06-21 16:55:59 - [[::1]:61100] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:25:44 - --------------------------------------------------------
+[INFO]: 2021-06-21 17:25:44 - Start logging
+[INFO]: 2021-06-21 17:25:44 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 17:25:44 - DB connection established
+[INFO]: 2021-06-21 17:25:44 - Current DB version is up to date
+[INFO]: 2021-06-21 17:25:44 - Starting service...
+[INFO]: 2021-06-21 17:25:47 - [[::1]:65426] [/status/setStatus] Started
+[INFO]: 2021-06-21 17:25:47 - [[::1]:65426] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 17:25:47 - [[::1]:65426] [/status/setStatus] Setting status 'STARTED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-21 17:26:06 - [[::1]:65426] [/status/setStatus] Setting status 'STARTED' for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'... Error: 'Instance '%s' is finished by '%s''
+[INFO]: 2021-06-21 17:27:10 - [[::1]:65529] [/instance/create] Started
+[INFO]: 2021-06-21 17:27:10 - [[::1]:65529] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 17:27:10 - [[::1]:65529] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 17:27:10 - [[::1]:65529] [/instance/create] Instance creating... Done. Instance 'e4a1221b-9f10-4075-84e2-a9b3750e8653' created.
+[INFO]: 2021-06-21 17:27:10 - [[::1]:65529] [/instance/create] Finished
+[INFO]: 2021-06-21 17:27:25 - --------------------------------------------------------
+[INFO]: 2021-06-21 17:27:25 - Start logging
+[INFO]: 2021-06-21 17:27:25 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 17:27:25 - DB connection established
+[INFO]: 2021-06-21 17:27:25 - Current DB version is up to date
+[INFO]: 2021-06-21 17:27:25 - Starting service...
+[INFO]: 2021-06-21 17:27:35 - [[::1]:49297] [/instance/create] Started
+[INFO]: 2021-06-21 17:27:35 - [[::1]:49297] [/instance/create] Parameters parsing...
+[INFO]: 2021-06-21 17:27:35 - [[::1]:49297] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2021-06-21 17:27:35 - [[::1]:49297] [/instance/create] Instance creating... Done. Instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed' created.
+[INFO]: 2021-06-21 17:27:35 - [[::1]:49297] [/instance/create] Finished
+[INFO]: 2021-06-21 17:28:15 - [[::1]:49297] [/status/setStatus] Started
+[INFO]: 2021-06-21 17:28:15 - [[::1]:49297] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 17:28:15 - [[::1]:49297] [/status/setStatus] Setting status 'STARTED' for instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:28:15 - [[::1]:49297] [/status/setStatus] Setting status 'STARTED' for instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Done
+[INFO]: 2021-06-21 17:28:15 - [[::1]:49297] [/status/setStatus] Finished
+[INFO]: 2021-06-21 17:28:23 - [[::1]:49297] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 17:28:23 - [[::1]:49297] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 17:28:23 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:28:23 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...%!(EXTRA string=Status '%s' is not set)
+[INFO]: 2021-06-21 17:28:23 - [[::1]:49297] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:31:22 - [[::1]:49297] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 17:31:22 - [[::1]:49297] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 17:31:22 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:31:22 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...%!(EXTRA string=Status '%s' is not set)
+[INFO]: 2021-06-21 17:31:22 - [[::1]:49297] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:32:11 - [[::1]:49297] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 17:32:11 - [[::1]:49297] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 17:32:11 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:32:11 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'FINISHED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...%!(EXTRA string=Status '%s' is not set)
+[INFO]: 2021-06-21 17:32:11 - [[::1]:49297] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:32:20 - [[::1]:49297] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 17:32:20 - [[::1]:49297] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 17:32:20 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:32:20 - [[::1]:49297] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...%!(EXTRA string=Status '%s' is set)
+[INFO]: 2021-06-21 17:32:20 - [[::1]:49297] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:33:02 - --------------------------------------------------------
+[INFO]: 2021-06-21 17:33:02 - Start logging
+[INFO]: 2021-06-21 17:33:02 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 17:33:02 - DB connection established
+[INFO]: 2021-06-21 17:33:02 - Current DB version is up to date
+[INFO]: 2021-06-21 17:33:02 - Starting service...
+[INFO]: 2021-06-21 17:33:08 - [[::1]:49631] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 17:33:08 - [[::1]:49631] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 17:33:08 - [[::1]:49631] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:33:08 - [[::1]:49631] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...%!(EXTRA string=Status '%s' is set)
+[INFO]: 2021-06-21 17:33:08 - [[::1]:49631] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:34:26 - --------------------------------------------------------
+[INFO]: 2021-06-21 17:34:26 - Start logging
+[INFO]: 2021-06-21 17:34:26 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 17:34:26 - DB connection established
+[INFO]: 2021-06-21 17:34:26 - Current DB version is up to date
+[INFO]: 2021-06-21 17:34:26 - Starting service...
+[INFO]: 2021-06-21 17:34:29 - [[::1]:49782] [/status/checkStatusIsSet] Started
+[INFO]: 2021-06-21 17:34:29 - [[::1]:49782] [/status/checkStatusIsSet] Parameters parsing...
+[INFO]: 2021-06-21 17:34:29 - [[::1]:49782] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:34:29 - [[::1]:49782] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...Error: 'Status '%s' is set'
+[INFO]: 2021-06-21 17:34:29 - [[::1]:49782] [/status/checkStatusIsSet] Finished
+[INFO]: 2021-06-21 17:35:01 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 17:35:01 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 17:35:01 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Check status 'FINISHED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:35:01 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Check status 'FINISHED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Done
+[INFO]: 2021-06-21 17:35:01 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Finished
+[INFO]: 2021-06-21 17:35:20 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 17:35:20 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 17:35:20 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:35:20 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Error: ''
+[INFO]: 2021-06-21 17:35:27 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 17:35:27 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 17:35:27 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Check status 'STARTED1' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:35:27 - [[::1]:49782] [/status/checkStatusIsReadyToSet] Check status 'STARTED1' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Error: ''
+[INFO]: 2021-06-21 17:39:44 - --------------------------------------------------------
+[INFO]: 2021-06-21 17:39:45 - Start logging
+[INFO]: 2021-06-21 17:39:45 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-21 17:39:45 - DB connection established
+[INFO]: 2021-06-21 17:39:45 - Current DB version is up to date
+[INFO]: 2021-06-21 17:39:45 - Starting service...
+[INFO]: 2021-06-21 17:39:48 - [[::1]:58035] [/instance/checkIsFinished] Started
+[INFO]: 2021-06-21 17:39:48 - [[::1]:58035] [/instance/checkIsFinished] Parameters parsing...
+[INFO]: 2021-06-21 17:39:48 - [[::1]:58035] [/instance/checkIsFinished] Checking instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e' is finished...
+[INFO]: 2021-06-21 17:39:48 - [[::1]:58035] [/instance/checkIsFinished] Instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e' is finished by '%!s(bool=true)'
+[INFO]: 2021-06-21 17:39:48 - [[::1]:58035] [/instance/checkIsFinished] Finished
+[INFO]: 2021-06-21 17:40:07 - [[::1]:58035] [/instance/checkIsFinished] Started
+[INFO]: 2021-06-21 17:40:07 - [[::1]:58035] [/instance/checkIsFinished] Parameters parsing...
+[INFO]: 2021-06-21 17:40:07 - [[::1]:58035] [/instance/checkIsFinished] Checking instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed' is finished...
+[INFO]: 2021-06-21 17:40:07 - [[::1]:58035] [/instance/checkIsFinished] Instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed' is not finished
+[INFO]: 2021-06-21 17:40:15 - [[::1]:58035] [/status/setStatus] Started
+[INFO]: 2021-06-21 17:40:15 - [[::1]:58035] [/status/setStatus] Parameters parsing...
+[INFO]: 2021-06-21 17:40:15 - [[::1]:58035] [/status/setStatus] Setting status 'FINISHED' for instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 17:40:15 - [[::1]:58035] [/status/setStatus] Setting status 'FINISHED' for instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Done
+[INFO]: 2021-06-21 17:40:15 - [[::1]:58035] [/status/setStatus] Finished
+[INFO]: 2021-06-21 17:40:18 - [[::1]:58035] [/instance/checkIsFinished] Started
+[INFO]: 2021-06-21 17:40:18 - [[::1]:58035] [/instance/checkIsFinished] Parameters parsing...
+[INFO]: 2021-06-21 17:40:18 - [[::1]:58035] [/instance/checkIsFinished] Checking instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed' is finished...
+[INFO]: 2021-06-21 17:40:18 - [[::1]:58035] [/instance/checkIsFinished] Instance 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed' is finished by '%!s(bool=true)'
+[INFO]: 2021-06-21 17:40:18 - [[::1]:58035] [/instance/checkIsFinished] Finished
+[INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Started
+[INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Parameters parsing...
+[INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
+[INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Error: ''
