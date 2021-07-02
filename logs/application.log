@@ -591,3 +591,29 @@
 [INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Parameters parsing...
 [INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...
 [INFO]: 2021-06-21 18:03:47 - [[::1]:58035] [/status/checkStatusIsReadyToSet] Check status 'STARTED' is ready to set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'... Error: ''
+[INFO]: 2021-06-23 23:03:24 - --------------------------------------------------------
+[INFO]: 2021-06-23 23:03:24 - Start logging
+[INFO]: 2021-06-23 23:03:24 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-23 23:03:24 - DB connection established
+[INFO]: 2021-06-23 23:03:24 - Current DB version is up to date
+[INFO]: 2021-06-23 23:03:24 - Starting service...
+[INFO]: 2021-06-23 23:03:39 - [[::1]:51910] [/event/getEvents] Started
+[INFO]: 2021-06-23 23:03:39 - [[::1]:51910] [/event/getEvents] Parameters parsing...
+[INFO]: 2021-06-23 23:03:39 - [[::1]:51910] [/event/getEvents] Getting events for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...
+[INFO]: 2021-06-23 23:03:39 - [[::1]:51910] [/event/getEvents] Getting events for instance '1bd4e9ca-8220-4fb1-bbfe-fa341d88902e'...Done
+[INFO]: 2021-06-23 23:03:39 - [[::1]:51910] [/event/getEvents] Finished
+[INFO]: 2021-06-23 23:04:25 - [[::1]:51910] [/status/checkStatusIsSet] Check status 'STARTED' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ed'...Error: 'Status '%s' is set'
+[INFO]: 2021-06-23 23:09:15 - --------------------------------------------------------
+[INFO]: 2021-06-23 23:09:15 - Start logging
+[INFO]: 2021-06-23 23:09:15 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-23 23:09:15 - DB connection established
+[INFO]: 2021-06-23 23:09:15 - Current DB version is up to date
+[INFO]: 2021-06-23 23:09:15 - Starting service...
+[INFO]: 2021-06-23 23:10:12 - [[::1]:52226] [/status/checkStatusIsSet] Check status 'FINISHED2' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ee'...Error: 'ERROR: Instance token '%s' is not found'
+[INFO]: 2021-06-23 23:32:49 - --------------------------------------------------------
+[INFO]: 2021-06-23 23:32:49 - Start logging
+[INFO]: 2021-06-23 23:32:49 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2021-06-23 23:32:49 - DB connection established
+[INFO]: 2021-06-23 23:32:49 - Current DB version is up to date
+[INFO]: 2021-06-23 23:32:49 - Starting service...
+[ERROR]: 2021-06-23 23:32:56 - [[::1]:50432] [/status/checkStatusIsSet] Check status 'FINISHED2' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ee'...Error: 'ERROR: Instance token '%s' is not found'

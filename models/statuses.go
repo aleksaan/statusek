@@ -9,7 +9,7 @@ import (
 type Status struct {
 	gorm.Model
 	ObjectID   uint
-	Object     Object
+	Object     Object `json:"-"`
 	StatusName string
 	StatusDesc string
 	StatusType string `gorm:"not null"`
