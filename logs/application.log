@@ -617,3 +617,392 @@
 [INFO]: 2021-06-23 23:32:49 - Current DB version is up to date
 [INFO]: 2021-06-23 23:32:49 - Starting service...
 [ERROR]: 2021-06-23 23:32:56 - [[::1]:50432] [/status/checkStatusIsSet] Check status 'FINISHED2' is set for token 'cc20ed46-5d34-4bcf-b194-c5bdd1bae6ee'...Error: 'ERROR: Instance token '%s' is not found'
+[INFO]: 2022-01-24 00:07:52 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:07:52 - Start logging
+[INFO]: 2022-01-24 00:07:52 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2022-01-24 00:07:52 - failed to connect to `host=localhost user=statusek database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2022-01-24 00:16:56 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:16:56 - Start logging
+[INFO]: 2022-01-24 00:16:56 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2022-01-24 00:16:56 - failed to connect to `host=localhost user=statusek database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2022-01-24 00:18:25 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:18:25 - Start logging
+[INFO]: 2022-01-24 00:18:25 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[ERROR]: 2022-01-24 00:18:25 - failed to connect to `host=localhost user=statusek database=postgres`: failed SASL auth (expected AuthenticationSASLFinal message but received unexpected message)
+[INFO]: 2022-01-24 00:22:27 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:22:27 - Start logging
+[INFO]: 2022-01-24 00:22:27 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-24 00:22:27 - DB connection established
+[INFO]: 2022-01-24 00:22:27 - Installed application version '' differs from current version 'v2021.06.15_a'
+[INFO]: 2022-01-24 00:22:27 - Starting DB updating...
+[INFO]: 2022-01-24 00:22:27 - Dropping tables
+[INFO]: 2022-01-24 00:22:27 - Creating tables
+[INFO]: 2022-01-24 00:22:27 - Writing new version number 'v2021.06.15_a'
+[INFO]: 2022-01-24 00:22:27 - Creating default statuses models
+[INFO]: 2022-01-24 00:22:27 - Creating 2-POINT LINE TASK model...
+[INFO]: 2022-01-24 00:22:27 - Creating 2-POINT LINE TASK model...Done
+[INFO]: 2022-01-24 00:22:27 - Starting DB updating...Done
+[INFO]: 2022-01-24 00:22:27 - Starting service...
+[INFO]: 2022-01-24 00:43:01 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:43:01 - Start1 logging
+[INFO]: 2022-01-24 00:43:01 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-24 00:43:01 - DB connection established
+[INFO]: 2022-01-24 00:43:01 - Current DB version is up to date
+[INFO]: 2022-01-24 00:43:01 - Starting service...
+[INFO]: 2022-01-24 00:43:16 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:43:16 - Start2 logging
+[INFO]: 2022-01-24 00:43:16 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-24 00:43:16 - DB connection established
+[INFO]: 2022-01-24 00:43:16 - Current DB version is up to date
+[INFO]: 2022-01-24 00:43:16 - Starting service...
+[INFO]: 2022-01-24 00:43:22 - --------------------------------------------------------
+[INFO]: 2022-01-24 00:43:22 - Start2 logging
+[INFO]: 2022-01-24 00:43:22 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-24 00:43:22 - DB connection established
+[INFO]: 2022-01-24 00:43:22 - Current DB version is up to date
+[INFO]: 2022-01-24 00:43:22 - Starting service...
+[INFO]: 2022-01-25 21:27:07 - --------------------------------------------------------
+[INFO]: 2022-01-25 21:27:07 - Start logging
+[INFO]: 2022-01-25 21:27:07 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 21:27:07 - DB connection established
+[INFO]: 2022-01-25 21:27:07 - Current DB version is up to date
+[INFO]: 2022-01-25 21:27:07 - Starting service...
+[INFO]: 2022-01-25 21:31:35 - [[::1]:55386] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:31:35 - [[::1]:55386] [/status/setStatus] Parameters parsing...
+[ERROR]: 2022-01-25 21:31:35 - [[::1]:55386] [/status/setStatus] Parameters parsing error:%!(EXTRA string=EOF)
+[INFO]: 2022-01-25 21:31:47 - [[::1]:55386] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:31:47 - [[::1]:55386] [/status/setStatus] Parameters parsing...
+[ERROR]: 2022-01-25 21:31:47 - [[::1]:55386] [/status/setStatus] Parameters parsing error:%!(EXTRA string=EOF)
+[INFO]: 2022-01-25 21:35:28 - [[::1]:55386] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:35:28 - [[::1]:55386] [/status/setStatus] Parameters parsing...
+[ERROR]: 2022-01-25 21:35:28 - [[::1]:55386] [/status/setStatus] Parameters parsing error:%!(EXTRA string=EOF)
+[INFO]: 2022-01-25 21:36:15 - [[::1]:55386] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:36:15 - [[::1]:55386] [/status/setStatus] Parameters parsing...
+[ERROR]: 2022-01-25 21:36:15 - [[::1]:55386] [/status/setStatus] Parameters parsing error:%!(EXTRA string=EOF)
+[INFO]: 2022-01-25 21:36:38 - [[::1]:55399] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:36:38 - [[::1]:55399] [/status/setStatus] Parameters parsing...
+[ERROR]: 2022-01-25 21:36:38 - [[::1]:55399] [/status/setStatus] Parameters parsing error:%!(EXTRA string=EOF)
+[INFO]: 2022-01-25 21:37:20 - [[::1]:55386] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:37:20 - [[::1]:55386] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:37:20 - [[::1]:55386] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 21:37:20 - [[::1]:55386] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<instance_token>' is not found'
+[INFO]: 2022-01-25 21:40:35 - --------------------------------------------------------
+[INFO]: 2022-01-25 21:40:35 - Start logging
+[INFO]: 2022-01-25 21:40:35 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 21:40:35 - DB connection established
+[INFO]: 2022-01-25 21:40:35 - Current DB version is up to date
+[INFO]: 2022-01-25 21:40:35 - Starting service...
+[INFO]: 2022-01-25 21:41:00 - [[::1]:58684] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:41:00 - [[::1]:58684] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:41:00 - [[::1]:58684] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 21:41:00 - [[::1]:58684] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<instance_token>' is not found'
+[INFO]: 2022-01-25 21:41:52 - --------------------------------------------------------
+[INFO]: 2022-01-25 21:41:52 - Start logging
+[INFO]: 2022-01-25 21:41:52 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 21:41:52 - DB connection established
+[INFO]: 2022-01-25 21:41:52 - Current DB version is up to date
+[INFO]: 2022-01-25 21:41:52 - Starting service...
+[INFO]: 2022-01-25 21:42:16 - [[::1]:58694] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:42:17 - [[::1]:58694] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:42:19 - [[::1]:58694] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 21:43:25 - [[::1]:58694] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<instance_token>' is not found'
+[INFO]: 2022-01-25 21:47:53 - --------------------------------------------------------
+[INFO]: 2022-01-25 21:47:53 - Start logging
+[INFO]: 2022-01-25 21:47:53 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 21:47:53 - DB connection established
+[INFO]: 2022-01-25 21:47:53 - Current DB version is up to date
+[INFO]: 2022-01-25 21:47:53 - Starting service...
+[INFO]: 2022-01-25 21:48:01 - [[::1]:58728] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:48:02 - [[::1]:58728] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:48:03 - [[::1]:58728] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[INFO]: 2022-01-25 21:49:19 - --------------------------------------------------------
+[INFO]: 2022-01-25 21:49:19 - Start logging
+[INFO]: 2022-01-25 21:49:19 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 21:49:19 - DB connection established
+[INFO]: 2022-01-25 21:49:19 - Current DB version is up to date
+[INFO]: 2022-01-25 21:49:19 - Starting service...
+[INFO]: 2022-01-25 21:49:26 - [[::1]:54734] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:49:26 - [[::1]:54734] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:49:26 - [[::1]:54734] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 21:49:26 - [[::1]:54734] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '123' is not found'
+[INFO]: 2022-01-25 21:57:49 - --------------------------------------------------------
+[INFO]: 2022-01-25 21:57:49 - Start logging
+[INFO]: 2022-01-25 21:57:49 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 21:57:49 - DB connection established
+[INFO]: 2022-01-25 21:57:49 - Current DB version is up to date
+[INFO]: 2022-01-25 21:57:49 - Starting service...
+[INFO]: 2022-01-25 21:57:54 - [[::1]:54342] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:57:54 - [[::1]:54342] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:57:54 - [[::1]:54342] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 21:57:54 - [[::1]:54342] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<instance_token>' is not found'
+[INFO]: 2022-01-25 21:57:58 - [[::1]:54342] [/status/setStatus] Started
+[INFO]: 2022-01-25 21:57:58 - [[::1]:54342] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 21:57:58 - [[::1]:54342] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 21:57:58 - [[::1]:54342] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '123' is not found'
+[INFO]: 2022-01-25 22:00:26 - --------------------------------------------------------
+[INFO]: 2022-01-25 22:00:26 - Start logging
+[INFO]: 2022-01-25 22:00:26 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 22:00:26 - DB connection established
+[INFO]: 2022-01-25 22:00:26 - Current DB version is up to date
+[INFO]: 2022-01-25 22:00:26 - Starting service...
+[INFO]: 2022-01-25 22:01:13 - [[::1]:54425] [/status/setStatus] Started
+[INFO]: 2022-01-25 22:01:13 - [[::1]:54425] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 22:01:13 - [[::1]:54425] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 22:01:41 - [[::1]:54425] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<instance_token>' is not found'
+[INFO]: 2022-01-25 22:10:28 - --------------------------------------------------------
+[INFO]: 2022-01-25 22:10:28 - Start logging
+[INFO]: 2022-01-25 22:10:28 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 22:10:28 - DB connection established
+[INFO]: 2022-01-25 22:10:28 - Current DB version is up to date
+[INFO]: 2022-01-25 22:10:28 - Starting service...
+[INFO]: 2022-01-25 22:10:33 - [[::1]:54440] [/status/setStatus] Started
+[INFO]: 2022-01-25 22:10:33 - [[::1]:54440] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 22:10:33 - [[::1]:54440] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 22:10:33 - [[::1]:54440] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<instance_token>' is not found'
+[INFO]: 2022-01-25 22:11:59 - --------------------------------------------------------
+[INFO]: 2022-01-25 22:11:59 - Start logging
+[INFO]: 2022-01-25 22:11:59 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 22:11:59 - DB connection established
+[INFO]: 2022-01-25 22:11:59 - Current DB version is up to date
+[INFO]: 2022-01-25 22:11:59 - Starting service...
+[INFO]: 2022-01-25 22:14:47 - --------------------------------------------------------
+[INFO]: 2022-01-25 22:14:47 - Start logging
+[INFO]: 2022-01-25 22:14:47 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 22:14:47 - DB connection established
+[INFO]: 2022-01-25 22:14:47 - Current DB version is up to date
+[INFO]: 2022-01-25 22:14:47 - Starting service...
+[INFO]: 2022-01-25 22:14:50 - [[::1]:54455] [/status/setStatus] Started
+[INFO]: 2022-01-25 22:14:50 - [[::1]:54455] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 22:14:50 - [[::1]:54455] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[INFO]: 2022-01-25 22:16:16 - --------------------------------------------------------
+[INFO]: 2022-01-25 22:16:16 - Start logging
+[INFO]: 2022-01-25 22:16:16 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-01-25 22:16:16 - DB connection established
+[INFO]: 2022-01-25 22:16:16 - Current DB version is up to date
+[INFO]: 2022-01-25 22:16:16 - Starting service...
+[INFO]: 2022-01-25 22:16:21 - [[::1]:54468] [/status/setStatus] Started
+[INFO]: 2022-01-25 22:16:21 - [[::1]:54468] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-01-25 22:16:21 - [[::1]:54468] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-01-25 22:16:21 - [[::1]:54468] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '123' is not found'
+[INFO]: 2022-02-01 23:16:03 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:16:03 - Start logging
+[INFO]: 2022-02-01 23:16:03 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:16:03 - DB connection established
+[INFO]: 2022-02-01 23:16:03 - Current DB version is up to date
+[INFO]: 2022-02-01 23:16:03 - Starting service...
+[INFO]: 2022-02-01 23:16:14 - [[::1]:50382] [/status/setStatus] Started
+[INFO]: 2022-02-01 23:16:14 - [[::1]:50382] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-02-01 23:16:14 - [[::1]:50382] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[INFO]: 2022-02-01 23:17:39 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:17:39 - Start logging
+[INFO]: 2022-02-01 23:17:39 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:17:39 - DB connection established
+[INFO]: 2022-02-01 23:17:39 - Current DB version is up to date
+[INFO]: 2022-02-01 23:17:39 - Starting service...
+[INFO]: 2022-02-01 23:17:43 - [[::1]:58931] [/status/setStatus] Started
+[INFO]: 2022-02-01 23:17:43 - [[::1]:58931] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-02-01 23:17:43 - [[::1]:58931] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-02-01 23:17:43 - [[::1]:58931] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '<<123>>' is not found'
+[INFO]: 2022-02-01 23:18:57 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:18:57 - Start logging
+[INFO]: 2022-02-01 23:18:57 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:18:57 - DB connection established
+[INFO]: 2022-02-01 23:18:57 - Current DB version is up to date
+[INFO]: 2022-02-01 23:18:57 - Starting service...
+[INFO]: 2022-02-01 23:20:32 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:20:32 - Start logging
+[INFO]: 2022-02-01 23:20:32 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:20:32 - DB connection established
+[INFO]: 2022-02-01 23:20:32 - Current DB version is up to date
+[INFO]: 2022-02-01 23:20:32 - Starting service...
+[INFO]: 2022-02-01 23:22:52 - [127.0.0.1:59306] [/status/setStatus] Started
+[INFO]: 2022-02-01 23:22:52 - [127.0.0.1:59306] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-02-01 23:22:52 - [127.0.0.1:59306] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-02-01 23:22:52 - [127.0.0.1:59306] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '123' is not found'
+[INFO]: 2022-02-01 23:28:04 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:28:04 - Start logging
+[INFO]: 2022-02-01 23:28:04 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:28:04 - DB connection established
+[INFO]: 2022-02-01 23:28:04 - Current DB version is up to date
+[INFO]: 2022-02-01 23:28:04 - Starting service...
+[INFO]: 2022-02-01 23:28:07 - [127.0.0.1:59326] [/status/setStatus] Started
+[INFO]: 2022-02-01 23:28:07 - [127.0.0.1:59326] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-02-01 23:28:07 - [127.0.0.1:59326] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'...
+[ERROR]: 2022-02-01 23:28:07 - [127.0.0.1:59326] [/status/setStatus] Setting status 'EXAMPLE' for instance '123'... Error: 'ERROR: Instance token '123' is not found'
+[INFO]: 2022-02-01 23:30:44 - [127.0.0.1:59326] [/instance/create] Started
+[INFO]: 2022-02-01 23:30:44 - [127.0.0.1:59326] [/instance/create] Parameters parsing...
+[ERROR]: 2022-02-01 23:30:44 - [127.0.0.1:59326] [/instance/create] Parameters parsing error:%!(EXTRA string=json: cannot unmarshal string into Go struct field apiCreateInstanceParams.instance_timeout of type int)
+[INFO]: 2022-02-01 23:30:53 - [127.0.0.1:59326] [/instance/create] Started
+[INFO]: 2022-02-01 23:30:53 - [127.0.0.1:59326] [/instance/create] Parameters parsing...
+[INFO]: 2022-02-01 23:30:53 - [127.0.0.1:59326] [/instance/create] Instance of '2 POINT LINE TASK' model creating...
+[ERROR]: 2022-02-01 23:30:53 - [127.0.0.1:59326] [/instance/create] Instance creating... Error: 'ERROR: Object name '<ObjectName>' is not found'
+[INFO]: 2022-02-01 23:30:53 - [127.0.0.1:59326] [/instance/create] Finished
+[INFO]: 2022-02-01 23:38:05 - [127.0.0.1:59326] [/instance/create] Started
+[INFO]: 2022-02-01 23:38:05 - [127.0.0.1:59326] [/instance/create] Parameters parsing...
+[INFO]: 2022-02-01 23:38:05 - [127.0.0.1:59326] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+[INFO]: 2022-02-01 23:38:05 - [127.0.0.1:59326] [/instance/create] Instance creating... Done. Instance '2f337dc0-505f-43d5-953c-92e3c8b411fb' created.
+[INFO]: 2022-02-01 23:38:05 - [127.0.0.1:59326] [/instance/create] Finished
+[INFO]: 2022-02-01 23:38:33 - [127.0.0.1:59326] [/status/setStatus] Started
+[INFO]: 2022-02-01 23:38:33 - [127.0.0.1:59326] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-02-01 23:38:33 - [127.0.0.1:59326] [/status/setStatus] Setting status 'EXAMPLE' for instance '2f337dc0-505f-43d5-953c-92e3c8b411fb'...
+[ERROR]: 2022-02-01 23:38:33 - [127.0.0.1:59326] [/status/setStatus] Setting status 'EXAMPLE' for instance '2f337dc0-505f-43d5-953c-92e3c8b411fb'... Error: 'ERROR: Status name 'EXAMPLE' is not found for object '%s''
+[INFO]: 2022-02-01 23:39:14 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:39:14 - Start logging
+[INFO]: 2022-02-01 23:39:14 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:39:14 - DB connection established
+[INFO]: 2022-02-01 23:39:14 - Current DB version is up to date
+[INFO]: 2022-02-01 23:39:14 - Starting service...
+[INFO]: 2022-02-01 23:39:30 - --------------------------------------------------------
+[INFO]: 2022-02-01 23:39:30 - Start logging
+[INFO]: 2022-02-01 23:39:30 - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+[INFO]: 2022-02-01 23:39:30 - DB connection established
+[INFO]: 2022-02-01 23:39:30 - Current DB version is up to date
+[INFO]: 2022-02-01 23:39:30 - Starting service...
+[INFO]: 2022-02-01 23:39:36 - [127.0.0.1:51315] [/status/setStatus] Started
+[INFO]: 2022-02-01 23:39:36 - [127.0.0.1:51315] [/status/setStatus] Parameters parsing...
+[INFO]: 2022-02-01 23:39:36 - [127.0.0.1:51315] [/status/setStatus] Setting status 'EXAMPLE' for instance '2f337dc0-505f-43d5-953c-92e3c8b411fb'...
+[ERROR]: 2022-02-01 23:39:36 - [127.0.0.1:51315] [/status/setStatus] Setting status 'EXAMPLE' for instance '2f337dc0-505f-43d5-953c-92e3c8b411fb'... Error: 'ERROR: Status name 'EXAMPLE' is not found for object '2f337dc0-505f-43d5-953c-92e3c8b411fb''
+2022-02-02 00:06:52 [INFO] 19932- --------------------------------------------------------
+2022-02-02 00:06:52 [INFO] 19932- Start logging
+2022-02-02 00:06:52 [INFO] 19932- Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:06:52 [INFO] 19932- DB connection established
+2022-02-02 00:06:52 [INFO] 19932- Current DB version is up to date
+2022-02-02 00:06:52 [INFO] 19932- Starting service...
+2022-02-02 00:06:53 [INFO] 19932- [127.0.0.1:53511] [/instance/create] Started
+2022-02-02 00:06:53 [INFO] 19932- [127.0.0.1:53511] [/instance/create] Parameters parsing...
+2022-02-02 00:06:53 [INFO] 19932- [127.0.0.1:53511] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+2022-02-02 00:06:53 [INFO] 19932- [127.0.0.1:53511] [/instance/create] Instance creating... Done. Instance '8ebe4313-91aa-4faa-9d55-af89db722215' created.
+2022-02-02 00:06:53 [INFO] 19932- [127.0.0.1:53511] [/instance/create] Finished
+2022-02-02 00:07:01 [INFO] 19932- [127.0.0.1:53511] [/status/setStatus] Started
+2022-02-02 00:07:01 [INFO] 19932- [127.0.0.1:53511] [/status/setStatus] Parameters parsing...
+2022-02-02 00:07:01 [INFO] 19932- [127.0.0.1:53511] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'...
+2022-02-02 00:07:01 [ERROR] 19932- [127.0.0.1:53511] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'... Error: 'ERROR: Status name 'EXAMPLE' is not found for object '<ObjectName>''
+2022-02-02 00:07:15 [INFO] 19932- [127.0.0.1:53511] [/status/setStatus] Started
+2022-02-02 00:07:15 [INFO] 19932- [127.0.0.1:53511] [/status/setStatus] Parameters parsing...
+2022-02-02 00:07:15 [INFO] 19932- [127.0.0.1:53511] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'...
+2022-02-02 00:07:15 [ERROR] 19932- [127.0.0.1:53511] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'... Error: 'ERROR: Status name 'EXAMPLE' is not found for object '<ObjectName>''
+2022-02-02 00:15:40 [INFO] - --------------------------------------------------------
+2022-02-02 00:15:40 [INFO] - Start logging
+2022-02-02 00:15:40 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:15:40 [INFO] - DB connection established
+2022-02-02 00:15:40 [INFO] - Current DB version is up to date
+2022-02-02 00:15:40 [INFO] - Starting service...
+2022-02-02 00:15:45 [INFO] - [127.0.0.1:53545] [/status/setStatus] Started
+2022-02-02 00:15:45 [INFO] - [127.0.0.1:53545] [/status/setStatus] Parameters parsing...
+2022-02-02 00:15:45 [INFO] - [127.0.0.1:53545] [/status/setStatus] [&{%!s(*io.LimitedReader=&{0xc000255ec0 0}) <nil> %!s(*bufio.Reader=<nil>) %!s(bool=false) %!s(bool=true) {%!s(int32=0) %!s(uint32=0)} %!s(bool=true) %!s(bool=false) %!s(bool=false) %!s(func()=0x7d3c60)}]...
+2022-02-02 00:15:45 [ERROR] - [127.0.0.1:53545] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'... Error: 'Instance '8ebe4313-91aa-4faa-9d55-af89db722215' is finished by '%s''
+2022-02-02 00:19:33 [INFO] - --------------------------------------------------------
+2022-02-02 00:19:33 [INFO] - Start logging
+2022-02-02 00:19:33 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:19:33 [INFO] - DB connection established
+2022-02-02 00:19:33 [INFO] - Current DB version is up to date
+2022-02-02 00:19:33 [INFO] - Starting service...
+2022-02-02 00:19:37 [INFO] - [127.0.0.1:58069] [/status/setStatus] Started
+2022-02-02 00:19:37 [INFO] - [127.0.0.1:58069] [/status/setStatus] Parameters parsing...
+2022-02-02 00:19:37 [INFO] - [127.0.0.1:58069] [/status/setStatus] []...
+2022-02-02 00:19:37 [ERROR] - [127.0.0.1:58069] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'... Error: 'Instance '8ebe4313-91aa-4faa-9d55-af89db722215' is finished by '%s''
+2022-02-02 00:24:34 [INFO] - --------------------------------------------------------
+2022-02-02 00:24:34 [INFO] - Start logging
+2022-02-02 00:24:34 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:24:34 [INFO] - DB connection established
+2022-02-02 00:24:34 [INFO] - Current DB version is up to date
+2022-02-02 00:24:34 [INFO] - Starting service...
+2022-02-02 00:24:36 [INFO] - [127.0.0.1:58085] [/status/setStatus] Started
+2022-02-02 00:24:36 [INFO] - [127.0.0.1:58085] [/status/setStatus] Parameters parsing...
+2022-02-02 00:31:57 [INFO] - --------------------------------------------------------
+2022-02-02 00:31:57 [INFO] - Start logging
+2022-02-02 00:31:57 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:31:57 [INFO] - DB connection established
+2022-02-02 00:31:57 [INFO] - Current DB version is up to date
+2022-02-02 00:31:57 [INFO] - Starting service...
+2022-02-02 00:32:00 [INFO] - [127.0.0.1:57899] [/status/setStatus] Started
+2022-02-02 00:32:00 [INFO] - [127.0.0.1:57899] [/status/setStatus] Parameters parsing...
+2022-02-02 00:32:00 [INFO] - [127.0.0.1:57899] [/status/setStatus] []...
+2022-02-02 00:32:00 [ERROR] - [127.0.0.1:57899] [/status/setStatus] Setting status 'EXAMPLE' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'... Error: 'Instance '8ebe4313-91aa-4faa-9d55-af89db722215' is finished by '%s''
+2022-02-02 00:32:26 [INFO] - --------------------------------------------------------
+2022-02-02 00:32:26 [INFO] - Start logging
+2022-02-02 00:32:26 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:32:27 [INFO] - DB connection established
+2022-02-02 00:32:27 [INFO] - Current DB version is up to date
+2022-02-02 00:32:27 [INFO] - Starting service...
+2022-02-02 00:32:29 [INFO] - [127.0.0.1:57905] [/status/setStatus] Started
+2022-02-02 00:32:29 [INFO] - [127.0.0.1:57905] [/status/setStatus] Parameters parsing...
+2022-02-02 00:34:36 [INFO] - --------------------------------------------------------
+2022-02-02 00:34:36 [INFO] - Start logging
+2022-02-02 00:34:36 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 00:34:36 [INFO] - DB connection established
+2022-02-02 00:34:36 [INFO] - Current DB version is up to date
+2022-02-02 00:34:36 [INFO] - Starting service...
+2022-02-02 00:34:38 [INFO] - [127.0.0.1:57924] [/status/setStatus] Started
+2022-02-02 00:34:38 [INFO] - [127.0.0.1:57924] [/status/setStatus] Parameters parsing...
+2022-02-02 00:34:45 [INFO] - [127.0.0.1:57924] [/status/setStatus] [map[InstanceToken:8ebe4313-91aa-4faa-9d55-af89db722215 StatusName:EXAMPLE]]...
+2022-02-02 12:42:18 [INFO] - --------------------------------------------------------
+2022-02-02 12:42:18 [INFO] - Start logging
+2022-02-02 12:42:18 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 12:42:18 [INFO] - DB connection established
+2022-02-02 12:42:18 [INFO] - Current DB version is up to date
+2022-02-02 12:42:18 [INFO] - Starting service...
+2022-02-02 12:57:03 [INFO] - [127.0.0.1:51094] [/status/setStatus] Started
+2022-02-02 12:57:03 [INFO] - [127.0.0.1:51094] [/status/setStatus] Parameters parsing...
+2022-02-02 12:57:03 [INFO] - [127.0.0.1:51094] [/status/setStatus] map[InstanceToken:8ebe4313-91aa-4faa-9d55-af89db722215 StatusName:EXAM  PLE  ]...
+2022-02-02 12:57:03 [ERROR] - [127.0.0.1:51094] [/status/setStatus] Setting status 'EXAM  PLE  ' for instance '8ebe4313-91aa-4faa-9d55-af89db722215'... Error: 'Instance '8ebe4313-91aa-4faa-9d55-af89db722215' is finished by '%s''
+2022-02-02 12:57:09 [INFO] - [127.0.0.1:51094] [/instance/create] Started
+2022-02-02 12:57:09 [INFO] - [127.0.0.1:51094] [/instance/create] Parameters parsing...
+2022-02-02 12:57:09 [INFO] - [127.0.0.1:51094] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+2022-02-02 12:57:09 [INFO] - [127.0.0.1:51094] [/instance/create] Instance creating... Done. Instance '3bf8c77a-413c-4440-bd3a-e7a018635b26' created.
+2022-02-02 12:57:09 [INFO] - [127.0.0.1:51094] [/instance/create] Finished
+2022-02-02 12:57:17 [INFO] - [127.0.0.1:51094] [/status/setStatus] Started
+2022-02-02 12:57:17 [INFO] - [127.0.0.1:51094] [/status/setStatus] Parameters parsing...
+2022-02-02 12:57:17 [INFO] - [127.0.0.1:51094] [/status/setStatus] map[InstanceToken:3bf8c77a-413c-4440-bd3a-e7a018635b26 StatusName:EXAM  PLE  ]...
+2022-02-02 12:57:17 [ERROR] - [127.0.0.1:51094] [/status/setStatus] Setting status 'EXAM  PLE  ' for instance '3bf8c77a-413c-4440-bd3a-e7a018635b26'... Error: 'ERROR: Status name 'EXAM  PLE  ' is not found for object '<ObjectName>''
+2022-02-02 13:13:57 [INFO] - --------------------------------------------------------
+2022-02-02 13:13:57 [INFO] - Start logging
+2022-02-02 13:13:57 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 13:13:57 [INFO] - DB connection established
+2022-02-02 13:13:57 [INFO] - Current DB version is up to date
+2022-02-02 13:13:57 [INFO] - Starting service...
+2022-02-02 13:18:41 [INFO] - --------------------------------------------------------
+2022-02-02 13:18:41 [INFO] - Start logging
+2022-02-02 13:18:41 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 13:18:41 [INFO] - DB connection established
+2022-02-02 13:18:41 [INFO] - Current DB version is up to date
+2022-02-02 13:18:41 [INFO] - Starting service...
+2022-02-02 13:18:44 [INFO] - [127.0.0.1:51327] [/instance/create] Started
+2022-02-02 13:18:44 [INFO] - [127.0.0.1:51327] [/instance/create] Parameters parsing...
+2022-02-02 13:18:44 [INFO] - [127.0.0.1:51327] [/instance/create] Instance of '2-POINT LINE TASK' model creating...
+2022-02-02 13:18:44 [INFO] - [127.0.0.1:51327] [/instance/create] Instance creating... Done. Instance 'a47f1cc1-8fee-4193-b426-d3d0b0b66e99' created.
+2022-02-02 13:18:44 [INFO] - [127.0.0.1:51327] [/instance/create] Finished
+2022-02-02 13:18:54 [INFO] - [127.0.0.1:51327] [/status/setStatus] Started
+2022-02-02 13:18:54 [INFO] - [127.0.0.1:51327] [/status/setStatus] Parameters parsing...
+2022-02-02 13:18:54 [INFO] - 127.0.0.1:51327 /status/setStatus {instance_token='a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name='EXAM  PLE  '} -... In process
+2022-02-02 13:18:54 [ERROR] - 127.0.0.1:51327 /status/setStatus {instance_token='a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name='EXAM  PLE  '} - Error: 'ERROR: Status name is not found for object of instance'
+2022-02-02 13:19:57 [INFO] - --------------------------------------------------------
+2022-02-02 13:19:57 [INFO] - Start logging
+2022-02-02 13:19:57 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 13:19:57 [INFO] - DB connection established
+2022-02-02 13:19:57 [INFO] - Current DB version is up to date
+2022-02-02 13:19:57 [INFO] - Starting service...
+2022-02-02 13:19:59 [INFO] - [127.0.0.1:51339] [/status/setStatus] Started
+2022-02-02 13:19:59 [INFO] - [127.0.0.1:51339] [/status/setStatus] Parameters parsing...
+2022-02-02 13:19:59 [INFO] - 127.0.0.1:51339 /status/setStatus {instance_token='a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name='EXAM  PLE  '} -... In process
+2022-02-02 13:19:59 [ERROR] - 127.0.0.1:51339 /status/setStatus {instance_token='a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name='EXAM  PLE  '} - Error: 'ERROR: Status name is not found for object of instance'
+2022-02-02 13:21:40 [INFO] - --------------------------------------------------------
+2022-02-02 13:21:40 [INFO] - Start logging
+2022-02-02 13:21:40 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 13:21:40 [INFO] - DB connection established
+2022-02-02 13:21:40 [INFO] - Current DB version is up to date
+2022-02-02 13:21:40 [INFO] - Starting service...
+2022-02-02 13:21:41 [INFO] - [127.0.0.1:51346] [/status/setStatus] Started
+2022-02-02 13:21:41 [INFO] - [127.0.0.1:51346] [/status/setStatus] Parameters parsing...
+2022-02-02 13:21:41 [INFO] - [127.0.0.1:51346] [/status/setStatus] [instance_token='a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name='EXAM  PLE  '] -... In process
+2022-02-02 13:21:41 [ERROR] - [127.0.0.1:51346] [/status/setStatus] [instance_token='a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name='EXAM  PLE  '] - Error: 'ERROR: Status name is not found for object of instance'
+2022-02-02 13:23:36 [INFO] - --------------------------------------------------------
+2022-02-02 13:23:36 [INFO] - Start logging
+2022-02-02 13:23:36 [INFO] - Connection string: host=localhost user=statusek port=5432 dbname=postgres sslmode=disable password=******
+2022-02-02 13:23:36 [INFO] - DB connection established
+2022-02-02 13:23:36 [INFO] - Current DB version is up to date
+2022-02-02 13:23:36 [INFO] - Starting service...
+2022-02-02 13:23:37 [INFO] - [127.0.0.1:51362] [/status/setStatus] Started
+2022-02-02 13:23:37 [INFO] - [127.0.0.1:51362] [/status/setStatus] Parameters parsing...
+2022-02-02 13:23:37 [INFO] - [from:'127.0.0.1:51362' , api:'/status/setStatus' instance_token:'a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name:'EXAM  PLE  '] -... In process
+2022-02-02 13:23:37 [ERROR] - [from:'127.0.0.1:51362' , api:'/status/setStatus' instance_token:'a47f1cc1-8fee-4193-b426-d3d0b0b66e99', status_name:'EXAM  PLE  '] - Error: 'ERROR: Status name is not found for object of instance'

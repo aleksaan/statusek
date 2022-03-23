@@ -40,5 +40,5 @@ func main() {
 		servicePort = os.Getenv("ASPNETCORE_PORT")
 	}
 
-	http.ListenAndServe(":"+servicePort, router)
+	http.ListenAndServe("127.0.0.1:"+servicePort, router)
 }

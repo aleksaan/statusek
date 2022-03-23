@@ -78,10 +78,17 @@ func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnC
 	finishInstanceIfTimeout(tx, instanceInfo)
 
 	var status = &models.Status{}
-	status.GetStatus(tx, statusName, instanceInfo.Instance.ObjectID)
+	rc1 := status.GetStatus(tx, statusName, instanceInfo.Instance.ObjectID)
+	if rc1 != rc.SUCCESS {
+		return false, rc1
+	}
 
-	//looking for statusName
-	return checkCurrentStatusIsSet(instanceInfo, status)
+	//looking for status is set
+	rc0 := checkStatusIsSet(instanceInfo, status)
+	if rc0 == rc.STATUS_IS_SET {
+		return true, rc0
+	}
+	return false, rc0
 }
 
 // GetInstanceInfo - check for finishing
@@ -99,6 +106,7 @@ func GetInstanceInfo(instanceToken string) (bool, rc.ReturnCode, *models.Instanc
 
 // SetStatus - set status of instance
 func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
+	//logging.Error("[%s] [%s] Setting status '%s' for instance '%s'... Error: '%s'", r.RemoteAddr, r.RequestURI, params.StatusName, params.InstanceToken, rc3message)
 
 	tx := db.Begin()
 
@@ -114,11 +122,6 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	}
 
 	event := &models.Event{StatusID: statusInfo.Status.ID, InstanceID: instanceInfo.Instance.ID}
-	// res := tx.Create(&event)
-	// if res.Error != nil {
-	// 	logging.Error(res.Error.Error())
-	// 	return rc.DATABASE_ERROR
-	// }
 
 	rc8 := models.CreateWrapper(tx, event)
 	if rc8 != rc.SUCCESS {

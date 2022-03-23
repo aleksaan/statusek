@@ -32,10 +32,5 @@ func (status *Status) GetStatus(tx *gorm.DB, statusName string, objectID uint) r
 
 func (status *Status) GetStatusById(tx *gorm.DB, statusId uint) rc.ReturnCode {
 	tx.Where("id = ?", statusId).First(&status)
-
-	if status.ID > 0 {
-		//fmt.Printf("StatusID: %d", status.StatusID)
-		return rc.SUCCESS
-	}
-	return rc.STATUS_ID_IS_NOT_FOUND
+	return rc.SUCCESS
 }

@@ -1,42 +1,33 @@
 package logging
 
 import (
-	"io"
-	logging "log"
+	"math/rand"
 	"os"
 
 	"github.com/sirupsen/logrus"
-	easy "github.com/t-tomalak/logrus-easy-formatter"
+	prefixed "github.com/x-cray/logrus-prefixed-formatter"
 )
 
 var logFileName = "logs/application.log"
 
-var (
-	log *logrus.Logger
-)
+var RLogger *logrus.Entry
+
+// var (
+// 	log *logrus.Logger
+// )
+
+var log = logrus.New()
 
 func init() {
-	f, err := os.OpenFile(logFileName, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	log.SetFormatter(new(prefixed.TextFormatter))
+	log.SetOutput(os.Stdout)
 
-	if err != nil {
-		logging.Fatalf("error opening file: %v", err)
-	}
-
-	log = &logrus.Logger{
-		Out:   os.Stderr,
-		Level: logrus.DebugLevel,
-		Formatter: &easy.Formatter{
-			TimestampFormat: "2006-01-02 15:04:05",
-			LogFormat:       "[%lvl%]: %time% - %msg%\n",
-		},
-	}
-
-	log.SetReportCaller(true)
-
-	mw := io.MultiWriter(os.Stdout, f)
-	log.SetOutput(mw)
 	log.Info("--------------------------------------------------------")
 	log.Info("Start logging")
+}
+
+func CreateRequestLogger(caller string, endpoint string) {
+	RLogger = log.WithFields(logrus.Fields{"caller": caller, "endpoint": endpoint, "session_id": rand.Intn(1000000000)})
 }
 
 // Info ...
@@ -55,7 +46,6 @@ func Error(format string, v ...interface{}) {
 }
 
 var (
-
 	// ConfigError ...
 	ConfigError = "%v type=config.error"
 

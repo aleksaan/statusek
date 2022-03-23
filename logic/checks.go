@@ -10,7 +10,7 @@ import (
 
 func checkStatusIsBelongsToInstance(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
 	if instanceInfo.Instance.ObjectID == statusInfo.Status.ObjectID {
-		return true, rc.STATUS_IS_ACCORDING_TO_INSTANCE
+		return true, rc.SUCCESS
 	}
 	return false, rc.STATUS_IS_NOT_ACCORDING_TO_INSTANCE
 }
@@ -88,14 +88,6 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 		}
 	}
 
-	if statusInfo.Status.StatusType == "STOP-STATUS" {
-		if countPrevMandatoryIsSet+countPrevOptionalIsSet > 0 {
-			return true, rc.AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS
-		} else {
-			return false, rc.NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS
-		}
-	}
-
 	if countPrevMandatory > countPrevMandatoryIsSet {
 		return false, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET
 		//"Не все обязательные статусы предыдущего уровня установлены"
@@ -106,35 +98,33 @@ func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *mo
 		//"Не установлен ни один опциональный статус предыдущего уровня"
 	}
 
-	return true, rc.ALL_PREVIOS_STATUSES_ARE_SET
+	return true, rc.SUCCESS
 }
 
 func checkNextStatusesIsNotSet(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
 
-	if statusInfo.Status.StatusType == "MANDATORY" {
-		return true, rc.NEXT_STATUSES_IS_NOT_SET
-	}
-
-	for _, s := range statusInfo.NextStatuses {
-		for _, e := range instanceInfo.Events {
-			if e.StatusID == s.ID {
-				return false, rc.AT_LEAST_ONE_NEXT_STATUS_IS_SET
+	if statusInfo.Status.StatusType == "OPTIONAL" {
+		for _, s := range statusInfo.NextStatuses {
+			for _, e := range instanceInfo.Events {
+				if e.StatusID == s.ID {
+					return false, rc.AT_LEAST_ONE_NEXT_STATUS_IS_SET
+				}
 			}
 		}
 	}
 
-	return true, rc.NEXT_STATUSES_IS_NOT_SET
+	return true, rc.SUCCESS
 }
 
-func checkCurrentStatusIsSet(instanceInfo *models.InstanceInfo, status *models.Status) (bool, rc.ReturnCode) {
+func checkStatusIsSet(instanceInfo *models.InstanceInfo, status *models.Status) rc.ReturnCode {
 
 	for _, e := range instanceInfo.Events {
 		if e.StatusID == status.ID {
-			return true, rc.STATUS_IS_SET
+			return rc.STATUS_IS_SET
 		}
 	}
 
-	return false, rc.STATUS_IS_NOT_SET
+	return rc.STATUS_IS_NOT_SET
 }
 
 func checkStatusIsReadyToSet(tx *gorm.DB, instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo, instanceToken string, statusName string) rc.ReturnCode {
@@ -174,9 +164,9 @@ func checkStatusIsReadyToSet(tx *gorm.DB, instanceInfo *models.InstanceInfo, sta
 	}
 
 	//cheking current status is not set yet
-	chk3, rc3 := checkCurrentStatusIsSet(instanceInfo, &statusInfo.Status)
-	if chk3 {
-		return rc3
+	rc3 := checkStatusIsSet(instanceInfo, &statusInfo.Status)
+	if rc3 == rc.STATUS_IS_SET {
+		return rc.STATUS_IS_ALREADY_SET
 	}
 
 	return rc.SUCCESS

@@ -54,7 +54,7 @@ func TestComplexLogic(t *testing.T) {
 	assert.Equal(t, rc1, rc.SUCCESS, "Set STARTED status & didn't get SUCCESS")
 
 	_, rc1 = logic.CheckStatusIsSet(token, "STARTED")
-	assert.Equal(t, rc1, rc.STATUS_IS_SET, "Check status STARTED is set & didn't get STATUS_IS_SET")
+	assert.Equal(t, rc1, rc.STATUS_IS_SET, "Check status STARTED is set & didn't get SUCCESS")
 
 	_, rc2, ii := logic.GetInstanceInfo(token)
 	assert.Equal(t, rc2, rc.SUCCESS, "Call GetInstanceInfo & didn't return SUCCESS")
