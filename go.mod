@@ -6,13 +6,9 @@ require (
 	github.com/fatih/structs v1.1.0
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
-<<<<<<< HEAD
+	github.com/jackc/pgproto3/v2 v2.2.0 // indirect
 	github.com/joho/godotenv v1.4.0
-=======
-	github.com/jackc/pgproto3/v2 v2.1.0 // indirect
-	github.com/joho/godotenv v1.3.0
 	github.com/lib/pq v1.10.4
->>>>>>> f237063985e2d52c2cfce16ddf91778d7cab577a
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.0
 	github.com/x-cray/logrus-prefixed-formatter v0.5.2
@@ -27,7 +23,6 @@ require (
 	github.com/jackc/pgconn v1.10.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
-	github.com/jackc/pgproto3/v2 v2.2.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
 	github.com/jackc/pgtype v1.9.1 // indirect
 	github.com/jackc/pgx/v4 v4.14.1 // indirect

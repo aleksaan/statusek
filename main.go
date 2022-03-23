@@ -7,7 +7,6 @@ import (
 	"net/http"
 
 	"github.com/aleksaan/statusek/api"
-	"github.com/aleksaan/statusek/api_show_graph"
 	"github.com/aleksaan/statusek/logging"
 	"github.com/gorilla/mux"
 )
@@ -36,7 +35,7 @@ func main() {
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)
 	router.HandleFunc("/about/", api.ApiAbout)
-	router.HandleFunc("/instance/graph", api_show_graph.GetGraph)
+	router.HandleFunc("/instance/graph", api.ApiGetGraph)
 
 	if os.Getenv("ASPNETCORE_PORT") != "" {
 		servicePort = os.Getenv("ASPNETCORE_PORT")
