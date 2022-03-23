@@ -6,7 +6,13 @@ require (
 	github.com/fatih/structs v1.1.0
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
+<<<<<<< HEAD
 	github.com/joho/godotenv v1.4.0
+=======
+	github.com/jackc/pgproto3/v2 v2.1.0 // indirect
+	github.com/joho/godotenv v1.3.0
+	github.com/lib/pq v1.10.4
+>>>>>>> f237063985e2d52c2cfce16ddf91778d7cab577a
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.0
 	github.com/x-cray/logrus-prefixed-formatter v0.5.2
