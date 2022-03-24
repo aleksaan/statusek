@@ -84,10 +84,6 @@ func get_graph(instanceToken string) string {
 	var istatuses []models.Status
 	db.Where("object_id=?", instance.ObjectID).Find(&istatuses)
 
-	//select workflows = edges
-	var iworkflows []models.Workflow
-	db.Where("object_id=?", instance.ObjectID).Find(&iworkflows)
-
 	//events of instance
 	var ievents []models.Event
 	db.Where("instance_id=?", instance.ID).Find(&ievents)
@@ -108,8 +104,15 @@ func get_graph(instanceToken string) string {
 	}
 
 	//fill edges
-	for _, wf := range iworkflows {
-		g.Edges = append(g.Edges, edge{wf.StatusPrevID, wf.StatusNextID})
+	g.Edges = []edge{}
+	iworkflows := []models.Workflow{}
+	for _, stat := range istatuses {
+		result := db.Where("status_prev_id=?", stat.ID).Find(&iworkflows)
+		if result.RowsAffected > 0 {
+			for _, wf := range iworkflows {
+				g.Edges = append(g.Edges, edge{wf.StatusPrevID, wf.StatusNextID})
+			}
+		}
 	}
 
 	//graph
