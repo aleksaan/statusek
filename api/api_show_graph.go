@@ -59,9 +59,9 @@ type state struct {
 
 var color_map = map[string]string{
 	"DEFAULT":   "#98ff98",
-	"MANDATORY": "606060",
-	"OPTIONAL":  "0066CC",
-	"FAILED":    "FF3333",
+	"MANDATORY": "#606060",
+	"OPTIONAL":  "#0066CC",
+	"FAILED":    "#FF3333",
 }
 
 var ApiGetGraph = func(w http.ResponseWriter, r *http.Request) {
