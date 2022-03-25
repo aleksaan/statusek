@@ -5,30 +5,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/aleksaan/statusek/config"
 	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
 	_ "github.com/lib/pq"
 )
 
-var c = config.Config
-
-type apiGetGraphParams struct {
-	InstanceToken string `json:"instance_token"`
-}
-
 type status struct {
 	id          uint
 	object_id   uint
 	status_name string
 	status_type string
-}
-
-type workflow struct {
-	id             uint
-	status_prev_id uint
-	status_next_id uint
 }
 
 type event struct {
