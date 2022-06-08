@@ -10,3 +10,7 @@ go mod init ...
 go clean -modcache
 go get gorm.io/gorm  
 go mod tidy
+
+
+# Как делать бинарники
+.\bin\build_all_platforms.bat

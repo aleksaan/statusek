@@ -45,6 +45,7 @@ var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 	params := apiCommonDecodeParams(w, r)
 	rcode := logic.SetStatus(params.InstanceToken, params.StatusName)
 	_, _, ii := logic.GetInstanceInfo(params.InstanceToken)
+	resp["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
 	x["InstanceIsFinishedDescription"] = ii.Instance.InstanceIsFinishedDescription
 	apiCommonFinish(w, rcode)
 }
@@ -55,8 +56,9 @@ var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 	apiCommonStart(r)
 	params := apiCommonDecodeParams(w, r)
-	_, rcode, _ := logic.GetInstanceInfo(params.InstanceToken)
-
+	_, rcode, ii := logic.GetInstanceInfo(params.InstanceToken)
+	resp["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
+	x["InstanceIsFinishedDescription"] = ii.Instance.InstanceIsFinishedDescription
 	apiCommonFinish(w, rcode)
 }
 
