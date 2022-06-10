@@ -52,12 +52,12 @@ var color_map = map[string]string{
 }
 
 var ApiGetGraph = func(w http.ResponseWriter, r *http.Request) {
-
+	var resp = &tResponseBody{result: make(map[string]interface{})}
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	_, params := apiCommonDecodeParams(r)
 	var res = get_graph(params.InstanceToken)
-	resp["res"] = res
-	apiCommonFinish(w, rc.SUCCESS)
+	resp.result["res"] = res
+	sendResponse(w, resp, rc.SUCCESS)
 }
 
 func get_graph(instanceToken string) string {

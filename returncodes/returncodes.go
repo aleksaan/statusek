@@ -28,6 +28,7 @@ const (
 	AT_LEAST_ONE_NEXT_STATUS_IS_SET
 	STATUS_IS_SET
 	STATUS_IS_NOT_SET
+	PARAMS_PARSING_IS_FAILED
 	//STATUS_IS_SET
 	//AT_LEAST_ONE_OF_PREVIOS_STATUSES_IS_SET_FOR_STOP_STATUS
 	//NO_ONE_PREVIOS_STATUSES_ARE_SET_FOR_STOP_STATUS
@@ -61,6 +62,7 @@ func InitReturnCodes(lang language.Tag) {
 	ReturnCodes[DATABASE_ERROR] = "Database error: '%s'"
 	ReturnCodes[DB_IS_NOT_UPDATED] = "Database was not updated because db_update_if_older_version is false"
 	ReturnCodes[AT_LEAST_ONE_NEXT_STATUS_IS_SET] = "At least one next status is set for optional status '<StatusName>'"
+	ReturnCodes[PARAMS_PARSING_IS_FAILED] = "Error while parameters parsing"
 	//ReturnCodes[ALL_PREVIOS_STATUSES_ARE_SET] = "All previos statuses are set for status '<StatusName>'"
 	//ReturnCodes[NEXT_STATUSES_IS_NOT_SET] = "Next statuses are not set for status '<StatusName>'"
 	//ReturnCodes[STATUS_IS_ACCORDING_TO_INSTANCE] = "Status '<StatusName>' is according to instance '<InstanceToken>'"
