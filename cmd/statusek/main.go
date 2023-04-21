@@ -26,8 +26,8 @@ func main() {
 	router.HandleFunc("/event/getEvents", api.ApiGetEvents)
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)
-	router.HandleFunc("/about/", api.ApiAbout)
-	router.HandleFunc("/instance/graph", api.ApiGetGraph)
+	router.HandleFunc("/about", api.ApiAbout)
+	// router.HandleFunc("/instance/graph", api.ApiGetGraph)
 
 	if os.Getenv("ASPNETCORE_PORT") != "" {
 		servicePort = os.Getenv("ASPNETCORE_PORT")

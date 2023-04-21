@@ -8,14 +8,14 @@ import (
 
 	"github.com/aleksaan/statusek/logging"
 	rc "github.com/aleksaan/statusek/returncodes"
-	"github.com/aleksaan/statusek/utils"
+	"github.com/fatih/structs"
 )
 
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
-func apiCommonDecodeParams(r *http.Request) (rc.ReturnCode, *apiCommonParams) {
+func decodeParams(r *http.Request) (rc.ReturnCode, *tParams) {
 	logging.RLogger.Info("Parameters parsing...")
-	params := &apiCommonParams{}
+	params := &tParams{}
 
 	err := json.NewDecoder(r.Body).Decode(params)
 	if err != nil {
@@ -28,33 +28,30 @@ func apiCommonDecodeParams(r *http.Request) (rc.ReturnCode, *apiCommonParams) {
 	return rc.SUCCESS, params
 }
 
-func sendResponse(w http.ResponseWriter, resp *tResponseBody, rcode rc.ReturnCode) {
-	resp.message = replaceLogsTags(resp, rc.ReturnCodes[rcode])
+func sendResponse(w http.ResponseWriter, params *tParams, resp *tResp, rcode rc.ReturnCode) {
+	mapParams := structs.Map(params)
 	if rcode == rc.SUCCESS {
-		resp.status = true
+		resp.Status = true
 	} else {
-		resp.status = false
-		logging.RLogger.Error(resp.message)
+		resp.Status = false
+		resp.Message = rightMessage(rc.ReturnCodes[rcode], mapParams)
+		logging.RLogger.Error(resp.Message)
 	}
-	x := createMapResult(resp)
-	utils.Respond(w, x)
+	respond(w, resp)
 }
 
-func createMapResult(resp *tResponseBody) map[string]interface{} {
-	out := make(map[string]interface{})
-	out["message"] = resp.message
-	out["status"] = resp.status
-	out["result"] = resp.result
-	out["params"] = resp.params
-	return out
-}
-
-func replaceLogsTags(resp *tResponseBody, str string) string {
+func rightMessage(str string, mapParams map[string]interface{}) string {
 	var res string = str
-	for k, v := range resp.params {
+	for k, v := range mapParams {
 		res = strings.ReplaceAll(res, "<"+k+">", fmt.Sprintf("%v", v))
 	}
 	return res
+}
+
+func respond(w http.ResponseWriter, resp *tResp) {
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(resp)
 }
 
 func apiCommonStart(r *http.Request) {

@@ -3,11 +3,9 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
 
 	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/models"
-	rc "github.com/aleksaan/statusek/returncodes"
 	_ "github.com/lib/pq"
 )
 
@@ -51,14 +49,14 @@ var color_map = map[string]string{
 	"FAILED":    "#FF3333",
 }
 
-var ApiGetGraph = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
-	apiCommonStart(r)
-	_, params := apiCommonDecodeParams(r)
-	var res = get_graph(params.InstanceToken)
-	resp.result["res"] = res
-	sendResponse(w, resp, rc.SUCCESS)
-}
+// var ApiGetGraph = func(w http.ResponseWriter, r *http.Request) {
+// 	var resp = &tResponseBody{result: make(map[string]interface{})}
+// 	apiCommonStart(r)
+// 	_, params := apiCommonDecodeParams(r)
+// 	var res = get_graph(params.InstanceToken)
+// 	resp.result["res"] = res
+// 	sendResponse(w, resp, rc.SUCCESS)
+// }
 
 func get_graph(instanceToken string) string {
 	db := database.DB
