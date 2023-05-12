@@ -22,7 +22,7 @@ func main() {
 	router.HandleFunc("/instance/create", api.ApiCreateInstance)
 	router.HandleFunc("/status/setStatus", api.ApiSetStatus)
 	router.HandleFunc("/instance/checkIsFinished", api.ApiCheckInstanceIsFinished)
-	router.HandleFunc("/instance/getInfo", api.ApiGetInstanceInfo)
+	// router.HandleFunc("/instance/getInfo", api.ApiGetInstanceInfo)
 	router.HandleFunc("/event/getEvents", api.ApiGetEvents)
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)

@@ -77,7 +77,7 @@ var ApiGetInstanceInfo = func(w http.ResponseWriter, r *http.Request) {
 	_, rc2, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
 
 	if rc2 == rc.SUCCESS {
-		result.Data["instance"] = &instanceInfo.Instance
+		result.Data["instance_info"] = &instanceInfo
 	}
 	sendResponse(w, params, result, rc2)
 }

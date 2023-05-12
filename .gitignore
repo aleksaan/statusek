@@ -2,3 +2,4 @@ logs/application.log
 statusek.zip
 statusek.exe
 statusek.zip
+api/api.go
