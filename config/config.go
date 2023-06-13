@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 
 	"github.com/joho/godotenv"
 )
@@ -25,6 +24,7 @@ type ConfigType struct {
 	DBConfig    DBConfigType
 	ServicePort string
 	GithubLink  string
+	DBVersion   string
 }
 
 var Config *ConfigType
@@ -53,6 +53,7 @@ func New() *ConfigType {
 		},
 		ServicePort: getEnv("service_port", ""),
 		GithubLink:  "https://github.com/aleksaan/statusek",
+		DBVersion:   "v2023.06.14",
 	}
 }
 
@@ -66,14 +67,14 @@ func getEnv(key string, defaultVal string) string {
 }
 
 // Simple helper function to read an environment variable into integer or return a default value
-func getEnvAsInt(name string, defaultVal int) int {
-	valueStr := getEnv(name, "")
-	if value, err := strconv.Atoi(valueStr); err == nil {
-		return value
-	}
+// func getEnvAsInt(name string, defaultVal int) int {
+// 	valueStr := getEnv(name, "")
+// 	if value, err := strconv.Atoi(valueStr); err == nil {
+// 		return value
+// 	}
 
-	return defaultVal
-}
+// 	return defaultVal
+// }
 
 // Helper to read an environment variable into a bool or return default value
 func getEnvAsBool(name string, defaultVal bool) bool {
@@ -86,14 +87,14 @@ func getEnvAsBool(name string, defaultVal bool) bool {
 }
 
 // Helper to read an environment variable into a string slice or return default value
-func getEnvAsSlice(name string, defaultVal []string, sep string) []string {
-	valStr := getEnv(name, "")
+// func getEnvAsSlice(name string, defaultVal []string, sep string) []string {
+// 	valStr := getEnv(name, "")
 
-	if valStr == "" {
-		return defaultVal
-	}
+// 	if valStr == "" {
+// 		return defaultVal
+// 	}
 
-	val := strings.Split(valStr, sep)
+// 	val := strings.Split(valStr, sep)
 
-	return val
-}
+// 	return val
+// }

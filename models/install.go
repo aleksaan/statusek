@@ -11,13 +11,12 @@ import (
 )
 
 var db = database.DB
-var CurrentVersion = "v2021.06.15_a"
 
 func init() {
-	UpdateDB(CurrentVersion)
+	UpdateDB()
 }
 
-func UpdateDB(currentVersion string) rc.ReturnCode {
+func UpdateDB() rc.ReturnCode {
 	//check existing of the version table
 	var version = &Version{}
 	checkTable := db.Migrator().HasTable(&Version{})
@@ -26,18 +25,26 @@ func UpdateDB(currentVersion string) rc.ReturnCode {
 	var checkVersion bool
 	if checkTable {
 		db.First(&version)
-		checkVersion = version.VersionNumber == currentVersion
+		checkVersion = version.VersionNumber == config.Config.DBVersion
 	}
 
 	var isVersionsAreDifferent = !checkTable || (checkTable && !checkVersion)
 
 	if isVersionsAreDifferent {
-		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, currentVersion)
+		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, config.Config.DBVersion)
 
 		if !config.Config.DBConfig.DbUpdateIfOtherVersion {
 			logging.Info("DB updating is canceled because parameter db_update_if_older_version=false")
 			return rc.DB_IS_NOT_UPDATED
 		}
+	}
+
+	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
+		db.Exec("ALTER TABLE statusek.events ADD message text;")
+		//writing new version
+		logging.Info("Writing new version number '%s'", config.Config.DBVersion)
+		version := Version{VersionNumber: config.Config.DBVersion}
+		CreateWrapper(db, &version)
 	}
 
 	if isVersionsAreDifferent && config.Config.DBConfig.DbUpdateIfOtherVersion {
@@ -52,11 +59,11 @@ func UpdateDB(currentVersion string) rc.ReturnCode {
 		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
 
 		//writing new version
-		logging.Info("Writing new version number '%s'", currentVersion)
-		version := Version{VersionNumber: currentVersion}
+		logging.Info("Writing new version number '%s'", config.Config.DBVersion)
+		version := Version{VersionNumber: config.Config.DBVersion}
+		CreateWrapper(db, &version)
 
 		logging.Info("Creating default statuses models")
-		CreateWrapper(db, &version)
 		CreatingDefaultModels(true)
 
 		logging.Info("Starting DB updating...Done")

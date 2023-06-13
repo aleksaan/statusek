@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//TestCreateInstance - creating process (existing & unexiting processes)
+// TestCreateInstance - creating process (existing & unexiting processes)
 func TestCreateInstance(t *testing.T) {
 
 	//Check 1. Non existing object
@@ -31,7 +31,7 @@ func TestCreateInstance(t *testing.T) {
 	}
 }
 
-//TestComplexLogic - set of the tests of logic proccess
+// TestComplexLogic - set of the tests of logic proccess
 func TestComplexLogic(t *testing.T) {
 	token, _ := logic.CreateInstance("2-POINT LINE TASK", 1000)
 
@@ -39,18 +39,18 @@ func TestComplexLogic(t *testing.T) {
 	assert.Equal(t, len(events), 0, "Unexpectable one or more events in new created instance")
 
 	//Service doesn't allow set up inexistable status
-	rc1 := logic.SetStatus(token, "WRONG")
+	rc1 := logic.SetStatus(token, "WRONG", "")
 	assert.Equal(t, rc1, rc.STATUS_NAME_IS_NOT_FOUND_FOR_OBJECT, "Setting up unexistable status & didn't get STATUS_NAME_IS_NOT_FOUND_FOR_OBJECT")
 
 	//Set FINISHED status before STARTED and wait NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET
-	rc1 = logic.SetStatus(token, "FINISHED")
+	rc1 = logic.SetStatus(token, "FINISHED", "")
 	assert.Equal(t, rc1, rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET, "Set FINISHED before STARTED & didn't get NOT_ALL_PREVIOS_MANDATORY_STATUSES_IS_SET")
 
 	_, rc1 = logic.CheckStatusIsSet(token, "STARTED")
 	assert.Equal(t, rc1, rc.STATUS_IS_NOT_SET, "Check status STARTED is set & didn't get STATUS_IS_NOT_SET")
 
 	//Set right status and wait SUCCESS
-	rc1 = logic.SetStatus(token, "STARTED")
+	rc1 = logic.SetStatus(token, "STARTED", "")
 	assert.Equal(t, rc1, rc.SUCCESS, "Set STARTED status & didn't get SUCCESS")
 
 	_, rc1 = logic.CheckStatusIsSet(token, "STARTED")
@@ -61,7 +61,7 @@ func TestComplexLogic(t *testing.T) {
 	assert.Equal(t, ii.Instance.InstanceIsFinished, false, "Call GetInstanceInfo & didn't get InstanceIsFinished=false")
 
 	//Set right status and wait FINISHED
-	rc1 = logic.SetStatus(token, "FINISHED")
+	rc1 = logic.SetStatus(token, "FINISHED", "")
 	assert.Equal(t, rc1, rc.SUCCESS, "Set FINISHED status & didn't get SUCCESS")
 
 	events, _ = logic.GetEvents(token)

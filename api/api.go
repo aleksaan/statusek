@@ -5,7 +5,6 @@ import (
 
 	"github.com/aleksaan/statusek/config"
 	"github.com/aleksaan/statusek/logic"
-	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/fatih/structs"
 )
@@ -43,7 +42,7 @@ var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rc2 := logic.SetStatus(params.InstanceToken, params.StatusName)
+	rc2 := logic.SetStatus(params.InstanceToken, params.StatusName, params.StatusMessage)
 	sendResponse(w, params, result, rc2)
 }
 
@@ -160,7 +159,7 @@ var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 	apiCommonStart(r)
 	params := &tParams{}
 
-	result.Data["version"] = models.CurrentVersion
+	result.Data["db_version"] = config.Config.DBVersion
 	result.Data["home page"] = config.Config.GithubLink
 	sendResponse(w, params, result, rc.SUCCESS)
 }
