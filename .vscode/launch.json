@@ -7,6 +7,5 @@
             "mode": "debug",
             "program": "${file}"
         }
-    
     ]
 }
