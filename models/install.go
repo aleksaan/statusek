@@ -30,6 +30,12 @@ func UpdateDB() rc.ReturnCode {
 
 	var isVersionsAreDifferent = !checkTable || (checkTable && !checkVersion)
 
+	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
+		logging.Info("Adding column 'message' to table 'events'...")
+		db.Exec("ALTER TABLE statusek.events ADD COLUMN IF NOT EXISTS message text;")
+		logging.Info("Adding column 'message' to table 'events'... Done")
+	}
+
 	if isVersionsAreDifferent {
 		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, config.Config.DBVersion)
 
@@ -37,14 +43,6 @@ func UpdateDB() rc.ReturnCode {
 			logging.Info("DB updating is canceled because parameter db_update_if_older_version=false")
 			return rc.DB_IS_NOT_UPDATED
 		}
-	}
-
-	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
-		db.Exec("ALTER TABLE statusek.events ADD message text;")
-		//writing new version
-		logging.Info("Writing new version number '%s'", config.Config.DBVersion)
-		version := Version{VersionNumber: config.Config.DBVersion}
-		CreateWrapper(db, &version)
 	}
 
 	if isVersionsAreDifferent && config.Config.DBConfig.DbUpdateIfOtherVersion {
