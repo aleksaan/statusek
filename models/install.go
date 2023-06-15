@@ -32,7 +32,7 @@ func UpdateDB() rc.ReturnCode {
 
 	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
 		logging.Info("Adding column 'message' to table 'events'...")
-		db.Exec("ALTER TABLE statusek.events ADD COLUMN IF NOT EXISTS message text;")
+		db.Exec("ALTER TABLE " + config.Config.DBConfig.DbSchema + ".events ADD COLUMN IF NOT EXISTS message text;")
 		logging.Info("Adding column 'message' to table 'events'... Done")
 	}
 
