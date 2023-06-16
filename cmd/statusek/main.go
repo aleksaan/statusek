@@ -26,6 +26,7 @@ func main() {
 	router.HandleFunc("/event/getEvents", api.ApiGetEvents)
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)
+	router.HandleFunc("/instance/clone", api.ApiCloneProcess)
 	router.HandleFunc("/about", api.ApiAbout)
 	// router.HandleFunc("/instance/graph", api.ApiGetGraph)
 

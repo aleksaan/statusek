@@ -144,7 +144,6 @@ func SetStatus(instanceToken string, statusName string, statusMessage string) rc
 }
 
 func CheckStatusIsReadyToSet(instanceToken string, statusName string) rc.ReturnCode {
-
 	tx := db.Begin()
 	defer tx.Commit()
 
@@ -152,4 +151,32 @@ func CheckStatusIsReadyToSet(instanceToken string, statusName string) rc.ReturnC
 	var statusInfo = &models.StatusInfo{}
 
 	return checkStatusIsReadyToSet(tx, instanceInfo, statusInfo, instanceToken, statusName)
+}
+
+func CloneProcess(instanceToken string) (string, rc.ReturnCode) {
+	var instanceInfo = &models.InstanceInfo{}
+	tx := db.Begin()
+	defer tx.Commit()
+	rc0 := instanceInfo.GetInstanceInfo(tx, instanceToken, true)
+	if rc0 != rc.SUCCESS {
+		return "", rc0
+	}
+
+	newToken, rc1 := CreateInstance(instanceInfo.Object.ObjectName, instanceInfo.Instance.InstanceTimeout)
+	if rc1 != rc.SUCCESS {
+		return "", rc1
+	}
+
+	for _, v := range instanceInfo.Events {
+		var status = &models.Status{}
+		db.First(&status, v.StatusID)
+		if status.StatusType != "STOP-STATUS" {
+			rc2 := SetStatus(newToken, status.StatusName, v.Message)
+			if rc2 != rc.SUCCESS {
+				return "", rc2
+			}
+		}
+	}
+
+	return newToken, rc.SUCCESS
 }

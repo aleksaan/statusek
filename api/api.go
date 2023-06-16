@@ -163,3 +163,24 @@ var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 	result.Data["home page"] = config.Config.GithubLink
 	sendResponse(w, params, result, rc.SUCCESS)
 }
+
+//---------------------------------------------------------------------------
+
+// ApiCloneProcess - rest api handler clone instance and its events
+
+var ApiCloneProcess = func(w http.ResponseWriter, r *http.Request) {
+	var result = &tResp{Data: make(map[string]interface{})}
+	apiCommonStart(r)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
+		return
+	}
+	instance_token, rc2 := logic.CloneProcess(params.InstanceToken)
+	if rc2 != rc.SUCCESS {
+		sendResponse(w, params, result, rc2)
+		return
+	}
+	result.Data["instance_token"] = instance_token
+	sendResponse(w, params, result, rc2)
+}

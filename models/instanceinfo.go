@@ -10,6 +10,7 @@ import (
 
 type InstanceInfo struct {
 	Instance Instance
+	Object   Object
 	Events   []Event
 	Statuses []Status
 }
@@ -23,7 +24,13 @@ func (instanceInfo *InstanceInfo) GetInstanceInfo(db *gorm.DB, instanceToken str
 
 	instanceInfo.RefreshEvents(db)
 	instanceInfo.RefreshStatuses(db)
+	instanceInfo.RefreshObject(db)
 
+	return rc.SUCCESS
+}
+
+func (instanceInfo *InstanceInfo) RefreshObject(db *gorm.DB) rc.ReturnCode {
+	db.First(&instanceInfo.Object, instanceInfo.Instance.ObjectID)
 	return rc.SUCCESS
 }
 
