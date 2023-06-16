@@ -40,6 +40,7 @@ Statusek has six restAPI methods for organize interaction between services:
 4. **status/checkStatusIsReadyToSet** - check certain status can be set
 5. **instance/checkIsFinished** - checks instance is finished or not
 6. **event/getEvents** - gets all setted statuses
+7. **instance/clone** - do clone of existing instance
 
 So, interaction is changing to:
 
@@ -271,6 +272,34 @@ and get something like this:
                 "EventCreationDt": "2023-05-10T15:44:49.879293+03:00"
             }
         ]
+    }
+}
+```
+
+
+### Do clone of existing instance
+
+***
+
+We call:
+<http://hostname:8080/instance/clone>
+
+with raw json in the body:
+
+```json
+{
+    "instance_token": "1f13cd00-f6fc-49fc-918b-2915bc05908f"
+}
+```
+
+and get something like this:
+
+```json
+{
+    "status": true,
+    "message": "",
+    "data": {
+        "instance_token": "49c3231a-2ea9-444b-ac57-e86025d6f1e5"
     }
 }
 ```
