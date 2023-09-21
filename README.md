@@ -105,7 +105,7 @@ For example:
 
 ***
 
-Services, who knows token of instance (process) can set statuses by calling:
+Services that possess the instance token (process) can update statuses by making a call to the following endpoint:
 <http://hostname:8080/status/setStatus>
 
 with raw json in the body:
@@ -127,7 +127,7 @@ and get something like this:
 }
 ```
 
-or status: false and message with error text
+If there's an error, 'status' will be 'false,' and 'message' will contain an error description.
 
 ### Checking some status is set
 
