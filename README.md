@@ -90,7 +90,7 @@ and get something like this:
 }
 ```
 
-So, field 'status' contains true if request has executed  successfully. If errors were then status will be false and you will see message in the field 'message'.
+So, field 'status' contains true if request has executed  successfully. If errors occurred, the 'status' field will be set to 'false,' and you will find an accompanying message in the 'message' field.
 For example:
 
 ```json
