@@ -129,12 +129,10 @@ and get something like this:
 
 If there's an error, 'status' will be 'false,' and 'message' will contain an error description.
 
-### Checking some status is set
+### Checking if some status is set
 
 ***
-For specific logic we can to want check some status was set or not
-
-We call:
+To determine whether a specific status has been set or not, you can make a request to the following endpoint
 <http://hostname:8080/status/checkStatusIsSet>
 
 with raw json in the body:
@@ -158,7 +156,7 @@ and get something like this:
 }
 ```
 
-or "status_is_set": false,  if it is not set
+or "status_is_set": false,  if it hasn't been set yet
 
 ### Checking some status is ready to be set
 
