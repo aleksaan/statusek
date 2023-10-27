@@ -4,19 +4,11 @@ go 1.18
 
 require (
 	github.com/lib/pq v1.10.6
+	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.2
 )
 
 require (
-	github.com/cilium/ebpf v0.9.0 // indirect
-	github.com/cosiner/argv v0.1.0 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
-	github.com/derekparker/trie v0.0.0-20200317170641-1fdf38b7b0e9 // indirect
-	github.com/go-delve/delve v1.8.3 // indirect
-	github.com/go-delve/liner v1.2.2-1 // indirect
-	github.com/google/go-dap v0.6.0 // indirect
-	github.com/hashicorp/golang-lru v0.5.4 // indirect
-	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.12.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -27,10 +19,9 @@ require (
 	github.com/jackc/pgx/v4 v4.16.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.4 // indirect
-	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
+	github.com/kr/pretty v0.3.0 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
