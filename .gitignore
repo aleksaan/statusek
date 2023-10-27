@@ -2,3 +2,9 @@ logs/application.log
 statusek.zip
 statusek.exe
 statusek.zip
+api/api.go
+bin/v2023.05.12_a/v2023.05.12_a_darwin_amd64_statusek.zip
+bin/v2023.05.12_a/v2023.05.12_a_linux_amd64_statusek.zip
+bin/v2023.05.12_a/v2023.05.12_a_windows_amd64_statusek.zip
+bin/v2023.05.12_a/darwin_amd64/statusek
+bin/v2023.05.12_a/linux_amd64/statusek
