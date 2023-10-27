@@ -10,189 +10,157 @@ import (
 	"github.com/fatih/structs"
 )
 
-type tResponseBody struct {
-	params  map[string]interface{}
-	result  map[string]interface{}
-	message string
-	status  bool
-}
-
 //---------------------------------------------------------------------------
 
 // ApiCreateInstance - rest api handler creates instance of specified object
 
 var ApiCreateInstance = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	rcode1, params := apiCommonDecodeParams(r)
-	resp.params = structs.Map(params)
-	if rcode1 != rc.SUCCESS {
-		sendResponse(w, resp, rcode1)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
 		return
 	}
-	instance_token, rcode2 := logic.CreateInstance(params.ObjectName, params.InstanceTimeout)
-	if rcode2 != rc.SUCCESS {
-		sendResponse(w, resp, rcode2)
+	instance_token, rc2 := logic.CreateInstance(params.ObjectName, params.InstanceTimeout)
+	if rc2 != rc.SUCCESS {
+		sendResponse(w, params, result, rc2)
 		return
 	}
-	resp.result["instance_token"] = instance_token
-	sendResponse(w, resp, rcode2)
+	result.Data["instance_token"] = instance_token
+	sendResponse(w, params, result, rc2)
 }
 
 //---------------------------------------------------------------------------
 
-//ApiSetStatus - rest api handler sets status for the instance
+// ApiSetStatus - rest api handler sets status for the instance
 var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	rcode1, params := apiCommonDecodeParams(r)
-	resp.params = structs.Map(params)
-	if rcode1 != rc.SUCCESS {
-		sendResponse(w, resp, rcode1)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
 		return
 	}
-	rcode := logic.SetStatus(params.InstanceToken, params.StatusName)
-	if rcode != rc.SUCCESS {
-		if rcode == rc.INSTANCE_IS_FINISHED {
-			_, _, ii := logic.GetInstanceInfo(params.InstanceToken)
-			resp.params["InstanceIsFinishedDescription"] = ii.Instance.InstanceIsFinishedDescription
-		}
-		sendResponse(w, resp, rcode)
-		return
-	}
-	sendResponse(w, resp, rcode)
+
+	rc2 := logic.SetStatus(params.InstanceToken, params.StatusName)
+	sendResponse(w, params, result, rc2)
 }
 
-//---------------------------------------------------------------------------
-
-//ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
+// ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
 var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	rcode1, params := apiCommonDecodeParams(r)
-	resp.params = structs.Map(params)
-	if rcode1 != rc.SUCCESS {
-		sendResponse(w, resp, rcode1)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
 		return
 	}
-	_, rcode, ii := logic.GetInstanceInfo(params.InstanceToken)
-	if rcode == rc.SUCCESS {
-		resp.result["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
-		resp.result["instance_is_finished"] = ii.Instance.InstanceIsFinished
-	}
-	sendResponse(w, resp, rcode)
-}
 
-//---------------------------------------------------------------------------
+	_, rc2, ii := logic.GetInstanceInfo(params.InstanceToken)
+	if rc2 == rc.SUCCESS {
+		result.Data["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
+		result.Data["instance_is_finished"] = ii.Instance.InstanceIsFinished
+	}
+	sendResponse(w, params, result, rc2)
+}
 
 // ApiGetInstanceInfo - rest api handler return info about process
 var ApiGetInstanceInfo = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	_, params := apiCommonDecodeParams(r)
-	_, rcode, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
-
-	if rcode == rc.SUCCESS {
-		resp.result["instance"] = &instanceInfo.Instance
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
+		return
 	}
-	sendResponse(w, resp, rcode)
-}
+	_, rc2, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
 
-//---------------------------------------------------------------------------
+	if rc2 == rc.SUCCESS {
+		result.Data["instance_info"] = &instanceInfo
+	}
+	sendResponse(w, params, result, rc2)
+}
 
 // ApiGetEvents - gets events of instance by it token
 var ApiGetEvents = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	rcode1, params := apiCommonDecodeParams(r)
-	resp.params = structs.Map(params)
-	if rcode1 != rc.SUCCESS {
-		sendResponse(w, resp, rcode1)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
 		return
 	}
 
-	events, rcode := logic.GetEvents(params.InstanceToken)
-	if rcode == rc.SUCCESS {
-		resp.result["events"] = events
+	events, rc2 := logic.GetEvents(params.InstanceToken)
+	if rc2 == rc.SUCCESS {
+		result.Data["events"] = events
 	}
 
-	sendResponse(w, resp, rcode)
+	sendResponse(w, params, result, rc2)
 }
-
-//---------------------------------------------------------------------------
 
 // ApiCheckStatusIsSet - gets events of instance by it token
 var ApiCheckStatusIsSet = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	rcode1, params := apiCommonDecodeParams(r)
-	resp.params = structs.Map(params)
-	if rcode1 != rc.SUCCESS {
-		sendResponse(w, resp, rcode1)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
 		return
 	}
 
-	_, rcode := logic.CheckStatusIsSet(params.InstanceToken, params.StatusName)
-	if rcode == rc.STATUS_IS_SET {
-		rcode = rc.SUCCESS
-		resp.result["status_is_set"] = true
+	_, rc2 := logic.CheckStatusIsSet(params.InstanceToken, params.StatusName)
+	if rc2 == rc.STATUS_IS_SET {
+		rc2 = rc.SUCCESS
+		result.Data["status_is_set"] = true
 	}
-	if rcode == rc.STATUS_IS_NOT_SET {
-		rcode = rc.SUCCESS
-		resp.result["status_is_set"] = false
+	if rc2 == rc.STATUS_IS_NOT_SET {
+		rc2 = rc.SUCCESS
+		result.Data["status_is_set"] = false
 	}
-	if rcode != rc.SUCCESS {
-		if rcode == rc.INSTANCE_IS_FINISHED {
-			_, _, ii := logic.GetInstanceInfo(params.InstanceToken)
-			resp.params["InstanceIsFinishedDescription"] = ii.Instance.InstanceIsFinishedDescription
-		}
-		sendResponse(w, resp, rcode)
-		return
-	}
-	sendResponse(w, resp, rcode)
+
+	sendResponse(w, params, result, rc2)
 }
 
-//---------------------------------------------------------------------------
-
-// ApiAbout - gets info about program
-var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
-	resp.params = make(map[string]interface{})
-	resp.result["result"] = nil
-	apiCommonStart(r)
-	resp.result["version"] = models.CurrentVersion
-	resp.result["home page"] = config.Config.GithubLink
-	sendResponse(w, resp, rc.SUCCESS)
-}
-
-//---------------------------------------------------------------------------
-
-//ApiCheckStatusIsReadyToSet - rest api handler sets status for the instance
+// ApiCheckStatusIsReadyToSet - rest api handler sets status for the instance
 var ApiCheckStatusIsReadyToSet = func(w http.ResponseWriter, r *http.Request) {
-	var resp = &tResponseBody{result: make(map[string]interface{})}
+	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
-	rcode1, params := apiCommonDecodeParams(r)
-	resp.params = structs.Map(params)
-	if rcode1 != rc.SUCCESS {
-		sendResponse(w, resp, rcode1)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
 		return
 	}
 
 	rcode := logic.CheckStatusIsReadyToSet(params.InstanceToken, params.StatusName)
 
 	if rcode == rc.SUCCESS {
-		resp.result["status_is_ready_to_set"] = true
-		resp.result["status_is_ready_to_set_description"] = ""
-		sendResponse(w, resp, rcode)
+		result.Data["status_is_ready_to_set"] = true
+		result.Data["status_is_ready_to_set_description"] = ""
+		sendResponse(w, params, result, rcode)
 		return
 	}
 
-	if rcode == rc.NOT_ALL_MANDATORY_ARE_SET || rcode == rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET || rcode == rc.NO_ONE_PREVIOS_OPTIONAL_STATUSES_ARE_SET {
-		resp.result["status_is_ready_to_set"] = false
-		resp.result["status_is_ready_to_set_description"] = replaceLogsTags(resp, rc.ReturnCodes[rcode])
-		sendResponse(w, resp, rc.SUCCESS)
+	if rcode == rc.STATUS_IS_ALREADY_SET || rcode == rc.NOT_ALL_MANDATORY_ARE_SET || rcode == rc.NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET || rcode == rc.NO_ONE_PREVIOS_OPTIONAL_STATUSES_ARE_SET {
+		result.Data["status_is_ready_to_set"] = false
+		mapParams := structs.Map(params)
+		result.Data["status_is_ready_to_set_description"] = rightMessage(rc.ReturnCodes[rcode], mapParams)
+
+		sendResponse(w, params, result, rc.SUCCESS)
 		return
 	}
 
-	sendResponse(w, resp, rcode)
+	sendResponse(w, params, result, rcode)
+}
+
+// ApiAbout - gets info about program
+var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
+	var result = &tResp{Data: make(map[string]interface{})}
+	apiCommonStart(r)
+	params := &tParams{}
+
+	result.Data["version"] = models.CurrentVersion
+	result.Data["home page"] = config.Config.GithubLink
+	sendResponse(w, params, result, rc.SUCCESS)
 }

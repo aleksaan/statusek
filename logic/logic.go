@@ -29,8 +29,8 @@ func finishInstanceIfTimeout(tx *gorm.DB, instanceInfo *models.InstanceInfo) {
 	if instanceInfo.Instance.InstanceIsFinished {
 		return
 	}
-	chk4, _ := checkInstanceIsNotTimeout(instanceInfo)
-	if !chk4 {
+	rc0 := checkInstanceIsTimeout(instanceInfo)
+	if rc0 == rc.INSTANCE_IS_TIMEOUT {
 		instanceInfo.Instance.FinishInstance(tx, "TIMEOUT")
 	}
 }

@@ -51,16 +51,16 @@ func checkInstanceIsFinished(instanceInfo *models.InstanceInfo) (bool, rc.Return
 	return false, rc.INSTANCE_IS_NOT_FINISHED
 }
 
-func checkInstanceIsNotTimeout(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
+func checkInstanceIsTimeout(instanceInfo *models.InstanceInfo) rc.ReturnCode {
 	t1 := time.Now()
 	t2 := instanceInfo.Instance.CreatedAt
 	//fmt.Printf("\n\nTime 1: %s\nTime 2: %s\n\n", t1.Format(time.RFC3339), t2.Format(time.RFC3339))
 	diff := t1.Sub(t2).Seconds()
 	if diff < float64(instanceInfo.Instance.InstanceTimeout) {
-		return true, rc.SUCCESS
+		return rc.INSTANCE_IS_NOT_TIMEOUT
 	}
 
-	return false, rc.INSTANCE_IS_IN_TIMEOUT
+	return rc.INSTANCE_IS_TIMEOUT
 }
 
 func checkPreviosStatusesIsSet(instanceInfo *models.InstanceInfo, statusInfo *models.StatusInfo) (bool, rc.ReturnCode) {
