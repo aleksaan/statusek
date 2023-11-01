@@ -8,8 +8,6 @@ import (
 	prefixed "github.com/x-cray/logrus-prefixed-formatter"
 )
 
-var logFileName = "logs/application.log"
-
 var RLogger *logrus.Entry
 
 // var (
