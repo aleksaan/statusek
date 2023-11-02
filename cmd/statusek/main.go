@@ -8,6 +8,7 @@ import (
 
 	"github.com/aleksaan/statusek/api"
 	"github.com/aleksaan/statusek/logging"
+	"github.com/aleksaan/statusek/logic"
 	"github.com/gorilla/mux"
 )
 
@@ -33,7 +34,10 @@ func main() {
 		servicePort = os.Getenv("ASPNETCORE_PORT")
 	}
 
+	go logic.CloseInstancesByTimeout()
+
 	http.ListenAndServe("127.0.0.1:"+servicePort, router)
+
 }
 
 func homeLink(w http.ResponseWriter, r *http.Request) {
