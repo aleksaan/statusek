@@ -164,3 +164,17 @@ var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 	result.Data["home page"] = config.Config.GithubLink
 	sendResponse(w, params, result, rc.SUCCESS)
 }
+
+// ApiSetStatus - rest api handler sets status for the instance
+var ApiSetGlobalStatus = func(w http.ResponseWriter, r *http.Request) {
+	var result = &tResp{Data: make(map[string]interface{})}
+	apiCommonStart(r)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
+		return
+	}
+
+	rc2 := logic.SetGlobalStatus(params.StatusName)
+	sendResponse(w, params, result, rc2)
+}

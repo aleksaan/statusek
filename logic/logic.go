@@ -125,6 +125,14 @@ func GetInstanceInfo(instanceToken string) (bool, rc.ReturnCode, *models.Instanc
 	return true, rc0, instanceInfo
 }
 
+// SetGlobalStatus - set global status
+func SetGlobalStatus(statusName string) rc.ReturnCode {
+	tx := db.Begin()
+	defer tx.Commit()
+
+	return rc.SUCCESS
+}
+
 // SetStatus - set status of instance
 func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 	//logging.Error("[%s] [%s] Setting status '%s' for instance '%s'... Error: '%s'", r.RemoteAddr, r.RequestURI, params.StatusName, params.InstanceToken, rc3message)
