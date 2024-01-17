@@ -2,8 +2,11 @@ package tests
 
 import (
 	"testing"
+	"time"
 
+	"github.com/aleksaan/statusek/database"
 	"github.com/aleksaan/statusek/logic"
+	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/stretchr/testify/assert"
 )
@@ -66,5 +69,28 @@ func TestComplexLogic(t *testing.T) {
 
 	events, _ = logic.GetEvents(token)
 	assert.Equal(t, 2, len(events), "Expect strongly 2 events")
+
+}
+
+var db = database.DB
+
+func TestСloseOpenedProcessesByTimeout(t *testing.T) {
+
+	var obj models.Object
+	db.First(&obj, models.Object{ObjectName: "2-POINT LINE TASK"})
+
+	inst := models.Instance{InstanceTimeout: 1, ObjectID: obj.ID}
+	models.CreateWrapper(db, &inst)
+	time.Sleep(1500 * time.Millisecond)
+
+	// process inst should be closed
+	logic.CloseOpenedTimeoutedProcesses()
+
+	var updinst models.Instance
+	db.First(&updinst, inst.ID)
+
+	if updinst.InstanceIsFinished == false {
+		t.Fatalf("Checked instance hasn't been finished")
+	}
 
 }

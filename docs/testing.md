@@ -16,3 +16,10 @@ go mod tidy
 # Как делать бинарники
 
 .\bin\build_all_platforms.bat
+
+# Как тестировать
+go test ./...
+
+# Как добавить тэг
+git tag v2.0
+git push origin v2.0

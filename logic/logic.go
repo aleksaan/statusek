@@ -1,13 +1,34 @@
 package logic
 
 import (
+	"time"
+
 	"github.com/aleksaan/statusek/database"
+	"github.com/aleksaan/statusek/logging"
 	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"gorm.io/gorm"
 )
 
 var db = database.DB
+
+func CloseInstancesByTimeout() {
+	for {
+		time.Sleep(5 * 1000 * time.Millisecond)
+		CloseOpenedTimeoutedProcesses()
+	}
+}
+
+func CloseOpenedTimeoutedProcesses() {
+	tx := db.Begin()
+	defer tx.Commit()
+	var instances []models.Instance
+	tx.Where("now() - created_at > instance_timeout* INTERVAL '1' second and instance_is_finished = false").Find(&instances)
+	for _, v := range instances {
+		db.Model(&v).Updates(models.Instance{InstanceIsFinished: true, InstanceIsFinishedDescription: "TIMEOUT"})
+		logging.Info("Instance '%s' has been closed by timeout", v.InstanceToken)
+	}
+}
 
 // CreateInstance - creates instance of object and gets its token
 func CreateInstance(objectName string, instanceTimeout int) (string, rc.ReturnCode) {
@@ -102,6 +123,14 @@ func GetInstanceInfo(instanceToken string) (bool, rc.ReturnCode, *models.Instanc
 	}
 	finishInstanceIfTimeout(tx, instanceInfo)
 	return true, rc0, instanceInfo
+}
+
+// SetGlobalStatus - set global status
+func SetGlobalStatus(statusName string) rc.ReturnCode {
+	tx := db.Begin()
+	defer tx.Commit()
+
+	return rc.SUCCESS
 }
 
 // SetStatus - set status of instance
