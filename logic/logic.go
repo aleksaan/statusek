@@ -130,6 +130,13 @@ func SetGlobalStatus(statusName string) rc.ReturnCode {
 	tx := db.Begin()
 	defer tx.Commit()
 
+	gevent := &models.GlobalEvent{EventName: statusName}
+
+	rc0 := models.CreateWrapper(tx, gevent)
+	if rc0 != rc.SUCCESS {
+		return rc0
+	}
+
 	return rc.SUCCESS
 }
 

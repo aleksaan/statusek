@@ -30,6 +30,12 @@ func UpdateDB() rc.ReturnCode {
 
 	var isVersionsAreDifferent = !checkTable || (checkTable && !checkVersion)
 
+	//Если отсутствует таблица глобальных статусов - создаем ее
+	checkGEvents := db.Migrator().HasTable(&GlobalEvent{})
+	if !checkGEvents {
+		db.AutoMigrate(&GlobalEvent{})
+	}
+
 	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
 		logging.Info("Adding column 'message' to table 'events'...")
 		db.Exec("ALTER TABLE " + config.Config.DBConfig.DbSchema + ".events ADD COLUMN IF NOT EXISTS message text;")

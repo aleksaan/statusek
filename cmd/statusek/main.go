@@ -28,6 +28,7 @@ func main() {
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)
 	router.HandleFunc("/about", api.ApiAbout)
+	router.HandleFunc("/status/setGlobalStatus", api.ApiSetGlobalStatus)
 	// router.HandleFunc("/instance/graph", api.ApiGetGraph)
 
 	if os.Getenv("ASPNETCORE_PORT") != "" {
