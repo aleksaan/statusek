@@ -5,6 +5,7 @@ type tParams struct {
 	InstanceTimeout int    `json:"instance_timeout"`
 	StatusName      string `json:"status_name"`
 	InstanceToken   string `json:"instance_token"`
+	StatusMessage   string `json:"status_message"`
 }
 
 type tResp struct {

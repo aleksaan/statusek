@@ -17,6 +17,7 @@ type Event struct {
 	Instance        Instance
 	StatusID        uint
 	Status          Status
+	Message         string
 	EventCreationDt *time.Time `gorm:"default:CURRENT_TIMESTAMP"`
 }
 

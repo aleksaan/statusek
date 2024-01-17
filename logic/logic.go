@@ -125,8 +125,23 @@ func GetInstanceInfo(instanceToken string) (bool, rc.ReturnCode, *models.Instanc
 	return true, rc0, instanceInfo
 }
 
+// SetGlobalStatus - set global status
+func SetGlobalStatus(statusName string) rc.ReturnCode {
+	tx := db.Begin()
+	defer tx.Commit()
+
+	gevent := &models.GlobalEvent{EventName: statusName}
+
+	rc0 := models.CreateWrapper(tx, gevent)
+	if rc0 != rc.SUCCESS {
+		return rc0
+	}
+
+	return rc.SUCCESS
+}
+
 // SetStatus - set status of instance
-func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
+func SetStatus(instanceToken string, statusName string, statusMessage string) rc.ReturnCode {
 	//logging.Error("[%s] [%s] Setting status '%s' for instance '%s'... Error: '%s'", r.RemoteAddr, r.RequestURI, params.StatusName, params.InstanceToken, rc3message)
 
 	tx := db.Begin()
@@ -142,7 +157,7 @@ func SetStatus(instanceToken string, statusName string) rc.ReturnCode {
 		return rc0
 	}
 
-	event := &models.Event{StatusID: statusInfo.Status.ID, InstanceID: instanceInfo.Instance.ID}
+	event := &models.Event{StatusID: statusInfo.Status.ID, InstanceID: instanceInfo.Instance.ID, Message: statusMessage}
 
 	rc8 := models.CreateWrapper(tx, event)
 	if rc8 != rc.SUCCESS {

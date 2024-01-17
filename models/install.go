@@ -11,13 +11,12 @@ import (
 )
 
 var db = database.DB
-var CurrentVersion = "v2021.06.15_a"
 
 func init() {
-	UpdateDB(CurrentVersion)
+	UpdateDB()
 }
 
-func UpdateDB(currentVersion string) rc.ReturnCode {
+func UpdateDB() rc.ReturnCode {
 	//check existing of the version table
 	var version = &Version{}
 	checkTable := db.Migrator().HasTable(&Version{})
@@ -26,13 +25,25 @@ func UpdateDB(currentVersion string) rc.ReturnCode {
 	var checkVersion bool
 	if checkTable {
 		db.First(&version)
-		checkVersion = version.VersionNumber == currentVersion
+		checkVersion = version.VersionNumber == config.Config.DBVersion
 	}
 
 	var isVersionsAreDifferent = !checkTable || (checkTable && !checkVersion)
 
+	//Если отсутствует таблица глобальных статусов - создаем ее
+	checkGEvents := db.Migrator().HasTable(&GlobalEvent{})
+	if !checkGEvents {
+		db.AutoMigrate(&GlobalEvent{})
+	}
+
+	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
+		logging.Info("Adding column 'message' to table 'events'...")
+		db.Exec("ALTER TABLE " + config.Config.DBConfig.DbSchema + ".events ADD COLUMN IF NOT EXISTS message text;")
+		logging.Info("Adding column 'message' to table 'events'... Done")
+	}
+
 	if isVersionsAreDifferent {
-		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, currentVersion)
+		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, config.Config.DBVersion)
 
 		if !config.Config.DBConfig.DbUpdateIfOtherVersion {
 			logging.Info("DB updating is canceled because parameter db_update_if_older_version=false")
@@ -52,11 +63,11 @@ func UpdateDB(currentVersion string) rc.ReturnCode {
 		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
 
 		//writing new version
-		logging.Info("Writing new version number '%s'", currentVersion)
-		version := Version{VersionNumber: currentVersion}
+		logging.Info("Writing new version number '%s'", config.Config.DBVersion)
+		version := Version{VersionNumber: config.Config.DBVersion}
+		CreateWrapper(db, &version)
 
 		logging.Info("Creating default statuses models")
-		CreateWrapper(db, &version)
 		CreatingDefaultModels(true)
 
 		logging.Info("Starting DB updating...Done")
