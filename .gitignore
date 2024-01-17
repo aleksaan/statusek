@@ -10,3 +10,11 @@ bin/v2023.05.12_a/darwin_amd64/statusek
 bin/v2023.05.12_a/linux_amd64/statusek
 tests/.env
 cmd/statusek/.env
+bin/v2023.11.02_a/v2023.11.02_a_darwin_amd64_statusek.zip
+bin/v2023.11.02_a/v2023.11.02_a_linux_amd64_statusek.zip
+bin/v2023.11.02_a/v2023.11.02_a_windows_amd64_statusek.zip
+bin/v2023.11.02_a/darwin_amd64/statusek
+bin/v2023.11.02_a/linux_amd64/statusek
+bin/build_all_platforms.bat
+bin/build_all_platforms.bat
+.gitignore
