@@ -25,7 +25,7 @@ func UpdateDB() rc.ReturnCode {
 	var checkVersion bool
 	if checkTable {
 		db.First(&version)
-		checkVersion = version.VersionNumber == config.Config.DBVersion
+		checkVersion = version.VersionNumber == config.Config.Version
 	}
 
 	var isVersionsAreDifferent = !checkTable || (checkTable && !checkVersion)
@@ -36,17 +36,22 @@ func UpdateDB() rc.ReturnCode {
 		db.AutoMigrate(&GlobalEvent{})
 	}
 
-	if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
-		logging.Info("Adding column 'message' to table 'events'...")
-		db.Exec("ALTER TABLE " + config.Config.DBConfig.DbSchema + ".events ADD COLUMN IF NOT EXISTS message text;")
-		logging.Info("Adding column 'message' to table 'events'... Done")
-	}
+	// if config.Config.DBVersion == "v2023.06.14" && version.VersionNumber == "v2021.06.15_a" {
+	// 	logging.Info("Adding column 'message' to table 'events'...")
+	// 	db.Exec("ALTER TABLE " + config.Config.DBConfig.DbSchema + ".events ADD COLUMN IF NOT EXISTS message text;")
+	// 	logging.Info("Adding column 'message' to table 'events'... Done")
+	// }
 
 	if isVersionsAreDifferent {
-		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, config.Config.DBVersion)
+		logging.Info("Installed application version '%s' differs from current version '%s'", version.VersionNumber, config.Config.Version)
 
 		if !config.Config.DBConfig.DbUpdateIfOtherVersion {
 			logging.Info("DB updating is canceled because parameter db_update_if_older_version=false")
+
+			logging.Info("Writing new version number '%s' into database", config.Config.Version)
+			version := Version{VersionNumber: config.Config.Version}
+			CreateWrapper(db, &version)
+
 			return rc.DB_IS_NOT_UPDATED
 		}
 	}
@@ -63,8 +68,8 @@ func UpdateDB() rc.ReturnCode {
 		db.AutoMigrate(&Version{}, &Object{}, &Instance{}, &Status{}, &Workflow{}, &Event{})
 
 		//writing new version
-		logging.Info("Writing new version number '%s'", config.Config.DBVersion)
-		version := Version{VersionNumber: config.Config.DBVersion}
+		logging.Info("Writing new version number '%s'", config.Config.Version)
+		version := Version{VersionNumber: config.Config.Version}
 		CreateWrapper(db, &version)
 
 		logging.Info("Creating default statuses models")

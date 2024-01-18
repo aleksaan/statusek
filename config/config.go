@@ -24,7 +24,7 @@ type ConfigType struct {
 	DBConfig    DBConfigType
 	ServicePort string
 	GithubLink  string
-	DBVersion   string
+	Version     string
 }
 
 var Config *ConfigType
@@ -53,7 +53,7 @@ func New() *ConfigType {
 		},
 		ServicePort: getEnv("service_port", ""),
 		GithubLink:  "https://github.com/aleksaan/statusek",
-		DBVersion:   "v2023.06.14",
+		Version:     "2.7.0",
 	}
 }
 

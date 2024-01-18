@@ -159,7 +159,7 @@ var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 	apiCommonStart(r)
 	params := &tParams{}
 
-	result.Data["db_version"] = config.Config.DBVersion
+	result.Data["db_version"] = config.Config.Version
 	result.Data["home page"] = config.Config.GithubLink
 	sendResponse(w, params, result, rc.SUCCESS)
 }
