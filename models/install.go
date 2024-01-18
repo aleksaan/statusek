@@ -49,6 +49,7 @@ func UpdateDB() rc.ReturnCode {
 			logging.Info("DB updating is canceled because parameter db_update_if_older_version=false")
 
 			logging.Info("Writing new version number '%s' into database", config.Config.Version)
+			db.Unscoped().Where("1 = 1").Delete(&Version{})
 			version := Version{VersionNumber: config.Config.Version}
 			CreateWrapper(db, &version)
 
