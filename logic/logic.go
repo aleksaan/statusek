@@ -77,7 +77,7 @@ func GetEvents(instanceToken string) ([]models.EventExtended, rc.ReturnCode) {
 		if rc0 != rc.SUCCESS {
 			return nil, rc0
 		}
-		event := &models.EventExtended{EventCreationDt: e.EventCreationDt}
+		event := &models.EventExtended{EventCreationDt: e.EventCreationDt, EventMessage: e.Message}
 		event.Status.GetStatusById(db, e.StatusID)
 		events = append(events, *event)
 	}
