@@ -8,6 +8,7 @@ import (
 	"github.com/aleksaan/statusek/models"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 var db = database.DB
@@ -165,6 +166,8 @@ func SetStatus(instanceToken string, statusName string, statusMessage string) rc
 	}
 
 	instanceInfo.Events = append(instanceInfo.Events, *event)
+
+	tx.Clauses(clause.Locking{Strength: "UPDATE"}).Find(&models.Instance{}, instanceInfo.Instance.ID)
 
 	//finish instance if stop-status got
 	if statusInfo.Status.StatusType == "STOP-STATUS" {
