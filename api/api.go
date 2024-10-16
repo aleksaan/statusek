@@ -12,11 +12,7 @@ import (
 	"github.com/fatih/structs"
 )
 
-var resp map[string]interface{} = make(map[string]interface{})
-
-var x map[string]interface{}
-
-func replaceLogsTags(str string) string {
+func replaceLogsTags(str string, x map[string]interface{}) string {
 	var res string = str
 	for k, v := range x {
 		res = strings.ReplaceAll(res, "<"+k+">", fmt.Sprintf("%v", v))
@@ -29,101 +25,119 @@ func replaceLogsTags(str string) string {
 // ApiCreateInstance - rest api handler creates instance of specified object
 
 var ApiCreateInstance = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
-	x = structs.Map(params)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 	instance_token, rcode := logic.CreateInstance(params.ObjectName, params.InstanceTimeout)
 	resp["instance_token"] = instance_token
-	apiCommonFinish(w, rcode)
+	apiCommonFinish(w, rcode, resp, x)
 }
 
 //---------------------------------------------------------------------------
 
-//ApiSetStatus - rest api handler sets status for the instance
+// ApiSetStatus - rest api handler sets status for the instance
 var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 	rcode := logic.SetStatus(params.InstanceToken, params.StatusName)
 	_, _, ii := logic.GetInstanceInfo(params.InstanceToken)
 	resp["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
 	x["InstanceIsFinishedDescription"] = ii.Instance.InstanceIsFinishedDescription
-	apiCommonFinish(w, rcode)
+	apiCommonFinish(w, rcode, resp, x)
 }
 
 //---------------------------------------------------------------------------
 
-//ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
+// ApiCheckInstanceIsFinished - rest api handler checks instance is finished (return true) or not (return false)
 var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 	_, rcode, ii := logic.GetInstanceInfo(params.InstanceToken)
 	resp["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
 	x["InstanceIsFinishedDescription"] = ii.Instance.InstanceIsFinishedDescription
-	apiCommonFinish(w, rcode)
+	apiCommonFinish(w, rcode, resp, x)
 }
 
 //---------------------------------------------------------------------------
 
 // ApiGetInstanceInfo - rest api handler return info about process
 var ApiGetInstanceInfo = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 	_, rcode, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
 
 	if rcode == rc.SUCCESS {
 		resp["instance"] = &instanceInfo.Instance
 	}
-	apiCommonFinish(w, rcode)
+	apiCommonFinish(w, rcode, resp, x)
 }
 
 //---------------------------------------------------------------------------
 
 // ApiGetEvents - gets events of instance by it token
 var ApiGetEvents = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 
 	events, rcode := logic.GetEvents(params.InstanceToken)
 	if rcode == rc.SUCCESS {
 		resp["events"] = events
 	}
 
-	apiCommonFinish(w, rcode)
+	apiCommonFinish(w, rcode, resp, x)
 }
 
 //---------------------------------------------------------------------------
 
 // ApiCheckStatusIsSet - gets events of instance by it token
 var ApiCheckStatusIsSet = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 
-	_, rcode := logic.CheckStatusIsSet(params.InstanceToken, params.StatusName)
-
-	apiCommonFinish(w, rcode)
+	status, rcode := logic.CheckStatusIsSet(params.InstanceToken, params.StatusName)
+	if status {
+		apiCommonFinish(w, rc.SUCCESS, resp, x)
+	} else {
+		apiCommonFinish(w, rcode, resp, x)
+	}
 }
 
 //---------------------------------------------------------------------------
 
 // ApiAbout - gets info about program
 var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
+	x := make(map[string]interface{})
 
 	resp["version"] = models.CurrentVersion
 	resp["home page"] = config.Config.GithubLink
-	apiCommonFinish(w, rc.SUCCESS)
+	apiCommonFinish(w, rc.SUCCESS, resp, x)
 }
 
 //---------------------------------------------------------------------------
 
-//ApiCheckStatusIsReadyToSet - rest api handler sets status for the instance
+// ApiCheckStatusIsReadyToSet - rest api handler sets status for the instance
 var ApiCheckStatusIsReadyToSet = func(w http.ResponseWriter, r *http.Request) {
+	var resp map[string]interface{} = make(map[string]interface{})
 	apiCommonStart(r)
-	params := apiCommonDecodeParams(w, r)
+	params := apiCommonDecodeParams(w, r, resp)
+	x := structs.Map(params)
 
 	rcode := logic.CheckStatusIsReadyToSet(params.InstanceToken, params.StatusName)
 	resp["status"] = false
 	resp["message"] = rc.ReturnCodes[rcode]
 
-	apiCommonFinish(w, rcode)
+	apiCommonFinish(w, rcode, resp, x)
 }

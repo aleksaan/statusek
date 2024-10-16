@@ -8,12 +8,11 @@ import (
 	"github.com/aleksaan/statusek/logging"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"github.com/aleksaan/statusek/utils"
-	"github.com/fatih/structs"
 )
 
 //---------------------------------------------------------------------------
 
-func apiCommonDecodeParams(w http.ResponseWriter, r *http.Request) *apiCommonParams {
+func apiCommonDecodeParams(w http.ResponseWriter, r *http.Request, resp map[string]interface{}) *apiCommonParams {
 	logging.RLogger.Info("Parameters parsing...")
 	params := &apiCommonParams{}
 
@@ -27,7 +26,6 @@ func apiCommonDecodeParams(w http.ResponseWriter, r *http.Request) *apiCommonPar
 		logging.RLogger.Info("Finished")
 		return nil
 	}
-	x = structs.Map(params)
 	return params
 }
 
@@ -36,9 +34,9 @@ func apiCommonStart(r *http.Request) {
 	logging.RLogger.Info("Started")
 }
 
-func apiCommonFinish(w http.ResponseWriter, rcode rc.ReturnCode) {
+func apiCommonFinish(w http.ResponseWriter, rcode rc.ReturnCode, resp map[string]interface{}, x map[string]interface{}) {
 
-	var message = replaceLogsTags(rc.ReturnCodes[rcode])
+	var message = replaceLogsTags(rc.ReturnCodes[rcode], x)
 
 	if rcode != rc.SUCCESS {
 		resp["status"] = false
