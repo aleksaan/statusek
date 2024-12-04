@@ -53,7 +53,7 @@ func New() *ConfigType {
 		},
 		ServicePort: getEnv("service_port", ""),
 		GithubLink:  "https://github.com/aleksaan/statusek",
-		Version:     "2.7.2",
+		Version:     "2.8.0",
 	}
 }
 

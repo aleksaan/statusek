@@ -34,7 +34,7 @@ func InitDBConnection() rc.ReturnCode {
 	createConnectionString()
 
 	conn, err := gorm.Open(postgres.Open(connectionString), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
+		Logger: logger.Default.LogMode(logger.Error),
 		//SkipDefaultTransaction: true,
 	})
 
