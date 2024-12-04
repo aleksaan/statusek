@@ -58,7 +58,7 @@ var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 
 	_, rc2, ii := logic.GetInstanceInfo(params.InstanceToken)
 	if rc2 == rc.SUCCESS {
-		result.Data["instanse_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
+		result.Data["instance_is_finished_description"] = ii.Instance.InstanceIsFinishedDescription
 		result.Data["instance_is_finished"] = ii.Instance.InstanceIsFinished
 	}
 	sendResponse(w, params, result, rc2)
