@@ -27,6 +27,9 @@ const (
 	STATUS_IS_SET
 	STATUS_IS_NOT_SET
 	PARAMS_PARSING_IS_FAILED
+	INSTANCE_IS_FINISHED_BY_TIMEOUT
+	INSTANCE_IS_FINISHED_BY_STOP_STATUS
+	INSTANCE_IS_FINISHED_BY_SUCCESS
 )
 
 var ReturnCodes map[ReturnCode]string = make(map[ReturnCode]string)
@@ -43,7 +46,9 @@ func InitReturnCodes(lang language.Tag) {
 	ReturnCodes[NOT_ALL_PREVIOS_MANDATORY_STATUSES_ARE_SET] = "Not all previos mandatory statuses are set for status '<StatusName>'"
 	ReturnCodes[NO_ONE_PREVIOS_OPTIONAL_STATUSES_ARE_SET] = "No one previos optional statuses are sets for status '<StatusName>'"
 	ReturnCodes[INSTANCE_IS_NOT_FINISHED] = "Instance '<InstanceToken>' is not finished"
-	ReturnCodes[INSTANCE_IS_FINISHED] = "Instance '<InstanceToken>' is finished by '<InstanceIsFinishedDescription>'"
+	ReturnCodes[INSTANCE_IS_FINISHED_BY_TIMEOUT] = "Instance '<InstanceToken>' is finished by 'TIMEOUT'"
+	ReturnCodes[INSTANCE_IS_FINISHED_BY_STOP_STATUS] = "Instance '<InstanceToken>' is finished by 'STOP_STATUS_IS_SET'"
+	ReturnCodes[INSTANCE_IS_FINISHED_BY_SUCCESS] = "Instance '<InstanceToken>' is finished by 'ALL_MANDATORY_STATUSES_ARE_SET'"
 	ReturnCodes[STATUS_IS_NOT_ACCORDING_TO_INSTANCE] = "ERROR: Status '<StatusName>' is not according to instance '<InstanceToken>'"
 	ReturnCodes[INSTANCE_IS_TIMEOUT] = "Instance '<InstanceToken>' is timed out"
 	ReturnCodes[ALL_MANDATORY_ARE_SET] = "All mandatory statuses are set for instance '<InstanceToken>'"

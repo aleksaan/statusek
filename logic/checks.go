@@ -45,7 +45,17 @@ func checkAllMandatoryStatusesAreSet(instanceInfo *models.InstanceInfo) (bool, r
 func checkInstanceIsFinished(instanceInfo *models.InstanceInfo) (bool, rc.ReturnCode) {
 
 	if instanceInfo.Instance.InstanceIsFinished {
-		return true, rc.INSTANCE_IS_FINISHED
+		if instanceInfo.Instance.InstanceIsFinishedDescription == "TIMEOUT" {
+			return true, rc.INSTANCE_IS_FINISHED_BY_TIMEOUT
+		}
+
+		if instanceInfo.Instance.InstanceIsFinishedDescription == "STOP_STATUS_IS_SET" {
+			return true, rc.INSTANCE_IS_FINISHED_BY_STOP_STATUS
+		}
+
+		if instanceInfo.Instance.InstanceIsFinishedDescription == "ALL_MANDATORY_STATUSES_ARE_SET" {
+			return true, rc.INSTANCE_IS_FINISHED_BY_SUCCESS
+		}
 	}
 
 	return false, rc.INSTANCE_IS_NOT_FINISHED
