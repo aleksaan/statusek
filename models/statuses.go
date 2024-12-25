@@ -1,14 +1,20 @@
 package models
 
 import (
+	"time"
+
 	"github.com/aleksaan/statusek/config"
 	rc "github.com/aleksaan/statusek/returncodes"
 	"gorm.io/gorm"
 )
 
 type Status struct {
-	gorm.Model
-	ObjectID   uint
+	ID        uint           `gorm:"primarykey"`
+	CreatedAt time.Time      `json:"-"`
+	UpdatedAt time.Time      `json:"-"`
+	DeletedAt gorm.DeletedAt `gorm:"index"  json:"-"`
+	// gorm.Model  `json:"-"`
+	ObjectID   uint   `json:"-"`
 	Object     Object `json:"-"`
 	StatusName string
 	StatusDesc string

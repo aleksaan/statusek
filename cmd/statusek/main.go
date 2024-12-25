@@ -23,10 +23,11 @@ func main() {
 	router.HandleFunc("/instance/create", api.ApiCreateInstance)
 	router.HandleFunc("/status/setStatus", api.ApiSetStatus)
 	router.HandleFunc("/instance/checkIsFinished", api.ApiCheckInstanceIsFinished)
-	// router.HandleFunc("/instance/getInfo", api.ApiGetInstanceInfo)
+	router.HandleFunc("/instance/statuses", api.ApiGetInstanceStatuses)
 	router.HandleFunc("/event/getEvents", api.ApiGetEvents)
 	router.HandleFunc("/status/checkStatusIsSet", api.ApiCheckStatusIsSet)
 	router.HandleFunc("/status/checkStatusIsReadyToSet", api.ApiCheckStatusIsReadyToSet)
+	router.HandleFunc("/instance/getStatusesReadyToSet", api.ApiGetStatusesReadyToSet)
 	router.HandleFunc("/about", api.ApiAbout)
 	router.HandleFunc("/status/setGlobalStatus", api.ApiSetGlobalStatus)
 	// router.HandleFunc("/instance/graph", api.ApiGetGraph)
@@ -37,8 +38,8 @@ func main() {
 
 	go logic.CloseInstancesByTimeout()
 
+	logging.Info("Starting service on port %s ...ОК", servicePort)
 	http.ListenAndServe("127.0.0.1:"+servicePort, router)
-
 }
 
 func homeLink(w http.ResponseWriter, r *http.Request) {

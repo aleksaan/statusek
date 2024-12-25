@@ -20,6 +20,12 @@ func CloseInstancesByTimeout() {
 	}
 }
 
+// GetStatusesReadyToSet - returns statuses are ready to be set
+// func GetStatusesReadyToSet(instanceToken string) ([]models.Status, rc.ReturnCode) {
+// 	var statuses []models.Status
+// }
+
+// CloseOpenedTimeoutedProcesses - closes opened processes by timeout automatically
 func CloseOpenedTimeoutedProcesses() {
 	tx := db.Begin()
 	defer tx.Commit()
@@ -111,6 +117,17 @@ func CheckStatusIsSet(instanceToken string, statusName string) (bool, rc.ReturnC
 		return true, rc0
 	}
 	return false, rc0
+}
+
+func GetInstanceStatuses(instanceToken string) (bool, rc.ReturnCode, *[]models.InstanceStatus) {
+	var instanceStatuses []models.InstanceStatus
+	tx := db.Begin()
+	defer tx.Commit()
+	rc0 := models.GetInstanceStatuses(tx, &instanceStatuses, instanceToken)
+	if rc0 != rc.SUCCESS {
+		return false, rc0, &instanceStatuses
+	}
+	return true, rc0, &instanceStatuses
 }
 
 // GetInstanceInfo - check for finishing

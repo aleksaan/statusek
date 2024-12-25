@@ -32,6 +32,25 @@ var ApiCreateInstance = func(w http.ResponseWriter, r *http.Request) {
 
 //---------------------------------------------------------------------------
 
+var ApiGetStatusesReadyToSet = func(w http.ResponseWriter, r *http.Request) {
+	var result = &tResp{Data: make(map[string]interface{})}
+	apiCommonStart(r)
+	rc1, params := decodeParams(r)
+	if rc1 != rc.SUCCESS {
+		sendResponse(w, params, result, rc1)
+		return
+	}
+
+	// statuses, rc2 := logic.GetStatusesReadyToSet(params.InstanceToken)
+	// if rc2 == rc.SUCCESS {
+	// 	result.Data["events"] = events
+	// }
+
+	// sendResponse(w, params, result, rc2)
+}
+
+//---------------------------------------------------------------------------
+
 // ApiSetStatus - rest api handler sets status for the instance
 var ApiSetStatus = func(w http.ResponseWriter, r *http.Request) {
 	var result = &tResp{Data: make(map[string]interface{})}
@@ -65,7 +84,7 @@ var ApiCheckInstanceIsFinished = func(w http.ResponseWriter, r *http.Request) {
 }
 
 // ApiGetInstanceInfo - rest api handler return info about process
-var ApiGetInstanceInfo = func(w http.ResponseWriter, r *http.Request) {
+var ApiGetInstanceStatuses = func(w http.ResponseWriter, r *http.Request) {
 	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
 	rc1, params := decodeParams(r)
@@ -73,10 +92,10 @@ var ApiGetInstanceInfo = func(w http.ResponseWriter, r *http.Request) {
 		sendResponse(w, params, result, rc1)
 		return
 	}
-	_, rc2, instanceInfo := logic.GetInstanceInfo(params.InstanceToken)
+	_, rc2, instanceStatuses := logic.GetInstanceStatuses(params.InstanceToken)
 
 	if rc2 == rc.SUCCESS {
-		result.Data["instance_info"] = &instanceInfo
+		result.Data["statuses"] = &instanceStatuses
 	}
 	sendResponse(w, params, result, rc2)
 }
@@ -158,7 +177,7 @@ var ApiAbout = func(w http.ResponseWriter, r *http.Request) {
 	var result = &tResp{Data: make(map[string]interface{})}
 	apiCommonStart(r)
 	params := &tParams{}
-	result.Data["home page"] = config.Config.GithubLink
+	result.Data["home_page"] = config.Config.GithubLink
 	result.Data["app_version"] = config.Config.Version
 	sendResponse(w, params, result, rc.SUCCESS)
 }

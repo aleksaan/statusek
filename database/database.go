@@ -26,8 +26,8 @@ func createConnectionString() {
 	path, _ := os.Getwd()
 	logging.Info("path=%s", path)
 	var c = config.Config
-	logging.Info("Connection string: host=%s user=%s port=%s dbname=%s sslmode=%s password=%s", c.DBConfig.DbHost, c.DBConfig.DbUser, c.DBConfig.DbPort, c.DBConfig.DbName, c.DBConfig.DbSslMode, "******")
-	connectionString = fmt.Sprintf("host=%s user=%s port=%s dbname=%s sslmode=%s password=%s", c.DBConfig.DbHost, c.DBConfig.DbUser, c.DBConfig.DbPort, c.DBConfig.DbName, c.DBConfig.DbSslMode, c.DBConfig.DbPass)
+	logging.Info("Connection string: host=%s user=%s port=%s dbname=%s sslmode=%s password=%s search_path=%s", c.DBConfig.DbHost, c.DBConfig.DbUser, c.DBConfig.DbPort, c.DBConfig.DbName, c.DBConfig.DbSslMode, "******", c.DBConfig.DbSchema)
+	connectionString = fmt.Sprintf("host=%s user=%s port=%s dbname=%s sslmode=%s password=%s search_path=%s", c.DBConfig.DbHost, c.DBConfig.DbUser, c.DBConfig.DbPort, c.DBConfig.DbName, c.DBConfig.DbSslMode, c.DBConfig.DbPass, c.DBConfig.DbSchema)
 }
 
 func InitDBConnection() rc.ReturnCode {

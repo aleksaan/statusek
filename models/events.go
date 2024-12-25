@@ -12,10 +12,13 @@ import (
 )
 
 type Event struct {
-	gorm.Model
-	InstanceID      uint
-	Instance        Instance
-	StatusID        uint
+	ID              uint           `gorm:"primarykey"`
+	CreatedAt       time.Time      `json:"-"`
+	UpdatedAt       time.Time      `json:"-"`
+	DeletedAt       gorm.DeletedAt `gorm:"index"  json:"-"`
+	InstanceID      uint           `json:"-"`
+	Instance        Instance       `json:"-"`
+	StatusID        uint           `json:"-"`
 	Status          Status
 	Message         string
 	EventCreationDt *time.Time `gorm:"default:CURRENT_TIMESTAMP"`
